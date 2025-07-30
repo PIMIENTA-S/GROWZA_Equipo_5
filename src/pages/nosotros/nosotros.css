@@ -1,0 +1,12 @@
+#Container{
+    background-image: url('/Public/images/FondoSection1QuienesSomos.jpg');
+    max-height: 450px;
+    background-size: cover;
+    background-position: center;
+}
+
+#containerText{
+    opacity: 0.7;
+    font-weight: 500;
+    padding: 20px;
+}
