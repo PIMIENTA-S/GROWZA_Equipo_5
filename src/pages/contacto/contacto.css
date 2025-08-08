@@ -42,3 +42,34 @@ body {
 .map-section img {
   margin-top: 20px;
 }
+
+section.contain.title.fluid.py-5{
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  background-color: #394D1F;
+  color: #fff;
+  position: relative;
+  height: 150px;
+    h2{
+      margin-left: 50px;
+      position: absolute;
+      bottom: 0;
+    }
+}
+
+
+div.col-md-6.text-center.section3{
+
+  position: absolute; 
+  top: 80px; 
+  padding: 10px;
+  right: 250px;
+  z-index: 10; 
+  width: 250px;
+    img{
+      height: 250px;
+      width: 250px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+}
