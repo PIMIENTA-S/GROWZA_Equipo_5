@@ -15,15 +15,10 @@ body {
   border-radius: 10px;
 }
 
-.icon-section {
-  background-color: #ffe9f5;
-  border: 2px solid #e285f4;
-  margin-top: 20px;
-  border-radius: 10px;
-}
+
 
 .highlight-text {
-  color: #7a2d91;
+  color: #000000;
   font-weight: bold;
   padding: 10px;
 }
@@ -31,7 +26,7 @@ body {
 .circle-icon {
   width: 50px;
   height: 50px;
-  background-color: #e8c6f9;
+  background-color: #a7a7a7;
   display: flex;
   align-items: center;
   justify-content: center;
