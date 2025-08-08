@@ -72,3 +72,10 @@ div.col-md-6.text-center.section3 img {
 div.col-md-6.text-center.section3 p {
   left: 10px;
 }
+
+hr {
+  width: 90%;
+  border: 1px solid; 
+  background-color: #394D1F;
+  margin: 0 auto; 
+}
