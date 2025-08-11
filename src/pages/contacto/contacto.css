@@ -36,7 +36,8 @@
 }
 
 div.col-12.col-md-6 h2{
-  font-size: var(--tamaño-subtitulos);
+  font-size: var(--tamaño-textos);
+  margin-bottom: 20px;
 }
 
 .section3 {
