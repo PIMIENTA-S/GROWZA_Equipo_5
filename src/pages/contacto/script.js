@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let mensajesGuardados = JSON.parse(localStorage.getItem("formContacto"));
 
-    // Asegurarse de que sea un array
     if (!Array.isArray(mensajesGuardados)) {
       mensajesGuardados = mensajesGuardados ? [mensajesGuardados] : [];
     }
