@@ -21,3 +21,15 @@ document.getElementById('nextBtn').addEventListener('click', nextSlide);
 document.getElementById('prevBtn').addEventListener('click', prevSlide);
 
 setInterval(nextSlide, 5000);
+
+fetch("../../components/navbar/navbar.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+
+fetch('../../components/footer/footer.html')
+    .then(response => response.text())
+    .then(data => {
+    document.getElementById("footer").innerHTML = data;
+});
