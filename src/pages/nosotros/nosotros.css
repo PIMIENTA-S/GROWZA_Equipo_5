@@ -1,0 +1,115 @@
+#Container{
+    background-image: url('/Public/images/FondoSection1QuienesSomos.jpg');
+    max-height: 450px;
+    background-size: cover;
+    background-position: center;
+}
+
+#containerText{
+    opacity: 0.7;
+    font-weight: 500;
+    padding: 20px;
+}
+
+#tittleQuienesSomos{
+    font-size: 32px;
+    color: #394D1F;
+    font-weight: bold;
+}
+
+
+/* .carousel-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 20px;
+  pointer-events: none;
+
+} */
+
+/* carrusel */
+
+.carousel-wrapper {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f7f8f3;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+  }
+
+  .carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .arrow-button {
+    background-color: white;
+    border: 2px solid #9AC76E;
+    color: #9AC76E;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  .arrow-button:hover {
+    background-color: #9AC76E;
+    color: white;
+  }
+
+  .arrow-left {
+    margin-right: 20px;
+  }
+
+  .arrow-right {
+    margin-left: 20px;
+  }
+
+  .carousel-container {
+    width: 800px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 40px;
+  }
+
+  .carousel-slide {
+    display: none;
+    animation: fade 0.6s ease-in-out;
+  }
+
+  .carousel-slide.active {
+    display: block;
+  }
+
+  @keyframes fade {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  h2 {
+    color: #4b5e20;
+    margin-top: 0;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  ul li {
+    margin-bottom: 10px;
+    color: #333;
+  }
