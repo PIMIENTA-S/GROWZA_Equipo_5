@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     form.reset();
   });
-<<<<<<< HEAD
 });
 
 fetch("../../components/navbar/navbar.html")
@@ -67,6 +66,4 @@ fetch('../../components/footer/footer.html')
     .then(response => response.text())
     .then(data => {
     document.getElementById('footer').innerHTML = data;
-=======
->>>>>>> fc16fa4d39900dbef2174e9f9375670d3ecce660
 });
