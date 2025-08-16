@@ -1,8 +1,9 @@
 #Container{
     background-image: url('/Public/images/FondoSection1QuienesSomos.jpg');
-    max-height: 450px;
+    height: 470px;
     background-size: cover;
     background-position: center;
+
 }
 
 #containerText{
@@ -36,7 +37,7 @@
     font-family: 'Segoe UI', sans-serif;
     background-color: #f7f8f3;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,3 +114,7 @@
     margin-bottom: 10px;
     color: #333;
   }
+
+.codigo{
+  margin-bottom: 20px;
+}

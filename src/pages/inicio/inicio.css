@@ -42,5 +42,8 @@ body{
   font-size: 30px;
   font-weight: bolder;
   margin-bottom: 15px;
+}
 
+.centered-text h6{
+  font-size: 17px;
 }
