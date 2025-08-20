@@ -4,6 +4,10 @@
     border-bottom: 3px solid #394d1f;
 
 }
+
+.container-fluid{
+  padding: 0px 30px;
+}
 .navbar-brand, .nav-link  {
     color: #394d1f;
     font-weight: bold;

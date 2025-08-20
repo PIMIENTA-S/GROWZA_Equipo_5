@@ -7,18 +7,20 @@ footer {
     background-color: #F2F3E9;
     font-family: "Poppins", sans-serif;
     font-weight: bold;
+    margin-top: 15px;
+    border-top: 1px solid #9AC76E;
 }
 
 
 .head-footer h1 {
     margin-top: 30px;
     color: #394D1F;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .right h1, .left h1 {
     color: #394D1F;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .head-footer {
@@ -28,7 +30,7 @@ footer {
 
 .bottom-p, .footer-li {
     color: #394D1F;
-    font-size: 24px;
+    font-size: 16px;
 }
 
 .right ul {
