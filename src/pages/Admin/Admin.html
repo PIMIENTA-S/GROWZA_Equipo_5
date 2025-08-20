@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="Admin.css">
+    <title>Admin</title>
+</head>
+<body>
+    <header class="container">
+        <h2 class="text-center mt-5 mb-3">NUEVO PRODUCTO</h2>
+        <h3 class="text-center mb-5">Complete el formulario para crear una nuevo producto</h3>
+    </header>
+    <article class="container mt-3 CrearTarjeta p-3">
+        <h2>Crear terjeta</h2>
+    </article>
+
+    <section class="container mt-5">
+                <form action="" class="mb-5">
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                        <label for="exampleFormControlInput1" class="form-label  ">Titulo </label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1 titulo-tarjeta" placeholder="Manzanas">
+                    </div>
+                    <div class="mt1 col-6">
+                        <label for="exampleFormControlInput1" class="form-label ">Categoria</label>
+                        <select class="form-select form-label" aria-label="Default select example">
+                            <option selected>Selecciona una categoria</option>
+                            <option value="1">Vegetales</option>
+                            <option value="2">Frutas</option>
+                            <option value="3">Bebidas</option>
+                        </select>
+                    </div>
+                    </div>
+                    <div class="mb-3 col-7">
+                        <label for="exampleFormControlInput1" class="form-label">Imagen</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1 imagen-tarjeta" placeholder="Imagen.png">
+                    </div>
+
+                    <div class="mb-3 col-7">
+                        <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1 Descripcion-tarjeta" rows="3" placeholder="Manzanas de excelente calidad"></textarea>
+                    </div>
+
+                    <button type="button" class="btn btn-guardar">Guardar</button>
+                    <button type="button" class="btn btn-Eliminar">Eliminar</button>
+
+                </form>
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>
