@@ -1,0 +1,132 @@
+:root{
+  --verde-oscuro: #394D1F;
+  --verde-amarillo-subtitulos: #C4C95A; 
+  --naranja-decoraciones: #D08159; 
+  --verde-decoraciones: #9AC76E;
+  --negro: #000;
+  --blanco: #fff; 
+  --fuente: 'Poppins', sans-serif;
+  --tamaño-titulos: 32px; 
+  --tamaño-subtitulos: 24px;
+  --tamaño-textos: 16px; 
+}
+
+*{
+  font-family: var(--fuente);
+}
+
+.title-section {
+  background-color: var(--verde-oscuro);
+  color: white;
+  position: relative;
+  z-index: 1;
+  padding: 60px 20px; 
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  height: 150px;
+}
+
+.title-section h2 {
+  position: absolute;
+  bottom: 20px;       
+  left: 20px;       
+  font-size: var(--tamaño-titulos);
+  font-weight: bold;
+  margin-left: 7%;
+}
+
+div.col-12.col-md-6 h2{
+  font-size: var(--tamaño-textos);
+  margin-bottom: 20px;
+}
+
+.section3 {
+  position: relative;
+  z-index: 2;
+  margin-top: -80px;
+  border-radius: 10px;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.section3 img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+textarea.form-control:focus, input.form-control:focus{
+  outline: none;
+  border: 2px solid var(--verde-decoraciones);
+  box-shadow: 0 0 3px var(--verde-decoraciones);
+}
+
+button.btn.btn-secondary.w-100 {
+  background-color: var(--naranja-decoraciones);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: none;
+  font-weight: 600;
+}
+
+button.btn.btn-secondary.w-100:hover{
+  background-color: #c06232;
+}
+
+.section4 h2{
+  font-size: var(--tamaño-subtitulos);
+}
+
+.section5 h2{
+  font-size: var(--tamaño-subtitulos);
+}
+
+.section5 iframe{
+  margin-top: 30px;
+}
+
+div.circle-icon{
+  background-color: #ffffff;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.circle-icon:hover{
+  background-color: #dddddd;
+}
+
+
+.linea {
+  height: 1px;
+  background-color: #394D1F;
+  width: 90%;
+  margin: 20px auto;
+}
+
+@media (max-width: 768px) {
+  .section3 {
+    margin-top: 20px;
+    box-shadow: none;
+    padding: 10px;
+  }
+
+  .title-section {
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .title-section h2 {
+    font-size: 2rem;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+}
