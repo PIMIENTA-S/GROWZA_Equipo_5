@@ -1,0 +1,41 @@
+:root{
+    --verde-oscuro: #394D1F;
+    --verde-amarillo-subtitulos: #C4C95A; 
+    --naranja-decoraciones: #D08159; 
+    --verde-decoraciones: #9AC76E;
+    --negro: #000;
+    --blanco: #fff; 
+    --fuente: 'Poppins', sans-serif;
+    --tamaño-titulos: 32px; 
+    --tamaño-subtitulos: 24px;
+    --tamaño-textos: 16px; 
+}
+
+.titleCategoriasHome{
+    font-size: var(--tamaño-titulos);
+    color: var(--verde-oscuro);
+    font-family: var(--fuente);
+}
+
+.btn-view{
+    background-color: var(--naranja-decoraciones);
+    color: var(--blanco);
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.btn-view:hover{
+    background-color: #bb521e;
+    color: var(--blanco);
+}
+
+.card-title.CH{
+    color: var(--verde-oscuro);
+    font-size: var(--tamaño-subtitulos);
+}
+
+.card{
+    border: 1px solid rgba(134, 134, 134, 0.534);
+    box-shadow: 1px 0px 4px rgba(134, 134, 134, 0.534);
+
+}

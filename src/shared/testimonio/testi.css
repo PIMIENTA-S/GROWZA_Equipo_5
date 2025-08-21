@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+QLD:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+.commets{
+    margin: 20px;
+    font-family: "Poppins", sans-serif;
+}
+
+.cards{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.commets h2{
+    text-align: center;
+}
+
+.card{
+    width: 450px;
+    /* height: 400px; */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 20px 10px;
+}
+
+.card img{
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+}
+
+.card-info h3{
+    margin: 0;
+}
+
+.card-info .card-subtitle{
+    margin: 0;
+    color: gray;
+}
+
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.card-text{
+    text-align:left;
+}
+
+.card .card-header{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.product{
+    margin-top: 20px;
+    font-size: 13px;
+    padding-bottom: 10px;
+}

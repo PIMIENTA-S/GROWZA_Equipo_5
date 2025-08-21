@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+AU+QLD:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+.whyGrowza{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 30px;
+    font-family: "Poppins", sans-serif;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.whyGrowza div{
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    text-align: center;
+    margin: 30px;
+    /* gap: 8px; */
+    /* justify-content: center; */
+}
+
+.whyGrowza div i{
+    background-color: beige;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    font-size:30px;
+    padding: 50px;
+}
+
+.whyGrowza div .one{
+    background-color: #E6E2AA;
+}
+
+.whyGrowza div .two{
+    background-color: #B0CA82;
+}
+
+.whyGrowza div .four{
+    background-color: #B0CA82;
+}
+
+.whyGrowza div .tre{
+    background-color: #E8B98C;
+}
