@@ -67,25 +67,35 @@
 //   },
 // ];
 
-// const catalogo = document.getElementById("catalogo");
 
-// productos.forEach(prod => {
-//   const card = document.createElement("div");
-//   card.classList.add("card");
+let productos = JSON.parse(localStorage.getItem("productos")) || [];
+const catalogo = document.getElementById("catalogo");
 
-//   card.innerHTML = `
-//     <div class="card-icons">
-//       <i class="fa-regular fa-heart"></i>
-//       <i class="fa-regular fa-eye"></i>
-//       <i class="fa-solid fa-cart-shopping"></i>
-//     </div>
-//     <img src="${prod.img}" alt="${prod.nombre}">
-//     <div class="card-content">
-//       <h3>${prod.nombre}</h3>
-//       <p>${prod.descripcion}</p>
-//       <p><strong>Calorías:</strong> ${prod.calorias}</p>
-//     </div>
-//   `;
+function mostrarProductos() {
+    catalogo.innerHTML = "";
 
-//   catalogo.appendChild(card);
-// });
+    productos.forEach(producto => {
+        const col = document.createElement("div");
+        col.classList.add("col-3", "mt-3", "mb-3", "text-center");
+
+        col.innerHTML = `
+            <div class="col-3 mt-3 mb-3 text-center">
+                <div class="card" style="width: 18rem;">
+                    <img src="${producto.imagen}" class="card-img-top" alt="${producto.titulo}">
+                    <div class="card-body">
+                        <h4 class="card-title"><strong>${producto.titulo}</strong></h4>
+                        <p class="card-text">${producto.descripcion}</p>
+                        <h3>${producto.categoria}</h3>
+                        <a href="#"><img src="../../../Public/images/heart.svg" alt=""></a>
+                        <a href="#"><img src="../../../Public/images/eye.svg" alt=""></a>
+                        <a href="#"><img src="../../../Public/images/shopping-cart.svg" alt=""></a>
+                    </div>
+                </div>    
+            </div>
+        `;
+
+        catalogo.appendChild(col);
+    });
+}
+mostrarProductos();
+
