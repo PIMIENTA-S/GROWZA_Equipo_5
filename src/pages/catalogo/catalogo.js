@@ -67,6 +67,11 @@
 //   },
 // ];
 
+fetch("../../components/navbar/navbar.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+    });
 
 let productos = JSON.parse(localStorage.getItem("productos")) || [];
 const catalogo = document.getElementById("catalogo");
