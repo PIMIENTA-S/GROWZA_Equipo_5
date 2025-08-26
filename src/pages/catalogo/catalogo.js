@@ -89,3 +89,17 @@
 
 //   catalogo.appendChild(card);
 // });
+
+
+
+function SumaArrayPares() {
+  let ListaNumeros = new Array ()
+  ListaNumeros = [1,2,3,4]
+  
+  for(let i=0 ; ListaNumeros.length(); i++  ){
+    if(ListaNumeros[i]%2 ==0){
+      let suma =+ i;
+      console.log(suma)
+    }
+  }
+}
