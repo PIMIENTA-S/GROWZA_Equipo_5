@@ -7,18 +7,21 @@ footer {
     background-color: #F2F3E9;
     font-family: "Poppins", sans-serif;
     font-weight: bold;
+    margin-top: 50px;
 }
+
 
 
 .head-footer h1 {
-    margin-top: 30px;
+    margin-top: 20px;
     color: #394D1F;
-    font-size: 32px;
+    font-size: 24px;
 }
 
-.right h1, .left h1 {
+.right h1,
+.left h1 {
     color: #394D1F;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .head-footer {
@@ -26,9 +29,10 @@ footer {
     justify-content: center;
 }
 
-.bottom-p, .footer-li {
+.bottom-p,
+.footer-li {
     color: #394D1F;
-    font-size: 24px;
+    font-size: 16px;
 }
 
 .right ul {
@@ -43,6 +47,7 @@ footer {
     align-items: center;
     gap: 500px;
     padding: 30px 0;
+
 }
 
 .upper-left {
@@ -98,7 +103,7 @@ a {
         text-align: center;
     }
 
-    .icons-footer{
+    .icons-footer {
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -111,7 +116,8 @@ a {
         font-size: 24px;
     }
 
-    .bottom-p, .footer-li {
+    .bottom-p,
+    .footer-li {
         font-size: 18px;
     }
 
@@ -129,7 +135,8 @@ a {
         padding: 20px 40px;
     }
 
-    .left, .right {
+    .left,
+    .right {
         flex: 1;
     }
 
@@ -138,7 +145,8 @@ a {
         text-align: center;
     }
 
-    .bottom-p, .footer-li {
+    .bottom-p,
+    .footer-li {
         font-size: 20px;
     }
 }

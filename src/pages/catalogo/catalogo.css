@@ -1,0 +1,7 @@
+.encabezado{
+    font-size: 20px;
+    border-bottom: 2px solid black;
+}
+.btn-filtro{
+    background-color: aqua  !important;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="Admin.css">
+    <title>Admin</title>
+</head>
+<body>
+    <header class="container">
+        <h2 class="text-center mt-5 mb-3">NUEVO PRODUCTO</h2>
+        <h3 class="text-center mb-5">Complete el formulario para crear una nuevo producto</h3>
+    </header>
+    <article class="container mt-3 CrearTarjeta p-3">
+        <h2>Crear tarjeta</h2>
+    </article>
+
+    <section class="container mt-5">
+                <form action="" class="mb-5" id="formulario">
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                        <label for="titulo-form" class="form-label  ">Titulo </label>
+                        <input type="text" class="form-control" id="titulo-form" placeholder="Manzanas">
+                    </div>
+                    <div class="mt1 col-6">
+                        <label for="categoria-form" class="form-label ">Categoria</label>
+                        <select id="categoria-form" class="form-select form-label" aria-label="Default select example">
+                            <option selected>Selecciona una categoria</option>
+                            <option value="1">Vegetales</option>
+                            <option value="2">Frutas</option>
+                            <option value="3">Bebidas</option>
+                        </select>
+                    </div>
+                    </div>
+                    <div class="mb-3 col-7">
+                        <label for="exampleFormControlInput1" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" id="imagen-form" placeholder=" ">
+                    </div>
+
+                    <div class="mb-3 col-7">
+                        <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
+                        <textarea class="form-control" id="descripcion-form" rows="3" placeholder="Manzanas de excelente calidad"></textarea>
+                    </div>
+
+                    <button type="button" class="btn btn-guardar" id="btn-guardar">Guardar</button>
+                    <button type="button" class="btn btn-Eliminar" id="btn-eliminar">Eliminar</button>
+
+                </form>
+
+    </section>
+    <script src="/src/pages/Admin/Admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>

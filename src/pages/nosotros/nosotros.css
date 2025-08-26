@@ -1,115 +1,219 @@
-#Container{
-    background-image: url('/Public/images/FondoSection1QuienesSomos.jpg');
-    max-height: 450px;
-    background-size: cover;
-    background-position: center;
+:root {
+    --verde-oscuro: #394D1F;
+    --verde-amarillo-subtitulos: #C4C95A;
+    --naranja-decoraciones: #D08159;
+    --verde-decoraciones: #9AC76E;
+    --negro: #000;
+    --blanco: #fff;
+    --fuente: 'Poppins', sans-serif;
+    --tamaño-titulos: 32px;
+    --tamaño-subtitulos: 24px;
+    --tamaño-textos: 16px;
 }
 
-#containerText{
+/* ***ESTILOS DE SOBRE NOSOTROS** */
+
+#Container {
+    background-image: url('/Public/images/FondoSection1QuienesSomos.jpg');
+    min-height: 90vh;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid var(--verde-decoraciones);
+    display: flex;
+    align-items: center;
+
+}
+
+
+#containerText {
     opacity: 0.7;
     font-weight: 500;
     padding: 20px;
 }
 
-#tittleQuienesSomos{
+#tittleQuienesSomos {
     font-size: 32px;
-    color: #394D1F;
+    color: var(--verde-oscuro);
     font-weight: bold;
 }
 
 
-/* .carousel-buttons {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  padding: 0 20px;
-  pointer-events: none;
+/* ***ESTILOS DE CARRUSEL** */
 
-} */
+.valores {
+    color: var(--verde-oscuro);
+    font-size: var(--tamaño-titulos);
+    font-weight: bold;
+    font-family: var(--fuente);
+    margin-bottom: 60px;  
+    text-align: center;  
+}
 
-/* carrusel */
 
-.carousel-wrapper {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f7f8f3;
-    margin: 0;
-    padding: 0;
+section.nostrosValores {
+    min-height: 90vh;
+    padding: 80px 0 40px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+}
+
+
+.item-content {
+    width: 500px;
+    max-width: 90%;
+    margin: 0 auto;
+    border-radius: 30px;
+    border: 1px solid var(--verde-decoraciones);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    background: none;
+    border: none;
+    opacity: 1 !important;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-image: none !important;
+}
+
+.carousel-control-prev-icon svg,
+.carousel-control-next-icon svg {
+    width: 40px;
+    height: 40px;
+    background-color: #9ac76e59;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px #9ac76ee1;
+}
+
+.carousel-control-prev-icon:hover svg,
+.carousel-control-next-icon:hover svg {
+    transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        display: none !important;
+    }
+}
+
+
+/* ***ESTILOS DE DETRAS DEL CÓDIGO** */
+
+.detrasCodigo{
+    color: var(--verde-oscuro);
+    font-size: var(--tamaño-titulos);
+    font-weight: bold;
+    font-family: var(--fuente);
+    margin-top: 60px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 6px 12px rgb(161, 161, 161);
+}
+
+.iconsGit {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-image: url(/Public/images/github-logo-light.png);
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--verde-decoraciones);
+    border-radius: 50%;
+    box-shadow: 0 6px 10px rgb(165, 165, 165);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+
+}
+
+.iconsGit:hover {
+    transform: scale(1.2);
+}
+
+.iconsLinkedin {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-image: url(/Public/images/linkedin-logo-light.png);
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--verde-decoraciones);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgb(165, 165, 165);
+}
+
+.iconsLinkedin:hover {
+    transform: scale(1.2);
+}
+
+.iconos {
+    margin-top: auto;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 50vh;
-  }
+    gap: 10px;
+}
 
-  .carousel-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
 
-  .arrow-button {
-    background-color: white;
-    border: 2px solid #9AC76E;
-    color: #9AC76E;
-    font-size: 24px;
-    font-weight: bold;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    z-index: 10;
-  }
+.card.destrasDelCodigo {
+    height: 100%;
+}
 
-  .arrow-button:hover {
-    background-color: #9AC76E;
-    color: white;
-  }
 
-  .arrow-left {
-    margin-right: 20px;
-  }
+@media (min-width: 1200px) {
+    .tarjeta-codigo {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+}
 
-  .arrow-right {
-    margin-left: 20px;
-  }
 
-  .carousel-container {
-    width: 800px;
-    background-color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    padding: 40px;
-  }
+@media (max-width: 768px) {
+    #containerText {
+        width: 90%;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 15px;
+    }
 
-  .carousel-slide {
-    display: none;
-    animation: fade 0.6s ease-in-out;
-  }
+    #tittleQuienesSomos {
+        font-size: 24px;
+    }
 
-  .carousel-slide.active {
-    display: block;
-  }
+    .card.destrasDelCodigo {
+        margin: 0 auto;
+        max-width: 90%;
+    }
 
-  @keyframes fade {
-    from { opacity: 0; transform: translateX(20px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
+    .iconos {
+        gap: 15px;
+    }
+}
 
-  h2 {
-    color: #4b5e20;
-    margin-top: 0;
-  }
+/* ***LÍNEA DE SEPARACIÓN** */
 
-  ul {
-    padding-left: 20px;
-  }
+.linea {
+    height: 1px;
+    background-color: var(--verde-oscuro);
+    width: 90%;
+    margin: 20px auto;
+}
 
-  ul li {
-    margin-bottom: 10px;
-    color: #333;
-  }
+#footer{
+    border-top: 1px solid var(--verde-oscuro);
+}
