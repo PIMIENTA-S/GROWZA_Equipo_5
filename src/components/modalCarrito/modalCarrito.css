@@ -11,13 +11,13 @@
     --tamaño-textos: 16px;
 }
 
-body{
-    background-color: #9AC76E;
-}
 
 div.modal-content{
-    border: 5px solid var(--naranja-decoraciones);
-    background-color: #394D1F;
+    border: 2px solid var(--naranja-decoraciones);
+}
+
+.modal-header{ 
+    text-align: center;
 }
 
 button{

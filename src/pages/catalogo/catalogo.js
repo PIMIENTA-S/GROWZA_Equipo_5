@@ -133,6 +133,7 @@ fetch("../../components/modalCarrito/modalCarritol.html")
                 const vaciarBtn = document.getElementById("vaciarCarrito");
                 if (vaciarBtn) {
                     vaciarBtn.addEventListener("click", () => {
+                        
                         carrito = [];
                         localStorage.setItem("carrito", JSON.stringify(carrito));
                         mostrarCarrito(); // <- Refrescar modal
