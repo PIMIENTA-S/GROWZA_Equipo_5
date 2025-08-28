@@ -5,3 +5,29 @@
 .btn-filtro{
     background-color: aqua  !important;
 }
+
+.progress-bar-custom {
+    height: 10px; 
+    border-radius: 5px; 
+}
+
+
+.bg-energy {
+    background-color: #C0C16A;
+    width: 30%; 
+}
+
+.bg-carbs {
+    background-color: #AF7B61;
+    width: 60%;
+}
+
+.bg-fiber {
+    background-color: #9EC079;
+    width: 35%;
+}
+
+.bg-water {
+    background-color: #65C9A6;
+    width: 90%;
+}
