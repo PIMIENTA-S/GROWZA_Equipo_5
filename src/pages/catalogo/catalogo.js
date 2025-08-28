@@ -91,14 +91,14 @@ function mostrarProductos() {
 
     todosLosProductos.forEach(producto => {
         const col = document.createElement("div");
-        col.classList.add("col-12", "col-md-6", "col-lg-3","mt-3", "mb-3", "text-center");
+        col.classList.add("col-12", "col-md-6","col-lg-3","mt-3", "mb-3", "text-center");
 
         col.innerHTML = `
-            <div class="card " style="width: 18rem;">
-                <img src="${producto.imagen}" class="card-img-top" style="height: 200px;" alt="${producto.titulo}">
+            <div class="card " style="width: 16rem; max-height: 396px">
+                <img src="${producto.imagen}" class="card-img-top" style="height: 180px;" alt="${producto.titulo}">
                 <div class="card-body">
                     <h4 class="card-title"><strong>${producto.titulo}</strong></h4>
-                    <p class="card-text">${producto.descripcion}</p>
+                    <p class="card-text " style="height: 48px">${producto.descripcion}</p>
                     <h3 class="mb-3">$${producto.precio}</h3>
                     <div class="m-auto">
                         <a href="#"><img src="../../../Public/images/heart.svg" alt="Me gusta"></a>
