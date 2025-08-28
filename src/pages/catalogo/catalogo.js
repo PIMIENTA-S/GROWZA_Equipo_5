@@ -167,6 +167,44 @@ function mostrarCarrito() {
     });
 }
 
+// Mostrar productos en el carrito con botones + y -
+function mostrarCarrito() {
+    const contenedor = document.getElementById("cartItems");
+    contenedor.innerHTML = "";  // Limpiar el carrito
+
+    carrito.forEach((prod, index) => {
+        contenedor.innerHTML += `
+            <div class="cart-item d-flex align-items-center justify-content-between mb-2">
+                <img src="${prod.imagen}" width="50">
+                <span>${prod.titulo}</span>
+                <span>$${prod.precio}</span>
+                
+                <!-- Control de cantidad -->
+                <div class="cantidad-control d-flex align-items-center">
+                    <button class="btn btn-sm btn-secondary" onclick="cambiarCantidadCarrito(${index}, -1)">−</button>
+                    <span class="mx-2">${prod.cantidad}</span>
+                    <button class="btn btn-sm btn-secondary" onclick="cambiarCantidadCarrito(${index}, 1)">+</button>
+                </div>
+
+                <button class="remove btn btn-sm btn-danger" data-index="${index}">❌</button>
+            </div>
+        `;
+    });
+}
+
+// Cambiar la cantidad en el carrito
+function cambiarCantidadCarrito(index, cantidad) {
+    const producto = carrito[index];
+    let nuevaCantidad = producto.cantidad + cantidad;
+
+    if (nuevaCantidad >= 1) {
+        producto.cantidad = nuevaCantidad;
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        mostrarCarrito(); 
+    }
+}
+
+
 // Eliminar producto del carrito
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("remove")) {
