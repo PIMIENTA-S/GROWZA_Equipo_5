@@ -144,13 +144,17 @@ div.container-fluid {
     .navbar-nav .nav-item:last-child .nav-link {
         border-bottom: none;
     }
+
+    .navbar {
+        position: static !important;
+    }
 }
 
 
-/* .btn-close-menu {
+.btn-close-menu {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 2px;
+    right: 20px;
     background: none;
     border: none;
     font-size: 32px;
@@ -160,12 +164,6 @@ div.container-fluid {
     transition: transform 0.2s ease;
     z-index: 2100;
 }
-
-.btn-close-menu:hover {
-    transform: rotate(90deg);
-    color: var(--naranja-decoraciones);
-}
-
 
 @media (max-width: 992px) {
     .btn-close-menu {
@@ -177,4 +175,4 @@ div.container-fluid {
     .btn-close-menu {
         display: none;
     }
-} */
+}

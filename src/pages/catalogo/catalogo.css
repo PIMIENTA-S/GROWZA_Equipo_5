@@ -5,3 +5,7 @@
 .btn-filtro{
     background-color: aqua  !important;
 }
+
+#footer{
+    border-top: 1px solid var(--verde-oscuro);
+}
