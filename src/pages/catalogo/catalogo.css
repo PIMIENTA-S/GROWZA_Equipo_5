@@ -9,3 +9,10 @@
 #footer{
     border-top: 1px solid var(--verde-oscuro);
 }
+
+@media (max-width :370px) {
+    #caja{
+        margin-top: 0;
+        padding-top: 0;
+    }
+}
