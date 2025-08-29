@@ -177,7 +177,7 @@ function mostrarCarrito() {
     const contenedor = document.getElementById("cartItems");
     contenedor.innerHTML = "";
 
-    let totalCarrito = 0;  // Variable para acumular el total del carrito
+    let totalCarrito = 0;  
 
     carrito.forEach((prod, index) => {
         // Calculamos el total de cada producto
@@ -284,7 +284,7 @@ document.addEventListener("click", function (e) {
             title: "Agregado!",
             icon: "success",
             draggable: true,
-            confirmButtonColor: "#9AC76E"  // Añadí la coma aquí
+            confirmButtonColor: "#9AC76E" 
         });
 
     }
