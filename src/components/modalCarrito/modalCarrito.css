@@ -11,7 +11,7 @@
     --tamaño-textos: 16px;
 }
 
-
-div.modal-content{
-    border: 2px solid var(--naranja-decoraciones);
+.modal-content {
+    border: 2px solid #D08159;  
 }
+
