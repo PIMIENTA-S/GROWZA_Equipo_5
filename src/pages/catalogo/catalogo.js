@@ -4,6 +4,8 @@ fetch("../../components/navbar/navbar.html")
         document.getElementById("navbar").innerHTML = data;
     });
 
+
+
 // Productos estaticos
 let productosEstaticos = [
     {
@@ -135,7 +137,7 @@ fetch("../../components/modalCarrito/modalCarritol.html")
                     vaciarBtn.addEventListener("click", () => {
                         carrito = [];
                         localStorage.setItem("carrito", JSON.stringify(carrito));
-                        mostrarCarrito(); // <- Refrescar modal
+                        mostrarCarrito();
                     });
                 }
 
@@ -149,48 +151,67 @@ fetch("../../components/modalCarrito/modalCarritol.html")
 
 
 
-// Mostrar productos en el carrito en el modal
+// // Mostrar productos en el carrito en el modal
+// function mostrarCarrito() {
+//     const contenedor = document.getElementById("cartItems");
+//     contenedor.innerHTML = "";
+
+//     carrito.forEach((prod, index) => {
+//         contenedor.innerHTML += `
+//             <div class="cart-item d-flex align-items-center justify-content-between mb-2">
+//                 <img src="${prod.imagen}" width="50">
+//                 <span>${prod.titulo}</span>
+//                 <span>$${prod.precio}</span>
+//                 <span>Cant: ${prod.cantidad}</span>
+//                 <button class="remove btn btn-sm btn-danger" data-index="${index}">❌</button>
+//             </div>
+//             <div>
+//                 <p>$${(prod.precio * prod.cantidad).toFixed(2)}</p>
+//             </div>
+//         `;
+//     });
+// }
+
 function mostrarCarrito() {
     const contenedor = document.getElementById("cartItems");
     contenedor.innerHTML = "";
 
-    carrito.forEach((prod, index) => {
-        contenedor.innerHTML += `
-            <div class="cart-item d-flex align-items-center justify-content-between mb-2">
-                <img src="${prod.imagen}" width="50">
-                <span>${prod.titulo}</span>
-                <span>$${prod.precio}</span>
-                <span>Cant: ${prod.cantidad}</span>
-                <button class="remove btn btn-sm btn-danger" data-index="${index}">❌</button>
-            </div>
-        `;
-    });
-}
-
-// Mostrar productos en el carrito con botones + y -
-function mostrarCarrito() {
-    const contenedor = document.getElementById("cartItems");
-    contenedor.innerHTML = "";  // Limpiar el carrito
+    let totalCarrito = 0;  // Variable para acumular el total del carrito
 
     carrito.forEach((prod, index) => {
+        // Calculamos el total de cada producto
+        const totalProducto = prod.precio * prod.cantidad;
+
         contenedor.innerHTML += `
-            <div class="cart-item d-flex align-items-center justify-content-between mb-2">
-                <img src="${prod.imagen}" width="50">
-                <span>${prod.titulo}</span>
-                <span>$${prod.precio}</span>
-                
-                <!-- Control de cantidad -->
-                <div class="cantidad-control d-flex align-items-center">
-                    <button class="btn btn-sm btn-secondary" onclick="cambiarCantidadCarrito(${index}, -1)">−</button>
-                    <span class="mx-2">${prod.cantidad}</span>
-                    <button class="btn btn-sm btn-secondary" onclick="cambiarCantidadCarrito(${index}, 1)">+</button>
+            <div class="cart-item rounded p-3 mb-3">
+                <div class="row align-items-center">
+                    <div class="col-md-2 text-center">
+                        <img src="${prod.imagen}" width="80" heigth="80">
+                    </div>
+
+                    <div class="col-md-6">
+                        <strong>${prod.titulo}</strong>
+                        <div class="d-flex align-items-center">
+                            <span style="color: #D08159; font-weight: bold;">Cantidad: ${prod.cantidad}</span>
+                            <button class="btn btn-sm mx-2" style="border: 1px solid #D08159;" onclick="cambiarCantidadCarrito(${index}, -1)">−</button>
+                            <button class="btn btn-sm mx-2" style="border: 1px solid #D08159;" onclick="cambiarCantidadCarrito(${index}, 1)">+</button>
+                            <button class="remove btn btn-sm" data-index="${index}"></button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 text-end">
+                        <span><strong>Valor libra:</strong> $${prod.precio}</span>
+                        <p style="margin-bottom: 0; margin-top: 15px;"><strong>Total :</strong> $${totalProducto}</p>
+                    </div>
                 </div>
-
-                <button class="remove btn btn-sm btn-danger" data-index="${index}">❌</button>
             </div>
         `;
+        totalCarrito += totalProducto;
     });
+
+    document.getElementById("totalPagar").innerHTML = `<strong>Total a pagar:</strong> $${totalCarrito.toFixed(2)}`;
 }
+
 
 // Cambiar la cantidad en el carrito
 function cambiarCantidadCarrito(index, cantidad) {
@@ -200,20 +221,43 @@ function cambiarCantidadCarrito(index, cantidad) {
     if (nuevaCantidad >= 1) {
         producto.cantidad = nuevaCantidad;
         localStorage.setItem("carrito", JSON.stringify(carrito));
-        mostrarCarrito(); 
+        mostrarCarrito();
     }
 }
 
-
-// Eliminar producto del carrito
+//Eliminar del carrito  
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("remove")) {
-        const index = e.target.dataset.index;
-        carrito.splice(index, 1);
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-        mostrarCarrito();
+        const index = parseInt(e.target.dataset.index);
+
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "¡Este producto será eliminado del carrito!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#9AC76E",
+            cancelButtonColor: "#D08159",
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if (!isNaN(index) && index >= 0 && index < carrito.length) {
+                    carrito.splice(index, 1);
+                    localStorage.setItem("carrito", JSON.stringify(carrito));
+                    mostrarCarrito();
+
+                    Swal.fire({
+                        title: "¡Eliminado!",
+                        text: "El producto ha sido eliminado.",
+                        icon: "success"
+                    });
+                }
+            }
+        });
     }
 });
+
+
 
 // Agregar productos al carrito desde las tarjetas
 document.addEventListener("click", function (e) {
@@ -229,13 +273,19 @@ document.addEventListener("click", function (e) {
 
         const productoExistente = carrito.find(item => item.titulo === producto.titulo);
         if (productoExistente) {
-            productoExistente.cantidad += 1; 
+            productoExistente.cantidad += 1;
         } else {
             carrito.push(producto);
         }
 
         localStorage.setItem("carrito", JSON.stringify(carrito));
-        alert(`${producto.titulo} agregado al carrito`);
+        Swal.fire({
+            title: "Agregado!",
+            icon: "success",
+            draggable: true,
+            confirmButtonColor: "#9AC76E"  // Añadí la coma aquí
+        });
+
     }
 });
 
