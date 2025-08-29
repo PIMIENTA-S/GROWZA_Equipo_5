@@ -93,7 +93,7 @@ function mostrarProductos() {
 
     todosLosProductos.forEach(producto => {
         const col = document.createElement("div");
-        col.classList.add("col-12", "col-md-6","col-lg-3","mt-3", "mb-3", "text-center");
+        col.classList.add("col-3", "mt-3", "mb-3", "text-center");
 
         col.innerHTML = `
             <div class="card" style="width: 16rem;">
@@ -118,7 +118,7 @@ function mostrarProductos() {
     productosSection.appendChild(fila);
 }
 
-// Llamdado a modal carrito con su script
+// Llamado a modal carrito con su script
 fetch("../../components/modalCarrito/modalCarritol.html")
     .then(res => res.text())
     .then(html => {
@@ -132,16 +132,38 @@ fetch("../../components/modalCarrito/modalCarritol.html")
             if (carritoModal) {
                 setupCartButton();
 
+
                 const vaciarBtn = document.getElementById("vaciarCarrito");
                 if (vaciarBtn) {
-                    vaciarBtn.addEventListener("click", () => {
-                        
-                        carrito = [];
-                        localStorage.setItem("carrito", JSON.stringify(carrito));
-                        mostrarCarrito();
+                    vaciarBtn.addEventListener("click", async () => {
+                        const result = await Swal.fire({
+                            title: "¿Estás seguro?",
+                            text: "No puedes devolver esta acción",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#9AC76E",
+                            cancelButtonColor: "#D08159",
+                            confirmButtonText: "Sí, eliminar",
+                            cancelButtonText: "Cancelar"
+                        });
+
+
+                        if (result.isConfirmed) {
+                            carrito = [];
+                            localStorage.setItem("carrito", JSON.stringify(carrito));
+                            mostrarCarrito();
+
+
+                            Swal.fire({
+                                title: "¡Eliminado!",
+                                text: "El carrito ha sido vaciado.",
+                                icon: "success"
+                            });
+                        }
                     });
                 }
 
+                // Cuando el modal se muestra, se actualiza el carrito
                 carritoModal.addEventListener("shown.bs.modal", () => {
                     mostrarCarrito();
                 });
@@ -150,28 +172,6 @@ fetch("../../components/modalCarrito/modalCarritol.html")
         document.body.appendChild(script);
     });
 
-
-
-// // Mostrar productos en el carrito en el modal
-// function mostrarCarrito() {
-//     const contenedor = document.getElementById("cartItems");
-//     contenedor.innerHTML = "";
-
-//     carrito.forEach((prod, index) => {
-//         contenedor.innerHTML += `
-//             <div class="cart-item d-flex align-items-center justify-content-between mb-2">
-//                 <img src="${prod.imagen}" width="50">
-//                 <span>${prod.titulo}</span>
-//                 <span>$${prod.precio}</span>
-//                 <span>Cant: ${prod.cantidad}</span>
-//                 <button class="remove btn btn-sm btn-danger" data-index="${index}">❌</button>
-//             </div>
-//             <div>
-//                 <p>$${(prod.precio * prod.cantidad).toFixed(2)}</p>
-//             </div>
-//         `;
-//     });
-// }
 
 function mostrarCarrito() {
     const contenedor = document.getElementById("cartItems");
@@ -250,7 +250,8 @@ document.addEventListener("click", (e) => {
                     Swal.fire({
                         title: "¡Eliminado!",
                         text: "El producto ha sido eliminado.",
-                        icon: "success"
+                        icon: "success",
+                        confirmButtonColor: "#9AC76E" 
                     });
                 }
             }
