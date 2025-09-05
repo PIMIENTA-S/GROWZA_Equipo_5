@@ -1,30 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo Growza</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="catalogo.css">
+    <link rel="stylesheet" href="/src/components/modalCarrito/modalCarrito.css">
+    <link rel="stylesheet" href="/src/components/navbar/navbar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
+    <!-- Navbar -->
+    <nav id="navbar"></nav>
 
-<!-- Encabezado -->
-<div class="header">
-    <h2><i class="fa-solid fa-leaf"></i> Nuestros Productos Naturales</h2>
-    <div class="filters">
-    <button class="active"><i class="fa-solid fa-globe"></i> Todos</button>
-    <button><i class="fa-solid fa-carrot"></i> Vegetales</button>
-    <button><i class="fa-solid fa-mug-hot"></i> Bebidas</button>
-    <button><i class="fa-solid fa-cookie-bite"></i> Snacks</button>
-    </div>
-</div>
+    <main>
+        <!-- Filtros -->
+        <section>
+            <div class="container mt-5 p-2">
+                <div class="row">
+                    <div class="col-12 col-md-8 p-2">
+                        <a href="#" class="btn btn-filtro">Ver todo</a>
+                    </div>
+                    <div class="col-12 col-md-2 p-2">
+                        <a href="#" class="btn btn-filtro">Vistas</a>
+                    </div>
+                    <div class="col-12 col-md-2 p-2">
+                        <a href="#" class="btn btn-filtro">Filtrar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Catálogo -->
-<div class="catalogo" id="catalogo"></div>
+        <!-- Productos -->
+        <section class="container mt-4" id="productos">
+            <div class="row" id="productos-container">
+                <!-- Aquí aparecen las cards dinámicas -->
+            </div>
+        </section>
+    </main>
 
-<script src="catalogo.js"></script>
+    <!-- Catálogo -->
+    <div class="catalogo" id="catalogo"></div>
+
+    <!-- Vista del carrito -->
+    <div id="modalContainer"></div>
+
+    <!-- Footer -->
+    <footer id="footer"></footer>
+
+    <!-- Scripts -->
+    <script src="catalogo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
-</html>
 
 </html>
