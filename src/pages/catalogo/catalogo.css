@@ -26,6 +26,16 @@
     border-top: 1px solid var(--verde-oscuro);
 }
 
+.botones-modal{
+    background: #F2F3E9;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.text-center .modal-body {
+    text-align: left; /* Anula la alineación central */
+}
+
 .btn.btn-sm.mx-2 {
     width: 20px;
     height: 20px;
@@ -87,3 +97,4 @@
 .btn.btn-danger:hover{
     background-color:#b9704b;
 }
+
