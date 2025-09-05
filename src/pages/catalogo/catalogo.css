@@ -14,7 +14,7 @@ body {
 }
 
 .btn-filtro:hover {
-  background-color: #00c7a1;
+  background-color: #0b7533;
   color: white;
 }
 
@@ -43,7 +43,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: #f7fad4;
   border-radius: 50%;
   width: 34px;
   height: 34px;
@@ -56,7 +56,7 @@ body {
 .card-icons a:hover {
   transform: scale(1.1);
   background: #f5f5f5;
-  color: #00c7a1;
+  color: #097a42;
 }
 
 .card-body h4 {
