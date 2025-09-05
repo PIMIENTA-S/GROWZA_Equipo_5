@@ -1,3 +1,6 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
 .CrearTarjeta{
     border-top: 3px solid rgb(0, 0, 0);
     border-bottom: 3px solid rgb(0, 0, 0);
