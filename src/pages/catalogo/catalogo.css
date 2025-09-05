@@ -26,7 +26,6 @@
     border-top: 1px solid var(--verde-oscuro);
 }
 
-<<<<<<< HEAD
 .botones-modal{
     background: #F2F3E9;
     border-radius: 50%;
@@ -37,7 +36,6 @@
     text-align: left; /* Anula la alineación central */
 }
 
-=======
 .btn.btn-sm.mx-2 {
     width: 20px;
     height: 20px;
@@ -99,4 +97,4 @@
 .btn.btn-danger:hover{
     background-color:#b9704b;
 }
->>>>>>> 6269dd8e7d33cac8b2e1e7dafd1b91af76556b3b
+
