@@ -5,7 +5,6 @@ fetch("../../components/navbar/navbar.html")
     });
 
 
-
 // Productos estaticos
 let productosEstaticos = [
     {
@@ -104,7 +103,18 @@ function mostrarProductos() {
                     <h3 class="mb-3">$${producto.precio}</h3>
                     <div class="m-auto">
                         <a href="#"><img src="../../../Public/images/heart.svg" alt="Me gusta"></a>
-                        <a href="#"><img src="../../../Public/images/eye.svg" alt="Ver"></a>
+                        <a href="#" class="view-details-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                            data-titulo="${producto.titulo}"
+                            data-imagen="${producto.imagen}"
+                            data-energia="${producto.energia}"
+                            data-carbohidratos="${producto.carbohidratos}"
+                            data-fibra="${producto.fibra}"
+                            data-agua="${producto.agua}"
+                            data-dato-curioso="${producto.datoCurioso}">
+                            <img src="../../../Public/images/eye.svg" alt="Ver">
+                        </a>
                         <a href="#" class="add-to-cart" data-titulo="${producto.titulo}" data-precio="${producto.precio}" data-img="${producto.imagen}">
                             <img src="../../../Public/images/basket.svg" alt="Agregar al carrito">
                         </a>

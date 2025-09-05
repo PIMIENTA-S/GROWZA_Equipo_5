@@ -15,45 +15,69 @@
 <body>
     <header class="container">
         <h2 class="text-center mt-5 mb-3">NUEVO PRODUCTO</h2>
-        <h3 class="text-center mb-5">Complete el formulario para crear una nuevo producto</h3>
+        <h3 class="text-center mb-5">Complete el formulario para crear un nuevo producto</h3>
     </header>
     <article class="container mt-3 CrearTarjeta p-3">
         <h2>Crear tarjeta</h2>
     </article>
 
     <section class="container mt-5 ">
-                <form action="" class="mb-5" id="formulario">
-                    <div class="row">
-                        <div class="mb-3 col-6">
-                        <label for="titulo-form" class="form-label  ">Titulo </label>
-                        <input type="text" class="form-control" id="titulo-form" placeholder="Manzanas">
-                    </div>
-                    <div class="mt1 col-6">
-                        <label for="categoria-form" class="form-label ">Categoria</label>
-                        <select id="categoria-form" class="form-select form-label" aria-label="Default select example">
-                            <option selected>Selecciona una categoria</option>
-                            <option value="1">Vegetales</option>
-                            <option value="2">Frutas</option>
-                            <option value="3">Bebidas</option>
-                        </select>
-                    </div>
-                    </div>
-                    <div class="mb-3 col-7">
-                        <label for="exampleFormControlInput1" class="form-label">Imagen</label>
-                        <input type="file" class="form-control" id="imagen-form" placeholder=" ">
-                    </div>
+        <form action="" class="mb-5" id="formulario">
+            <div class="row">
+                <div class="mb-3 col-6">
+                    <label for="titulo-form" class="form-label">Titulo</label>
+                    <input type="text" class="form-control" id="titulo-form" placeholder="Manzanas">
+                </div>
+                <div class="mt1 col-6">
+                    <label for="categoria-form" class="form-label">Categoria</label>
+                    <select id="categoria-form" class="form-select form-label" aria-label="Default select example">
+                        <option selected>Selecciona una categoria</option>
+                        <option value="1">Vegetales</option>
+                        <option value="2">Frutas</option>
+                        <option value="3">Bebidas</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 col-7">
+                <label for="imagen-form" class="form-label">Imagen</label>
+                <input type="file" class="form-control" id="imagen-form">
+            </div>
 
-                    <div class="mb-3 col-7">
-                        <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
-                        <textarea class="form-control" id="descripcion-form" rows="3" placeholder="Manzanas de excelente calidad"></textarea>
-                    </div>
+            <div class="mb-3 col-7">
+                <label for="descripcion-form" class="form-label">Descripcion</label>
+                <textarea class="form-control" id="descripcion-form" rows="3" placeholder="Manzanas de excelente calidad"></textarea>
+            </div>
 
-                    <button type="button" class="btn btn-guardar" id="btn-guardar">Guardar</button>
-                    <button type="button" class="btn btn-Eliminar" id="btn-eliminar">Eliminar</button>
+            <div class="row">
+                <div class="mb-3 col-6">
+                    <label for="energia-form" class="form-label">Energía (%)</label>
+                    <input type="number" class="form-control" id="energia-form" placeholder="Ej: 75" min="0" max="100">
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="carbohidratos-form" class="form-label">Carbohidratos (%)</label>
+                    <input type="number" class="form-control" id="carbohidratos-form" placeholder="Ej: 80" min="0" max="100">
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-6">
+                    <label for="fibra-form" class="form-label">Fibra (%)</label>
+                    <input type="number" class="form-control" id="fibra-form" placeholder="Ej: 90" min="0" max="100">
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="agua-form" class="form-label">Agua (%)</label>
+                    <input type="number" class="form-control" id="agua-form" placeholder="Ej: 95" min="0" max="100">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="dato-curioso-form" class="form-label">Dato Curioso</label>
+                <textarea class="form-control" id="dato-curioso-form" rows="2" placeholder="Un dato interesante sobre el producto"></textarea>
+            </div>
+            <button type="button" class="btn btn-guardar" id="btn-guardar">Guardar</button>
+            <button type="button" class="btn btn-Eliminar" id="btn-eliminar">Eliminar</button>
 
-                </form>
-
+        </form>
     </section>
+
     <script src="/src/pages/Admin/Admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
