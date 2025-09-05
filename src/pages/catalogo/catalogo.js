@@ -54,7 +54,7 @@ function mostrarProductos() {
             data-titulo="${producto.titulo}" 
             data-precio="${producto.precio}" 
             data-img="${producto.imagen}">
-            <i class="fa-solid fa-cart-shopping"></i>
+            <i class="fa-solid fa-basket-shopping"></i>
           </a>
         </div>
 
