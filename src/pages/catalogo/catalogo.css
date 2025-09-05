@@ -1,15 +1,32 @@
-.encabezado{
+:root {
+    --verde-oscuro: #394D1F;
+    --verde-amarillo-subtitulos: #C4C95A;
+    --naranja-decoraciones: #D08159;
+    --verde-decoraciones: #9AC76E;
+    --negro: #000;
+    --blanco: #fff;
+    --fuente: 'Poppins', sans-serif;
+    --tamaño-titulos: 32px;
+    --tamaño-subtitulos: 24px;
+    --tamaño-textos: 16px;
+}
+
+
+
+.encabezado {
     font-size: 20px;
     border-bottom: 2px solid black;
 }
-.btn-filtro{
-    background-color: aqua  !important;
+
+.btn-filtro {
+    background-color: aqua !important;
 }
 
-#footer{
+#footer {
     border-top: 1px solid var(--verde-oscuro);
 }
 
+<<<<<<< HEAD
 .botones-modal{
     background: #F2F3E9;
     border-radius: 50%;
@@ -20,3 +37,66 @@
     text-align: left; /* Anula la alineación central */
 }
 
+=======
+.btn.btn-sm.mx-2 {
+    width: 20px;
+    height: 20px;
+    color: var(--naranja-decoraciones);
+    transition: background-color 0.3s, color 0.3s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 14px;
+}
+
+.btn.btn-sm.mx-2:hover {
+    color: var(--blanco);
+    background-color: var(--naranja-decoraciones);
+}
+
+.remove.btn.btn-sm {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30px' height='30px' fill='%23d08159' viewBox='0 0 256 256'%3E%3Cpath d='M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: transparent;
+}
+
+.cart-item {
+    border: 1px solid var(--verde-decoraciones); 
+}
+
+#totalPagar{
+    font-size: var(--tamaño-subtitulos);
+}
+
+#carritoModalLabel{
+    font-size: var(--tamaño-subtitulos);
+    font-weight: bold;
+}
+
+.btn.btn-primary{
+    background-color: var(--verde-decoraciones);
+    border: none;
+    transition: 0.3s ease;
+}
+
+.btn.btn-primary:hover{
+    background-color:#7da753;
+}
+
+.btn.btn-danger{    
+    background-color: var(--naranja-decoraciones);
+    border: none;
+    transition: 0.3s ease;
+}
+
+.btn.btn-danger:hover{
+    background-color:#b9704b;
+}
+>>>>>>> 6269dd8e7d33cac8b2e1e7dafd1b91af76556b3b
