@@ -84,13 +84,13 @@ let productos = JSON.parse(localStorage.getItem("productos")) || [];
 let todosLosProductos = [...productosEstaticos, ...productos];
 const productosSection = document.getElementById("productos");
 
-// Mostrar prodcutos - catalogo
 function mostrarProductos() {
     const fila = document.createElement("div");
     fila.classList.add("row");
 
     todosLosProductos.forEach(producto => {
         const col = document.createElement("div");
+        // Aquí se mantiene la clase text-center, que solo afecta al producto.
         col.classList.add("col-12", "col-md-6","col-lg-3","mt-3", "mb-3", "text-center");
 
         col.innerHTML = `
@@ -102,7 +102,8 @@ function mostrarProductos() {
                     <h3 class="mb-3">$${producto.precio}</h3>
                     <div class="m-auto">
                         <a href="#"><img src="../../../Public/images/heart.svg" alt="Me gusta"></a>
-                        <a href="#"><img src="../../../Public/images/eye.svg" alt="Ver"></a>
+                        <a href="" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><img
+                            src="../../../Public/images/eye.svg" alt=""></a>
                         <a href="#" class="add-to-cart" data-titulo="${producto.titulo}" data-precio="${producto.precio}" data-img="${producto.imagen}">
                             <img src="../../../Public/images/basket.svg" alt="Agregar al carrito">
                         </a>
