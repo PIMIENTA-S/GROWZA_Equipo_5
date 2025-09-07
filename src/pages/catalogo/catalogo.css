@@ -19,11 +19,24 @@
 }
 
 .btn-filtro {
-    background-color: aqua !important;
+    color: #394D1F !important;
+    font-size: 20px;
+
 }
 
 #footer {
     border-top: 1px solid var(--verde-oscuro);
+}
+
+.botones-modal {
+    background: #F2F3E9;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.text-center .modal-body {
+    text-align: left;
+    /* Anula la alineación central */
 }
 
 .btn.btn-sm.mx-2 {
@@ -56,34 +69,87 @@
 }
 
 .cart-item {
-    border: 1px solid var(--verde-decoraciones); 
+    border: 1px solid var(--verde-decoraciones);
 }
 
-#totalPagar{
+#totalPagar {
     font-size: var(--tamaño-subtitulos);
 }
 
-#carritoModalLabel{
+#carritoModalLabel {
     font-size: var(--tamaño-subtitulos);
     font-weight: bold;
 }
 
-.btn.btn-primary{
+.btn.btn-primary {
     background-color: var(--verde-decoraciones);
     border: none;
     transition: 0.3s ease;
 }
 
-.btn.btn-primary:hover{
-    background-color:#7da753;
+.btn.btn-primary:hover {
+    background-color: #7da753;
 }
 
-.btn.btn-danger{    
+.btn.btn-danger {
     background-color: var(--naranja-decoraciones);
     border: none;
     transition: 0.3s ease;
 }
 
-.btn.btn-danger:hover{
-    background-color:#b9704b;
+.btn.btn-danger:hover {
+    background-color: #b9704b;
 }
+
+/* Cards */
+.card-icon {
+    width: 16rem;
+    margin: auto;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* Iconos arriba a la derecha */
+.card-icons {
+
+    flex: 1;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+}
+
+.card-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #c9f39f9c; 
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, background 0.2s ease;
+    color: #333;
+    font-size: 16px;
+}
+
+.card-icons a:hover {
+    transform: scale(1.1);
+    background: #f5f5f5 ;
+    color: #097a42;
+}
+
+.card-body h4 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.card-body h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #9AC76E;
+} 

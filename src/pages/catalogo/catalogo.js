@@ -80,34 +80,53 @@ let productosEstaticos = [
     }
 ]
 
+
 // Inicializa el carrito
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let productos = JSON.parse(localStorage.getItem("productos")) || [];
 let todosLosProductos = [...productosEstaticos, ...productos];
 const productosSection = document.getElementById("productos");
 
-// Mostrar prodcutos - catalogo
 function mostrarProductos() {
+    // 🔹 Solución: limpiar el contenedor antes de volver a renderizar
+    productosSection.innerHTML = "";
+
     const fila = document.createElement("div");
     fila.classList.add("row");
 
     todosLosProductos.forEach(producto => {
         const col = document.createElement("div");
-        col.classList.add("col-3", "mt-3", "mb-3", "text-center");
+
+        col.classList.add("col-12", "col-md-6","col-lg-3","mt-3", "mb-3", "text-center");
 
         col.innerHTML = `
             <div class="card" style="width: 16rem;">
                 <img src="${producto.imagen}" class="card-img-top" style="height: 200px;" alt="${producto.titulo}">
                 <div class="card-body">
                     <h4 class="card-title"><strong>${producto.titulo}</strong></h4>
-                    <p class="card-text" style="heigth:48px;">${producto.descripcion}</p>
+                    <p class="card-text" style="height:48px;">${producto.descripcion}</p>
                     <h3 class="mb-3">$${producto.precio}</h3>
-                    <div class="m-auto">
-                        <a href="#"><img src="../../../Public/images/heart.svg" alt="Me gusta"></a>
-                        <a href="#"><img src="../../../Public/images/eye.svg" alt="Ver"></a>
-                        <a href="#" class="add-to-cart" data-titulo="${producto.titulo}" data-precio="${producto.precio}" data-img="${producto.imagen}">
-                            <img src="../../../Public/images/basket.svg" alt="Agregar al carrito">
-                        </a>
+                    <div class="card-icon">
+                        <div class="m-auto card-icons ">
+                            <a href="#"><img src="../../../Public/images/heart.svg" alt="Me gusta"></a>        
+                                    <!-- Botón del ojo con data-* -->
+                            <a href="#" class="btn ver-detalle" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#exampleModal"
+                                data-titulo="${producto.titulo}"
+                                data-precio="${producto.precio}"
+                                data-img="${producto.imagen}"
+                                data-descripcion="${producto.descripcion}">
+                                <img src="../../../Public/images/eye.svg" alt="Ver detalles">
+                            </a>
+
+                            <a href="#" class="add-to-cart" 
+                                data-titulo="${producto.titulo}" 
+                                data-precio="${producto.precio}" 
+                                data-img="${producto.imagen}">
+                                <img src="../../../Public/images/basket.svg" alt="Agregar al carrito">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -116,7 +135,29 @@ function mostrarProductos() {
     });
 
     productosSection.appendChild(fila);
+
+    // Escuchar los clics en los botones del ojo
+    document.querySelectorAll(".ver-detalle").forEach(btn => {
+        btn.addEventListener("click", function () {
+            let titulo = this.getAttribute("data-titulo");
+            let precio = this.getAttribute("data-precio");
+            let img = this.getAttribute("data-img");
+            let descripcion = this.getAttribute("data-descripcion");
+
+            // Rellenar modal con los datos
+            document.querySelector("#exampleModal .modal-body img").src = img;
+            document.querySelector("#exampleModal .modal-body img").alt = titulo;
+            document.querySelector("#exampleModal .card-body h4").textContent = titulo;
+            document.querySelector("#exampleModal .card-body .card-text small").textContent = descripcion;
+            document.querySelector("#exampleModal .btn-filtro").textContent = `Comprar por: $${precio} Libra`;
+        });
+    });
 }
+
+// Llamada inicial
+mostrarProductos();
+
+
 
 // Llamado a modal carrito con su script
 fetch("../../components/modalCarrito/modalCarritol.html")
@@ -315,4 +356,3 @@ fetch('../../components/footer/footer.html')
     .then(data => {
         document.getElementById("footer").innerHTML = data;
     });
-
