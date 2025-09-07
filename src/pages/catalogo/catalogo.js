@@ -106,26 +106,27 @@ function mostrarProductos() {
                     <h4 class="card-title"><strong>${producto.titulo}</strong></h4>
                     <p class="card-text" style="height:48px;">${producto.descripcion}</p>
                     <h3 class="mb-3">$${producto.precio}</h3>
-                    <div class="m-auto">
-                        <a href="#"><img src="../../../Public/images/heart.svg" alt="Me gusta"></a>
-                        
-                        <!-- Botón del ojo con data-* -->
-                        <a href="#" class="btn ver-detalle" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#exampleModal"
-                            data-titulo="${producto.titulo}"
-                            data-precio="${producto.precio}"
-                            data-img="${producto.imagen}"
-                            data-descripcion="${producto.descripcion}">
-                            <img src="../../../Public/images/eye.svg" alt="Ver detalles">
-                        </a>
+                    <div class="card-icon">
+                        <div class="m-auto card-icons ">
+                            <a href="#"><img src="../../../Public/images/heart.svg" alt="Me gusta"></a>        
+                                    <!-- Botón del ojo con data-* -->
+                            <a href="#" class="btn ver-detalle" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#exampleModal"
+                                data-titulo="${producto.titulo}"
+                                data-precio="${producto.precio}"
+                                data-img="${producto.imagen}"
+                                data-descripcion="${producto.descripcion}">
+                                <img src="../../../Public/images/eye.svg" alt="Ver detalles">
+                            </a>
 
-                        <a href="#" class="add-to-cart" 
-                            data-titulo="${producto.titulo}" 
-                            data-precio="${producto.precio}" 
-                            data-img="${producto.imagen}">
-                            <img src="../../../Public/images/basket.svg" alt="Agregar al carrito">
-                        </a>
+                            <a href="#" class="add-to-cart" 
+                                data-titulo="${producto.titulo}" 
+                                data-precio="${producto.precio}" 
+                                data-img="${producto.imagen}">
+                                <img src="../../../Public/images/basket.svg" alt="Agregar al carrito">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
