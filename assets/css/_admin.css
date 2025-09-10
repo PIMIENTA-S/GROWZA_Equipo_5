@@ -1,0 +1,95 @@
+:root {
+    --verde-oscuro: #394D1F;
+    --verde-amarillo-subtitulos: #C4C95A;
+    --naranja-decoraciones: #D08159;
+    --verde-decoraciones: #9AC76E;
+    --negro: #000;
+    --blanco: #fff;
+    --fuente: 'Poppins', sans-serif;
+    --tamaño-titulos: 32px;
+    --tamaño-subtitulos: 24px;
+    --tamaño-textos: 16px;
+}
+
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+}
+
+.CrearTarjeta {
+    border-top: 3px solid rgb(0, 0, 0);
+    border-bottom: 3px solid rgb(0, 0, 0);
+}
+
+.btn-guardar {
+    background-color: #9AC76E;
+}
+
+.btn-Eliminar {
+    background-color: #D08159;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--verde-decoraciones);
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    border-right: 1px solid #dee2e6;
+    color: var(--blanco);
+}
+
+.main-content {
+    flex-grow: 1;
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.text-center {
+    font-weight: bold;
+}
+
+.nav-link {
+    color: var(--blanco);
+    margin-top: 20px;
+    transition: 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: var(--blanco);
+    border-radius: 10px;
+    color: #394D1F;
+}
+
+#volver {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 30px;
+
+}
+
+#volver img {
+    width: 30px;
+    height: 30px;
+    transition: filter 0.3s ease;
+}
+
+#volver img:hover {
+    filter: invert(1);
+}
+
+.nav-link:focus,
+.nav-link:active {
+    color: var(--verde-oscuro);
+    background-color: white;
+    border-radius: 10px;
+}
+
+h3, h4 {
+    color: var(--verde-oscuro);
+}
