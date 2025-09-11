@@ -256,7 +256,11 @@ function actualizarVistaPrevia() {
 
     previewTitle.textContent = tituloVal;
     previewDescription.textContent = descVal;
+<<<<<<< HEAD
     previewPrice.textContent = `$${isNaN(precioVal) ? '0.00' : precioVal.toFixed(2)}`;
+=======
+    previewPrice.textContent = `$${isNaN(precioVal) ? '0.00' : precioVal.toFixed(3)}`;
+>>>>>>> JohanaUsaquen
 
     if (imagenInput.files.length > 0) {
         const reader = new FileReader();
