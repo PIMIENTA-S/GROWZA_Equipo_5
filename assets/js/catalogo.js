@@ -14,17 +14,88 @@ fetch("../partials/navbar.html")
 // 🔹 PRODUCTOS ESTÁTICOS
 // ==========================
 let productosEstaticos = [
-    { titulo: "Brocoli", descripcion: "El brócoli, superalimento crucífero, pariente de la coliflor y la col.", precio: 7.995, imagen: "/assets/img/brocoli.jpg", categoria: "Verduras" },
-    { titulo: "Espinaca", descripcion: "La espinaca es una planta anual de la familia de las amarantáceas.", precio: 5.980, imagen: "/assets/img/espinaca.jpg", categoria: "Verduras" },
-    { titulo: "Zanahoria", descripcion: "La zanahoria es una hortaliza versátil y deliciosa para consumir.", precio: 2.840, imagen: "/assets/img/zanahoria.jpg", categoria: "Verduras" },
-    { titulo: "Aguacate", descripcion: "El aguacate Hass impulsó las exportaciones de tres departamentos del país.", precio: 6.390, imagen: "/assets/img/aguacate.jpg", categoria: "Verduras" },
-    { titulo: "Manzana", descripcion: "La manzana o poma​ es la fruta comestible de la especie Malus domestica, el manzano común.", precio: 7.559, imagen: "/assets/img/manzana.jpg", categoria: "Frutas" },
-    { titulo: "Banano", descripcion: "El banano es una fruta tropical dulce de la planta Musa con pulpa suave.", precio: 1.890, imagen: "/assets/img/banano.jpg", categoria: "Frutas" },
-    { titulo: "Arándanos", descripcion: "Los arándanos son frutos pequeños, bayas de la especie Vaccinium.", precio: 7.490, imagen: "/assets/img/arandanos.jpg", categoria: "Frutas" },
-    { titulo: "Fresa", descripcion: "La fresa es un género de plantas rastreras estoloníferas de la familia Rosaceae.", precio: 6.980, imagen: "/assets/img/fresas.jpg", categoria: "Frutas" },
-    { titulo: "Agua de Coco", descripcion: "Líquido que se encuentra de forma natural en el hoyo interior del coco.", precio: 6.500, imagen: "/assets/img/aguaCoco.jpg", categoria: "Bebidas" },
-    { titulo: "Jugo Verde", descripcion: "Contribuye a mejor digestión, sistema inmunológico fuerte y desintoxicar el organismo.", precio: 9.000, imagen: "/assets/img/jugoVerde.jpg", categoria: "Bebidas" }
+    {
+        titulo: "Brocoli",
+        descripcion: "El brócoli, superalimento crucífero, pariente de la coliflor y la col.",
+        datoCurioso: "El brócoli contiene más vitamina C que una naranja.",
+        precio: 7.995,
+        imagen: "/assets/img/brocoli.jpg",
+        categoria: "Verduras"
+    },
+    {
+        titulo: "Espinaca",
+        descripcion: "La espinaca es una planta anual de la familia de las amarantáceas.",
+        datoCurioso: "La espinaca fue popularizada por Popeye por su alto contenido en hierro.",
+        precio: 5.980,
+        imagen: "/assets/img/espinaca.jpg",
+        categoria: "Verduras"
+    },
+    {
+        titulo: "Zanahoria",
+        descripcion: "La zanahoria es una hortaliza versátil y deliciosa para consumir.",
+        datoCurioso: "Las zanahorias originalmente eran moradas, no naranjas.",
+        precio: 2.840,
+        imagen: "/assets/img/zanahoria.jpg",
+        categoria: "Verduras"
+    },
+    {
+        titulo: "Aguacate",
+        descripcion: "El aguacate Hass impulsó las exportaciones de tres departamentos del país.",
+        datoCurioso: "El aguacate es una fruta, y técnicamente una baya con una sola semilla.",
+        precio: 6.390,
+        imagen: "/assets/img/aguacate.jpg",
+        categoria: "Verduras"
+    },
+    {
+        titulo: "Manzana",
+        descripcion: "La manzana o poma​ es la fruta comestible de la especie Malus domestica, el manzano común.",
+        datoCurioso: "Existen más de 7.500 variedades de manzanas en el mundo.",
+        precio: 7.559,
+        imagen: "/assets/img/manzana.jpg",
+        categoria: "Frutas"
+    },
+    {
+        titulo: "Banano",
+        descripcion: "El banano es una fruta tropical dulce de la planta Musa con pulpa suave.",
+        datoCurioso: "Los bananos son técnicamente hierbas y sus frutos son bayas.",
+        precio: 1.890,
+        imagen: "/assets/img/banano.jpg",
+        categoria: "Frutas"
+    },
+    {
+        titulo: "Arándanos",
+        descripcion: "Los arándanos son frutos pequeños, bayas de la especie Vaccinium.",
+        datoCurioso: "Los arándanos tienen uno de los niveles más altos de antioxidantes entre todas las frutas.",
+        precio: 7.490,
+        imagen: "/assets/img/arandanos.jpg",
+        categoria: "Frutas"
+    },
+    {
+        titulo: "Fresa",
+        descripcion: "La fresa es un género de plantas rastreras estoloníferas de la familia Rosaceae.",
+        datoCurioso: "Las fresas no son verdaderas bayas, pero sus semillas están en el exterior.",
+        precio: 6.980,
+        imagen: "/assets/img/fresas.jpg",
+        categoria: "Frutas"
+    },
+    {
+        titulo: "Agua de Coco",
+        descripcion: "Líquido que se encuentra de forma natural en el hoyo interior del coco.",
+        datoCurioso: "El agua de coco fue utilizada como sustituto de plasma en la Segunda Guerra Mundial.",
+        precio: 6.500,
+        imagen: "/assets/img/aguaCoco.jpg",
+        categoria: "Bebidas"
+    },
+    {
+        titulo: "Jugo Verde",
+        descripcion: "Contribuye a mejor digestión, sistema inmunológico fuerte y desintoxicar el organismo.",
+        datoCurioso: "El jugo verde combina vegetales y frutas, potenciando sus nutrientes y fibra.",
+        precio: 9.000,
+        imagen: "/assets/img/jugoVerde.jpg",
+        categoria: "Bebidas"
+    }
 ];
+
 
 
 // ==========================
@@ -65,7 +136,7 @@ function mostrarProductos() {
                             data-titulo="${producto.titulo}"
                             data-precio="${Number(producto.precio).toFixed(3)}"
                             data-img="${producto.imagen}"
-                            data-descripcion="${producto.descripcion}">
+                            data-descripcion="${producto.datoCurioso}">
                             <img src="/assets/img/eye-bold.svg" alt="Ver detalles">
                         </a>
                         <a href="#" class="add-to-cart" id="btn-card2"
@@ -85,17 +156,23 @@ function mostrarProductos() {
 
     // Modal del ojo
     document.querySelectorAll(".ver-detalle").forEach(btn => {
-        btn.addEventListener("click", function () {
-            let titulo = this.getAttribute("data-titulo");
-            let precio = this.getAttribute("data-precio");
-            let img = this.getAttribute("data-img");
-            let descripcion = this.getAttribute("data-descripcion");
+    btn.addEventListener("click", function () {
+        let titulo = this.getAttribute("data-titulo");
+        let precio = this.getAttribute("data-precio");
+        let img = this.getAttribute("data-img");
+        let descripcion = this.getAttribute("data-descripcion"); // ESTE ES EL DATO CURIOSO
 
-            document.querySelector("#exampleModal .modal-body img").src = img;
-            document.querySelector("#exampleModal .modal-body img").alt = titulo;
-            document.querySelector("#exampleModal .card-body h4").textContent = titulo;
-            document.querySelector("#exampleModal .card-body .card-text small").textContent = descripcion;
-            document.querySelector("#exampleModal .btn-filtro").textContent = `Comprar por: $${Number(precio).toFixed(3)} Libra`;
+        document.querySelector("#exampleModal .modal-body img").src = img;
+        document.querySelector("#exampleModal .modal-body img").alt = titulo;
+        document.querySelector("#exampleModal .card-body h4").textContent = titulo;
+
+        // ✅ Mostrar el dato curioso (ya viene como "descripcion" en el atributo)
+        const curiosoElem = document.querySelector("#exampleModal .dato-curioso");
+        if (curiosoElem) {
+            curiosoElem.textContent = descripcion ? `💡 ${descripcion}` : "Este producto no tiene un dato curioso.";
+        }
+
+        document.querySelector("#exampleModal .btn-filtro").textContent = `Comprar por: $${Number(precio).toFixed(3)} Libra`;
         });
     });
 }
@@ -349,4 +426,3 @@ fetch('../partials/footer.html')
         document.getElementById("footer").innerHTML = data;
     });
 
-    
