@@ -10,13 +10,9 @@ fetch("../partials/navbar.html")
     });
 
 
-<<<<<<< HEAD:src/pages/catalogo/catalogo.js
-// Productos estaticos
-=======
 // ==========================
 // 🔹 PRODUCTOS ESTÁTICOS
 // ==========================
->>>>>>> 6f97cd3b6ad445d795c3e6aa1731665b66f0dcdc:assets/js/catalogo.js
 let productosEstaticos = [
     { titulo: "Brocoli", descripcion: "El brócoli, superalimento crucífero, pariente de la coliflor y la col.", precio: 7.995, imagen: "/assets/img/brocoli.jpg", categoria: "Verduras" },
     { titulo: "Espinaca", descripcion: "La espinaca es una planta anual de la familia de las amarantáceas.", precio: 5.980, imagen: "/assets/img/espinaca.jpg", categoria: "Verduras" },
