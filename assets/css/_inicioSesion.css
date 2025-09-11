@@ -1,0 +1,156 @@
+:root {
+    --verde-oscuro: #394D1F;
+    --verde-amarillo-subtitulos: #C4C95A;
+    --naranja-decoraciones: #D08159;
+    --verde-decoraciones: #9AC76E;
+    --negro: #000;
+    --blanco: #fff;
+    --fuente: 'Poppins', sans-serif;
+    --tamaño-titulos: 32px;
+    --tamaño-subtitulos: 24px;
+    --tamaño-textos: 16px;
+}
+
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.titulo-iniciar {
+    font-weight: bold;
+    font-size: 50px;
+    color: var(--verde-oscuro);
+}
+
+.titulo-iniciar2 {
+    font-size: 28px;
+}
+
+.titulo-iniciar,
+.titulo-iniciar2 {
+    font-weight: bold;
+}
+
+.mensaje-iniciar,
+.titulo-iniciar,
+.titulo-iniciar2 {
+    text-align: center;
+}
+
+/* .mensaje-iniciar {
+    margin-bottom: 10px;
+} */
+
+.titulo-movil {
+    position: absolute;
+    bottom: 1px;
+    left: 38px;
+    font-size: 28px;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 8px 15px;
+    border-radius: 8px;
+}
+
+.contenedor-formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    padding: 50px;
+}
+
+.imagen-iniciar {
+    background-image: url("/assets/img/foto-iniciar-sesion.png");
+    background-size: cover;
+    background-position: center;
+    height: 40vh;
+    position: relative;
+}
+
+.btn-iniciar {
+    color: #394D1F;
+    font-weight: bold;
+}
+
+.btn-iniciar:hover,
+.opciones:hover,
+.opciones:hover .opciones-img {
+    background-color: #394D1F;
+    color: white;
+    fill: white;
+}
+
+.btn-iniciar,
+.opciones {
+    background-color: #9AC76E;
+}
+
+.opciones {
+    width: 80px;
+    height: 40px;
+    border-radius: 40px;
+    margin: 5px 20px 20px 20px;
+    border: none;
+}
+
+.mensaje-footer a,
+.texto-olvidar {
+    color: #394D1F;
+}
+
+/* .form-label {
+    margin-top: 9px;
+} */
+
+.btn-iniciar {
+    margin-top: 10px;
+} 
+
+@media (min-width: 768px) {
+    .imagen-iniciar {
+        height: 100vh;
+    }
+
+    .contenedor-formulario form {
+        margin-top: 2.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .contenedor-formulario {
+        height: auto;
+        justify-content: flex-start;
+        padding: 1.5rem 1rem;
+    }
+
+    .contenedor-formulario form {
+        margin-top: 1rem;
+    }
+}
+
+#contenedorIncioSesion{
+    height: 100vh;
+}
+
+
+/* ---- Ocultar Botones del Catalogo ---- */
+#botonBuscar,
+#carritoCompra {
+    display: none;
+}
+
+#volver{
+    background-color: #9ac76e;
+    width: 150px;
+    border-radius: 10px;
+    height: 50px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#volver:hover { 
+    background-color: var(--verde-oscuro);
+}
