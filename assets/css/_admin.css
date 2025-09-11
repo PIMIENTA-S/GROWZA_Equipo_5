@@ -1,5 +1,5 @@
 :root {
-    --verde-oscuro: #394D1F;
+    --verde-oscuro: #394d1f;
     --verde-amarillo-subtitulos: #C4C95A;
     --naranja-decoraciones: #D08159;
     --verde-decoraciones: #9AC76E;
@@ -11,8 +11,6 @@
     --tamaño-textos: 16px;
 }
 
-
-
 body {
     font-family: 'Poppins', sans-serif;
     display: flex;
@@ -23,17 +21,9 @@ body {
     border-bottom: 3px solid rgb(0, 0, 0);
 }
 
-.btn-guardar {
-    background-color: #9AC76E;
-}
-
-.btn-Eliminar {
-    background-color: #D08159;
-}
-
 .sidebar {
     width: 250px;
-    background-color: var(--verde-decoraciones);
+    background-color: var(--verde-oscuro);
     padding: 20px;
     position: fixed;
     top: 0;
@@ -83,6 +73,7 @@ body {
     filter: invert(1);
 }
 
+
 .nav-link:focus,
 .nav-link:active {
     color: var(--verde-oscuro);
@@ -90,6 +81,46 @@ body {
     border-radius: 10px;
 }
 
-h3, h4 {
+h3, h4, h5 {
     color: var(--verde-oscuro);
+}
+
+#bienvenida{
+    color: var(--verde-decoraciones);
+}
+
+.btn.btn-sm.edit{
+    background-color: var(--verde-decoraciones);
+    color: var(--blanco);
+    font-weight: bold;
+    height: 35px;
+    width: 60px;
+    padding: 5px;
+    margin: 20px 0px;
+    border-radius: 10px;
+}
+
+.btn.btn-sm.delete{
+    background-color: var(--naranja-decoraciones);
+    color: var(--blanco);
+    font-weight: bold;
+    height: 35px;
+    width: 80px;
+    padding: 5px;
+    margin: 20px 0px;
+    border-radius: 10px;
+    margin-right: 30px;
+}
+
+.btn-guardar{
+    background-color: #78a34d;
+    color: var(--blanco);
+    font-weight: bold;
+    transition: 1 ease;
+}
+
+.btn-guardar:hover{
+    background-color: #9AC76E;
+    color: var(--blanco);
+    font-weight: bold;
 }

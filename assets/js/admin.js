@@ -29,6 +29,7 @@ const btnVerProductos = document.getElementById('btn-ver-productos');
 const btnAgregarProducto = document.getElementById('btn-agregar-producto');
 const btnEliminarTodos = document.getElementById('btn-eliminar-todos');
 
+
 // Vistas
 const vistaListado = document.getElementById('vista-listado');
 const vistaFormulario = document.getElementById('vista-formulario');
@@ -71,16 +72,16 @@ function listarProductos() {
         const productRow = document.createElement("div");
         productRow.classList.add("d-flex", "justify-content-between", "align-items-center", "my-2", "border", "rounded");
         productRow.innerHTML = `
-            <img src="${producto.imagen}" alt="${producto.titulo}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
-            <div class="flex-grow-1 ms-3">
-                <h5 class="mb-0">${producto.titulo}</h5>
-                <p class="text-muted mb-0">${producto.categoria}</p>
-            </div>
-            <div class="d-flex gap-2">
-                <button class="btn btn-warning btn-sm" onclick="cargarProductoParaEditar('${producto.id}')">Editar</button>
-                <button class="btn btn-danger btn-sm" onclick="eliminarProducto('${producto.id}')">Eliminar</button>
-            </div>
-        `;
+        <img src="${producto.imagen}" alt="${producto.titulo}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px; margin-left: 10px;">
+        <div class="flex-grow-1 ms-3">
+        <h5 class="mb-0">${producto.titulo}</h5>
+        <p class="text-muted mb-0">${producto.categoria}</p>
+        </div>
+        <div class="d-flex gap-2">
+        <button class="btn btn-sm edit" onclick="cargarProductoParaEditar('${producto.id}')">Editar</button>
+        <button class="btn btn-sm delete" onclick="eliminarProducto('${producto.id}')">Eliminar</button>
+        </div>
+        `;
         listaProductosContainer.appendChild(productRow);
     });
 }
@@ -150,6 +151,7 @@ async function guardarProducto(event) {
         productoData.imagen = base64Image;
     }
 
+    let mensaje = "";
     if (id) {
         const index = productos.findIndex(p => p.id == id);
         if (index !== -1) {
@@ -157,17 +159,29 @@ async function guardarProducto(event) {
                 productoData.imagen = productos[index].imagen;
             }
             productos[index] = { ...productos[index], ...productoData };
+            mensaje = `"${titulo}" fue actualizado correctamente.`;
         }
     } else {
         productoData.id = Date.now();
         productos.push(productoData);
+        mensaje = `"${titulo}" fue agregado correctamente.`;
     }
 
     localStorage.setItem("productos", JSON.stringify(productos));
     limpiarFormulario();
     listarProductos();
     mostrarVista('vista-listado');
+
+    // ✅ Mostrar alerta de éxito
+    Swal.fire({
+        title: "¡Éxito!",
+        text: mensaje,
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false
+    });
 }
+
 
 function limpiarFormulario() {
     formulario.reset();
@@ -315,6 +329,35 @@ btnAgregarProducto.addEventListener('click', () => {
 
 // Event listener para el formulario
 formulario.addEventListener("submit", guardarProducto);
+btnEliminarTodos.addEventListener('click', eliminarTodosLosProductos);
+
+function eliminarTodosLosProductos() {
+    Swal.fire({
+        title: "¿Estás seguro?",
+        text: "¡Todos los productos personalizados serán eliminados!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#9AC76E",
+        cancelButtonColor: "#D08159",
+        confirmButtonText: "Sí, eliminar todos",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            productos = []; // Solo elimina los del localStorage, los estáticos se mantienen
+            localStorage.removeItem("productos"); // Elimina del almacenamiento
+            listarProductos(); // Actualiza la lista en pantalla
+
+            Swal.fire({
+                title: "¡Eliminados!",
+                text: "Todos los productos fueron eliminados.",
+                icon: "success",
+                timer: 2000,
+                showConfirmButton: false
+            });
+        }
+    });
+}
+
 
 // Event listeners que activan la vista previa
 document.getElementById("titulo-form").addEventListener('input', actualizarVistaPrevia);

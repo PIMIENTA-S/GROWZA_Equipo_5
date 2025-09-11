@@ -18,9 +18,6 @@
     border-bottom: 2px solid black;
 }
 
-.btn-filtro {
-    background-color: aqua !important;
-}
 
 #footer {
     border-top: 1px solid var(--verde-oscuro);
@@ -98,7 +95,7 @@
     background-color: #b9704b;
 }
 
-#card-catalogo{
+#card-catalogo {
     box-shadow: 5px 5px 10px var(--verde-decoraciones);
     border-radius: 10px;
 }
@@ -106,7 +103,7 @@
 #btn-card,
 #btn-card1,
 #btn-card2 {
-    background-color: var(--naranja-decoraciones);
+    background-color: var(--verde-oscuro);
     border-radius: 50%;
     margin-bottom: 5px;
     width: 30px;
@@ -120,18 +117,38 @@
     transition: 0.3s ease;
 }
 
+#btn-card:hover {
+    width: 35px;
+    height: 35px;
+}
 
-#btn-card img{
+#btn-card1:hover {
+    width: 35px;
+    height: 35px;
+}
+
+#btn-card2:hover {
+    width: 35px;
+    height: 35px;
+}
+
+#btn-card img {
     width: 20px;
     height: 20px;
 }
-#btn-card1 img{
+
+#btn-card1 img {
     width: 20px;
     height: 20px;
 }
+
 #btn-card2 img {
     width: 20px;
     height: 20px;
 }
 
-
+#btnCompraModal{
+    background-color: #D08159;
+    color: #fff;
+    font-weight: 600;
+}

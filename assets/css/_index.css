@@ -96,7 +96,14 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    color: white;
+    color: rgb(255, 255, 255);
+}
+
+.etiqueta{
+    background-color: #394d1fa1;
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 10px;
 }
 
 .carta .sup {

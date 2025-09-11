@@ -54,3 +54,5 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Algunos elementos del menú no se encuentran en el DOM.");
     }
 });
+
+

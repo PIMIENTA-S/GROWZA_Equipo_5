@@ -14,16 +14,16 @@ fetch("../partials/navbar.html")
 // 🔹 PRODUCTOS ESTÁTICOS
 // ==========================
 let productosEstaticos = [
-    { titulo: "Brocoli", descripcion: "El brócoli, superalimento crucífero, pariente de la coliflor y la col.", precio: 7995, imagen: "/assets/img/brocoli.jpg", categoria: "Verduras" },
-    { titulo: "Espinaca", descripcion: "La espinaca es una planta anual de la familia de las amarantáceas.", precio: 5980, imagen: "/assets/img/espinaca.jpg", categoria: "Verduras" },
-    { titulo: "Zanahoria", descripcion: "La zanahoria es una hortaliza versátil y deliciosa para consumir.", precio: 2840, imagen: "/assets/img/zanahoria.jpg", categoria: "Verduras" },
-    { titulo: "Aguacate", descripcion: "El aguacate Hass impulsó las exportaciones de tres departamentos del país.", precio: 6390, imagen: "/assets/img/aguacate.jpg", categoria: "Verduras" },
-    { titulo: "Manzana", descripcion: "La manzana o poma​ es la fruta comestible de la especie Malus domestica, el manzano común.", precio: 7559, imagen: "/assets/img/manzana.jpg", categoria: "Frutas" },
-    { titulo: "Banano", descripcion: "El banano es una fruta tropical dulce de la planta Musa con pulpa suave.", precio: 1890, imagen: "/assets/img/banano.jpg", categoria: "Frutas" },
-    { titulo: "Arándanos", descripcion: "Los arándanos son frutos pequeños, bayas de la especie Vaccinium.", precio: 7490, imagen: "/assets/img/arandanos.jpg", categoria: "Frutas" },
-    { titulo: "Fresa", descripcion: "La fresa es un género de plantas rastreras estoloníferas de la familia Rosaceae.", precio: 6980, imagen: "/assets/img/fresas.jpg", categoria: "Frutas" },
-    { titulo: "Agua de Coco", descripcion: "Líquido que se encuentra de forma natural en el hoyo interior del coco.", precio: 6500, imagen: "/assets/img/aguaCoco.jpg", categoria: "Bebidas" },
-    { titulo: "Jugo Verde", descripcion: "Contribuye a mejor digestión, sistema inmunológico fuerte y desintoxicar el organismo.", precio: 9000, imagen: "/assets/img/jugoVerde.jpg", categoria: "Bebidas" }
+    { titulo: "Brocoli", descripcion: "El brócoli, superalimento crucífero, pariente de la coliflor y la col.", precio: 7.995, imagen: "/assets/img/brocoli.jpg", categoria: "Verduras" },
+    { titulo: "Espinaca", descripcion: "La espinaca es una planta anual de la familia de las amarantáceas.", precio: 5.980, imagen: "/assets/img/espinaca.jpg", categoria: "Verduras" },
+    { titulo: "Zanahoria", descripcion: "La zanahoria es una hortaliza versátil y deliciosa para consumir.", precio: 2.840, imagen: "/assets/img/zanahoria.jpg", categoria: "Verduras" },
+    { titulo: "Aguacate", descripcion: "El aguacate Hass impulsó las exportaciones de tres departamentos del país.", precio: 6.390, imagen: "/assets/img/aguacate.jpg", categoria: "Verduras" },
+    { titulo: "Manzana", descripcion: "La manzana o poma​ es la fruta comestible de la especie Malus domestica, el manzano común.", precio: 7.559, imagen: "/assets/img/manzana.jpg", categoria: "Frutas" },
+    { titulo: "Banano", descripcion: "El banano es una fruta tropical dulce de la planta Musa con pulpa suave.", precio: 1.890, imagen: "/assets/img/banano.jpg", categoria: "Frutas" },
+    { titulo: "Arándanos", descripcion: "Los arándanos son frutos pequeños, bayas de la especie Vaccinium.", precio: 7.490, imagen: "/assets/img/arandanos.jpg", categoria: "Frutas" },
+    { titulo: "Fresa", descripcion: "La fresa es un género de plantas rastreras estoloníferas de la familia Rosaceae.", precio: 6.980, imagen: "/assets/img/fresas.jpg", categoria: "Frutas" },
+    { titulo: "Agua de Coco", descripcion: "Líquido que se encuentra de forma natural en el hoyo interior del coco.", precio: 6.500, imagen: "/assets/img/aguaCoco.jpg", categoria: "Bebidas" },
+    { titulo: "Jugo Verde", descripcion: "Contribuye a mejor digestión, sistema inmunológico fuerte y desintoxicar el organismo.", precio: 9.000, imagen: "/assets/img/jugoVerde.jpg", categoria: "Bebidas" }
 ];
 
 
@@ -56,21 +56,21 @@ function mostrarProductos() {
                 <div class="card-body">
                     <h4 class="card-title"><strong>${producto.titulo}</strong></h4>
                     <p class="card-text" style="height:72px; margin-bottom: 10px;">${producto.descripcion}</p>
-                    <h3 class="mb-3">$${Number(producto.precio).toFixed(2)}</h3>
+                    <h3 class="mb-3">$${Number(producto.precio).toFixed(3)}</h3>
                     <div class="d-flex flex-column position-absolute top-0 end-0">
                         <a href="#" id="btn-card"><img src="/assets/img/heart-fill.svg" alt="Me gusta" ></a>
                         <a href="#" class="btn ver-detalle" id="btn-card1"
                             data-bs-toggle="modal" 
                             data-bs-target="#exampleModal"
                             data-titulo="${producto.titulo}"
-                            data-precio="${Number(producto.precio).toFixed(2)}"
+                            data-precio="${Number(producto.precio).toFixed(3)}"
                             data-img="${producto.imagen}"
                             data-descripcion="${producto.descripcion}">
                             <img src="/assets/img/eye-bold.svg" alt="Ver detalles">
                         </a>
                         <a href="#" class="add-to-cart" id="btn-card2"
                             data-titulo="${producto.titulo}" 
-                            data-precio="${Number(producto.precio).toFixed(2)}" 
+                            data-precio="${Number(producto.precio).toFixed(3)}" 
                             data-img="${producto.imagen}">
                             <img src="/assets/img/basket-bold.svg" alt="Agregar al carrito">
                         </a>
@@ -95,7 +95,7 @@ function mostrarProductos() {
             document.querySelector("#exampleModal .modal-body img").alt = titulo;
             document.querySelector("#exampleModal .card-body h4").textContent = titulo;
             document.querySelector("#exampleModal .card-body .card-text small").textContent = descripcion;
-            document.querySelector("#exampleModal .btn-filtro").textContent = `Comprar por: $${Number(precio).toFixed(2)} Libra`;
+            document.querySelector("#exampleModal .btn-filtro").textContent = `Comprar por: $${Number(precio).toFixed(3)} Libra`;
         });
     });
 }
@@ -187,8 +187,8 @@ function mostrarCarrito() {
                         </div>
                     </div>
                     <div class="col-md-4 text-end">
-                        <span><strong>Valor libra:</strong> $${Number(prod.precio).toFixed(2)}</span>
-                        <p style="margin-bottom: 0; margin-top: 15px;"><strong>Total :</strong> $${Number(totalProducto).toFixed(2)}</p>
+                        <span><strong>Valor libra:</strong> $${Number(prod.precio).toFixed(3)}</span>
+                        <p style="margin-bottom: 0; margin-top: 15px;"><strong>Total :</strong> $${Number(totalProducto).toFixed(3)}</p>
                     </div>
                 </div>
             </div>
@@ -197,7 +197,7 @@ function mostrarCarrito() {
     });
 
     const totalPagar = document.getElementById("totalPagar");
-    if (totalPagar) totalPagar.innerHTML = `<strong>Total a pagar:</strong> $${totalCarrito.toFixed(2)}`;
+    if (totalPagar) totalPagar.innerHTML = `<strong>Total a pagar:</strong> $${totalCarrito.toFixed(3)}`;
 }
 
 
