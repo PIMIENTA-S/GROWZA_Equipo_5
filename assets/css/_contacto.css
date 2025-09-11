@@ -1,0 +1,167 @@
+:root {
+    --verde-oscuro: #394D1F;
+    --verde-amarillo-subtitulos: #C4C95A;
+    --naranja-decoraciones: #D08159;
+    --verde-decoraciones: #9AC76E;
+    --negro: #000;
+    --blanco: #fff;
+    --fuente: 'Poppins', sans-serif;
+    --tamaño-titulos: 32px;
+    --tamaño-subtitulos: 24px;
+    --tamaño-textos: 16px;
+}
+
+body {
+    font-family: var(--fuente);
+}
+
+/* ===== Título sección ===== */
+.title-section {
+    background-color: var(--verde-oscuro);
+    color: var(--blanco);
+    position: relative;
+    z-index: 1;
+    padding: 60px 20px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    height: 200px;
+}
+
+.title-section h2 {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: var(--tamaño-titulos);
+    font-weight: bold;
+    margin-left: 7%;
+}
+
+/* ===== Formularios ===== */
+div.col-12.col-md-6 h2 {
+    font-size: var(--tamaño-textos);
+    margin-bottom: 20px;
+}
+
+textarea.form-control:focus,
+input.form-control:focus {
+    outline: none;
+    border: 2px solid var(--verde-decoraciones);
+    box-shadow: 0 0 3px var(--verde-decoraciones);
+}
+
+button.btn.btn-secondary.w-100 {
+    background-color: var(--naranja-decoraciones);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    font-weight: 600;
+}
+
+button.btn.btn-secondary.w-100:hover {
+    background-color: #c06232;
+}
+
+/* ===== Tarjeta flotante ===== */
+.col-12.col-md-6.text-center.section3 {
+    position: relative;
+    z-index: 2;
+    margin-top: -100px;
+    border-radius: 15px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 20px;
+}
+
+
+.section3 img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* ===== Íconos ===== */
+.section3 i,
+.section4 i {
+    color: var(--verde-oscuro);
+    transition: color 0.5s ease, transform 0.3s ease;
+}
+
+.section3 i:hover {
+    transform: scale(1.3);
+    color: var(--verde-decoraciones);
+}
+
+.section4 i:hover {
+    transform: scale(1.5);
+    color: var(--verde-decoraciones);
+}
+
+/* ===== Otros ===== */
+.section4 h2,
+.section5 h2 {
+    font-size: var(--tamaño-subtitulos);
+}
+
+.section5 iframe {
+    margin-top: 30px;
+}
+
+div.circle-icon {
+    background-color: var(--blanco);
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.circle-icon:hover {
+    background-color: #dddddd;
+}
+
+.linea {
+    height: 1px;
+    background-color: var(--verde-oscuro);
+    width: 90%;
+    margin: 20px auto;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .col-12.col-md-6.text-center.section3 {
+        position: static;
+        margin-top: 50px;
+        max-width: 100%;
+        box-shadow: none;
+        padding: 15px;
+        margin-bottom: 0;
+    }
+
+    .title-section {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .title-section h2 {
+        font-size: 2rem;
+        position: static;
+        margin: 0;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+}
+
+#footer {
+    border-top: 1px solid var(--verde-oscuro);
+}
+
+#botonBuscar,
+#carritoCompra {
+    display: none;
+}
