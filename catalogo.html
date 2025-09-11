@@ -71,7 +71,7 @@
                                             <h4 class="card-title fw-bold">VEGATABLES</h4>
                                             <p class="card-text"><small class="text-body-secondary">Orgánico • Vegano •
                                                     Sin gluten</small></p>
-                                            <h5 class="mb-2 fw-bold">Valores Nutricionales</h5>
+                                            <!-- <h5 class="mb-2 fw-bold">Valores Nutricionales</h5>
                                             <div class="nutritional-values">
                                                 <div class="bar-item">
                                                     <span class="bar-label">Energía</span>
@@ -97,10 +97,10 @@
                                                         <div class="progress-fill" id="agua-fill"></div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <h5 class="card-title fw-bold">Dato curioso</h5>
-                                            <p class="card-text"><small>Su nombre deriva de la palabra náhuatl "tomatl",
-                                                    que significa "fruto hinchado" o "fruto con ombligo".</small></p>
+                                            <p class="dato-curioso text-muted mt-2" style="font-size: 0.9rem;"></p>
+                                            <!-- Aquí va el dato curioso -->
                                         </div>
                                         <div class="p-2 d-flex justify-content-end">
                                             <a href="#" class="btn btn-filtro add-to-cart">Comprar por: $1900 Libra</a>
@@ -114,99 +114,6 @@
         </section>
 
     </main>
-
-    <section>
-        <!-- Modal Detalle Producto -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-
-                    <!-- Header del modal -->
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Detalle del producto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                    </div>
-
-                    <!-- Cuerpo del modal -->
-                    <div class="modal-body">
-                        <div class="card mb-3 border-0">
-                            <div class="row g-0">
-
-                                <!-- Columna de la imagen -->
-                                <div
-                                    class="col-md-7 d-flex justify-content-center align-items-center position-relative">
-                                    <img src="/assets/img/manzana.jpg" class="img-fluid rounded mb-5"
-                                        alt="Imagen del Producto">
-
-                                    <!-- Botones sobre la imagen -->
-                                    <div class="d-flex flex-column position-absolute top-0 end-0 mt-5 me-3">
-                                        <a href="#" class="mb-2 botones-modal"><img src="/assets/img/heart.svg"
-                                                alt="Favorito"></a>
-                                        <a href="#" class="add-to-cart botones-modal"><img
-                                                src="/assets/img/basket-bold.svg" alt="Agregar al carrito"></a>
-                                    </div>
-                                </div>
-
-                                <!-- Columna del contenido -->
-                                <div class="col-md-5">
-                                    <div class="card-body">
-                                        <h4 class="card-title fw-bold">VEGETALES</h4>
-                                        <p class="card-text">
-                                            <small class="text-body-secondary">
-                                                Orgánico • Vegano • Sin gluten
-                                            </small>
-                                        </p>
-
-                                        <h5 class="mb-2 fw-bold">Valores Nutricionales</h5>
-                                        <div class="nutritional-values">
-                                            <div class="bar-item">
-                                                <span class="bar-label">Energía</span>
-                                                <div class="progress-bar energia">
-                                                    <div class="progress-fill" id="energia-fill"></div>
-                                                </div>
-                                            </div>
-                                            <div class="bar-item">
-                                                <span class="bar-label">Carbohidratos</span>
-                                                <div class="progress-bar carbohidratos">
-                                                    <div class="progress-fill" id="carbohidratos-fill"></div>
-                                                </div>
-                                            </div>
-                                            <div class="bar-item">
-                                                <span class="bar-label">Fibra</span>
-                                                <div class="progress-bar fibra">
-                                                    <div class="progress-fill" id="fibra-fill"></div>
-                                                </div>
-                                            </div>
-                                            <div class="bar-item">
-                                                <span class="bar-label">Agua</span>
-                                                <div class="progress-bar agua">
-                                                    <div class="progress-fill" id="agua-fill"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <h5 class="card-title fw-bold mt-3">Dato curioso</h5>
-                                        <p class="card-text">
-                                            <small>Su nombre deriva de la palabra náhuatl "tomatl", que significa "fruto
-                                                hinchado" o "fruto con ombligo".</small>
-                                        </p>
-                                    </div>
-
-                                    <!-- Botón de comprar -->
-                                    <div class="p-2 d-flex justify-content-end">
-                                        <a href="#" class="btn btn-filtro add-to-cart" id="btnCompraModal">Comprar por: $1900 Libra</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div> <!-- modal-content -->
-            </div> <!-- modal-dialog -->
-        </div> <!-- modal -->
-
-    </section>
 
     <!-- Catálogo -->
     <div class="catalogo" id="catalogo"></div>

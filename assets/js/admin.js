@@ -121,10 +121,10 @@ async function guardarProducto(event) {
     const categoria = document.getElementById("categoria-form").value;
     const descripcion = document.getElementById("descripcion-form").value;
     const precio = document.getElementById("precio-form").value;
-    const energia = document.getElementById("energia-form").value;
-    const carbohidratos = document.getElementById("carbohidratos-form").value;
-    const fibra = document.getElementById("fibra-form").value;
-    const agua = document.getElementById("agua-form").value;
+    // const energia = document.getElementById("energia-form").value;
+    // const carbohidratos = document.getElementById("carbohidratos-form").value;
+    // const fibra = document.getElementById("fibra-form").value;
+    // const agua = document.getElementById("agua-form").value;
     const datoCurioso = document.getElementById("dato-curioso-form").value;
     const imagen = document.getElementById("imagen-form").files;
     const id = document.getElementById("id-producto-oculto").value;
@@ -134,10 +134,10 @@ async function guardarProducto(event) {
         categoria: categoria,
         descripcion: descripcion,
         precio: precio,
-        energia: energia,
-        carbohidratos: carbohidratos,
-        fibra: fibra,
-        agua: agua,
+        // energia: energia,
+        // carbohidratos: carbohidratos,
+        // fibra: fibra,
+        // agua: agua,
         datoCurioso: datoCurioso,
     };
 

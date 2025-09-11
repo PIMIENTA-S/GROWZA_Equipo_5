@@ -24,7 +24,7 @@
 }
 
 .botones-modal {
-    background: var(--naranja-decoraciones);
+    background: var(--verde-oscuro);
     border-radius: 50%;
     padding: 5px;
 }
@@ -147,7 +147,7 @@
     height: 20px;
 }
 
-#btnCompraModal{
+.btn.btn-filtro.add-to-cart{
     background-color: #D08159;
     color: #fff;
     font-weight: 600;
