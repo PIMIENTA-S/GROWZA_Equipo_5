@@ -44,8 +44,7 @@
                     <li class="nav-item"><a class="nav-link" href="/contacto.html">Contáctenos</a></li>
                     <!-- <li class="nav-item"><a class="nav-link" href="/admin/admin.html">Admin</a></li> -->
 
-                    <!-- Ícono lupa -->
-                    <!-- <li class="nav-item">
+                    <li class="nav-item d-none" id="searchItem">
                         <a class="nav-link" href="#" id="botonBuscar">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--verde-oscuro)"
                                 viewBox="0 0 256 256">
@@ -54,7 +53,11 @@
                                 </path>
                             </svg>
                         </a>
-                    </li> -->
+                    </li>
+
+                    <li class="nav-item d-none" id="searchBox">
+                        <input type="text" class="form-control" placeholder="Buscar en catálogo...">
+                    </li>
 
                     <!-- Ícono carrito -->
                     <li class="nav-item">
@@ -74,7 +77,7 @@
                     </li>
 
                     <!-- Dropdown -->
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" id="userDropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="var(--verde-oscuro)"
@@ -85,7 +88,7 @@
                             </svg>
                         </a>
 
-                        <ul class="dropdown-menu dropdown-menu-end">
+                        <ul class="dropdown-menu dropdown-menu-end" id="userMenu">
                             <li>
                                 <a class="dropdown-item d-flex align-items-center gap-2" href="/inicioSesion.html">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

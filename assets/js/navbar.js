@@ -53,6 +53,26 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         console.log("Algunos elementos del menú no se encuentran en el DOM.");
     }
+
+//funcion lupa
+    if (window.location.pathname.includes("catalogo.html")) {
+        const searchItem = document.getElementById("searchItem");
+        const searchBox = document.getElementById("searchBox");
+        const botonBuscar = document.getElementById("botonBuscar");
+
+        if (searchItem && searchBox && botonBuscar) {
+            searchItem.classList.remove("d-none");
+
+            botonBuscar.addEventListener("click", (e) => {
+                e.preventDefault();
+                searchBox.classList.toggle("d-none");
+                const input = searchBox.querySelector("input");
+                if (!searchBox.classList.contains("d-none")) {
+                    input.focus();
+                }
+            });
+        }
+    }
 });
 
 

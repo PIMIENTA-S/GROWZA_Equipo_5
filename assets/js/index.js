@@ -2,6 +2,11 @@ fetch('../partials/navbar.html')
     .then(res => res.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;
+        setTimeout(() => {
+            const script = document.createElement("script");
+            script.src = "../assets/js/auth.js";
+            document.body.appendChild(script);
+        }, 0);
     });
 
 fetch('../partials/footer.html')
@@ -15,6 +20,9 @@ fetch('../partials/navbar.html')
     .then(res => res.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;
+        const script = document.createElement("script");
+                    script.src = "/assets/js/navbar.js";
+                    document.body.appendChild(script);
         // Llama a actualizarContadorCarrito después de cargar el navbar
         actualizarContadorCarrito();
     });
