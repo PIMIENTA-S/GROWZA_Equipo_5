@@ -13,27 +13,27 @@
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <title>Panel de Usuario</title>
     <link rel="stylesheet" href="/assets/css/_vistaUsuario.css">
-    <!-- <link rel="stylesheet" href="/assets/css/_navbar.css"> -->
+    <link rel="stylesheet" href="/assets/css/_navbar.css">
 </head>
 
 <body>
 
-    <!-- <nav id="navbar"></nav> -->
+    <nav id="navbar"></nav>
 
     <div class="sidebar">
-        <h4 class="text-center" class="bienvenida">Bienvenido</h4>
-        <h3 id="nombreUsuario" class="bienvenida"></h3>
+        <h4 class="text-center txt-h4" class="bienvenida">Bienvenido</h4>
+        <h3 id="nombreUsuario" class="bienvenida txt-h3"></h3>
         <p class="txt-usuario">Accede aqui a todas tus funciones</p>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="#" id="btn-opciones">Actualizar Información</a>
+                <a class="nav-link side-link" href="#" id="btn-opciones">Actualizar Información</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" id="btn-preguntas">Soporte y Ayuda</a>
+                <a class="nav-link side-link" href="#" id="btn-preguntas">Soporte y Ayuda</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link d-flex align-items-center gap-2" href="inicioSesion.html" id="cerrarSesion">
+                <a class="nav-link side-link d-flex align-items-center gap-2" href="inicioSesion.html" id="cerrarSesion">
                     <img src="/assets/img/sign-out-bold.svg" alt="Salir">
                     Cerrar sesión
                 </a>
@@ -44,7 +44,7 @@
     <main class="main-content">
 
         <div id="vista-formulario" style="display: none;">
-            <h3 class="text-center mt-3 mb-5">Actualiza tu información</h3>
+            <h3 class="text-center mt-3 mb-5 txt-h3">Actualiza tu información</h3>
             <form id="formActualizar">
             <div class="mb-3">
             <label for="telefono" class="form-label">Teléfono</label>
@@ -59,7 +59,7 @@
         
         </div>
         <div id="vista-faq" style="display: none;">
-            <h3 class="text-center mt-3 mb-5">Preguntas Frecuentes</h3>
+            <h3 class="text-center mt-3 mb-5 txt-h3">Preguntas Frecuentes</h3>
             <div class="accordion" id="accordionFAQ">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="faq1">

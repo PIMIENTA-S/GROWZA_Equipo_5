@@ -1,78 +1,95 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Revisa si los elementos existen antes de usarlos
+(function () {
+  function initNavbar() {
+    console.log("%c[navbar] initNavbar running", "color:teal;font-weight:bold;");
+    console.log("href:", window.location.href, "pathname:", window.location.pathname, "readyState:", document.readyState);
+
+    // ==== Carrito: asegúrate que la id coincide con el HTML ====
     const carritoModal = document.getElementById("carritoModal");
-    const cartButton = document.getElementById("cartButton");
+    const cartButton = document.getElementById("carritoCompra") || document.getElementById("cartButton");
+    console.log("carritoModal:", carritoModal, "cartButton:", cartButton);
 
     if (carritoModal && cartButton) {
-        const bootstrapModal = new bootstrap.Modal(carritoModal);
-
-        // Agregar evento de click al botón del carrito
-        cartButton.addEventListener("click", function (e) {
-            e.preventDefault();
-            bootstrapModal.show();
-        });
-
-        // Agregar evento de click al botón de cerrar del modal
-        const closeButton = carritoModal.querySelector(".btn-close");
-        if (closeButton) {
-            closeButton.addEventListener("click", function () {
-                bootstrapModal.hide();
-            });
-        }
+      const bootstrapModal = new bootstrap.Modal(carritoModal);
+      cartButton.addEventListener("click", function (e) {
+        e.preventDefault();
+        bootstrapModal.show();
+      });
+      const closeButton = carritoModal.querySelector(".btn-close");
+      if (closeButton) closeButton.addEventListener("click", () => bootstrapModal.hide());
     } else {
-        console.log("El modal de carrito o el botón no se encuentran en el DOM.");
+      console.log("[navbar] El modal de carrito o el botón no se encuentran en el DOM.");
     }
 
-    // Funcionalidad del menú hamburguesa (toggle)
-    const toggler = document.querySelector('.navbar-toggler');
-    const overlay = document.querySelector('.menu-overlay');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    const closeBtn = document.querySelector('.btn-close-menu');
+    // ==== Menú hamburguesa ====
+    const toggler = document.querySelector(".navbar-toggler");
+    const overlay = document.querySelector(".menu-overlay");
+    const navbarCollapse = document.querySelector(".navbar-collapse");
+    const closeBtn = document.querySelector(".btn-close-menu");
 
-    // Verificar si los elementos del menú existen
     if (toggler && overlay && navbarCollapse && closeBtn) {
-        // Mostrar el menú y la superposición al hacer clic
-        toggler.addEventListener('click', () => {
-            document.body.classList.toggle('menu-open');
-            overlay.classList.toggle('active');
-        });
+      toggler.addEventListener("click", () => {
+        document.body.classList.toggle("menu-open");
+        overlay.classList.toggle("active");
+      });
 
-        // Cerrar el menú al hacer clic fuera (en overlay)
-    overlay.addEventListener('click', () => {
-        navbarCollapse.classList.remove('show');
-        overlay.classList.remove('active');
-        document.body.classList.remove('menu-open');
-    });
+      overlay.addEventListener("click", () => {
+        navbarCollapse.classList.remove("show");
+        overlay.classList.remove("active");
+        document.body.classList.remove("menu-open");
+      });
 
-        // Cerrar el menú al hacer clic en el botón de cerrar
-        closeBtn.addEventListener('click', () => {
-            navbarCollapse.classList.remove('show');
-            overlay.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        });
+      closeBtn.addEventListener("click", () => {
+        navbarCollapse.classList.remove("show");
+        overlay.classList.remove("active");
+        document.body.classList.remove("menu-open");
+      });
     } else {
-        console.log("Algunos elementos del menú no se encuentran en el DOM.");
+      console.log("[navbar] Algunos elementos del menú no se encuentran en el DOM.");
     }
 
-//funcion lupa
-    if (window.location.pathname.includes("catalogo.html")) {
-        const searchItem = document.getElementById("searchItem");
-        const searchBox = document.getElementById("searchBox");
-        const botonBuscar = document.getElementById("botonBuscar");
+    // ==== Lupa (buscar) - detección robusta de la página catálogo ====
+    const hrefLower = window.location.href.toLowerCase();
+    const pathLower = window.location.pathname.toLowerCase();
+    const isCatalog =
+      pathLower.endsWith("catalogo.html") ||
+      hrefLower.includes("/catalogo") ||
+      hrefLower.includes("catalogo.html") ||
+      hrefLower.includes("catalogo");
 
-        if (searchItem && searchBox && botonBuscar) {
-            searchItem.classList.remove("d-none");
+    console.log("[navbar] isCatalog?", isCatalog);
 
-            botonBuscar.addEventListener("click", (e) => {
-                e.preventDefault();
-                searchBox.classList.toggle("d-none");
-                const input = searchBox.querySelector("input");
-                if (!searchBox.classList.contains("d-none")) {
-                    input.focus();
-                }
-            });
-        }
+    if (isCatalog) {
+      const searchItem = document.getElementById("searchItem");
+      const searchBox = document.getElementById("searchBox");
+      const botonBuscar = document.getElementById("botonBuscar");
+      console.log("searchItem, searchBox, botonBuscar:", searchItem, searchBox, botonBuscar);
+
+      if (searchItem && searchBox && botonBuscar) {
+        searchItem.classList.remove("d-none");
+
+        // Si está dentro de un collapse, puede estar oculto hasta abrir el menú. 
+        // Aquí solo toggleamos el input.
+        botonBuscar.addEventListener("click", (e) => {
+          e.preventDefault();
+          searchBox.classList.toggle("d-none");
+          const input = searchBox.querySelector("input");
+          if (input && !searchBox.classList.contains("d-none")) input.focus();
+        });
+      } else {
+        console.log("[navbar] Elementos de búsqueda no encontrados. ¿El HTML del navbar ya fue insertado en la página?");
+      }
     }
-});
 
+    console.log("%c[navbar] initNavbar finished", "color:teal;");
+  }
 
+  // Si DOMContentLoaded ya pasó, ejecuta inmediatamente; si no, espera al evento.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initNavbar);
+  } else {
+    initNavbar();
+  }
+
+  // Exponer la función para páginas que insertan el navbar dinámicamente
+  window.initNavbar = initNavbar;
+})();

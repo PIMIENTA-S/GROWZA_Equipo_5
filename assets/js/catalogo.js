@@ -5,6 +5,14 @@ fetch("../partials/navbar.html")
     .then(response => response.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;
+        const scriptNavbar = document.createElement("script");
+        scriptNavbar.src = "../assets/js/navbar.js";
+        document.body.appendChild(scriptNavbar);
+
+        const scriptAuth = document.createElement("script");
+        scriptAuth.src = "../assets/js/auth.js";
+        document.body.appendChild(scriptAuth);
+
         // Inicializamos el contador al cargar el navbar
         actualizarContadorCarrito();
     });

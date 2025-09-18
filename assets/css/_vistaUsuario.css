@@ -21,7 +21,7 @@ body {
     background-color: var(--verde-oscuro);
     padding: 20px;
     position: fixed;
-    top: 0;
+    top: 70px;
     left: 0;
     bottom: 0;
     overflow-y: auto;
@@ -33,19 +33,20 @@ body {
     flex-grow: 1;
     margin-left: 250px;
     padding: 20px;
+    margin-top: 70px;
 }
 
 .text-center {
     font-weight: bold;
 }
 
-.nav-link {
+.side-link {
     color: var(--blanco);
     margin-top: 20px;
     transition: 0.3s ease;
 }
 
-.nav-link:hover {
+.side-link:hover {
     background-color: var(--blanco);
     border-radius: 10px;
     color: #394D1F;
@@ -77,21 +78,21 @@ body {
 }
 
 
-.nav-link:focus,
-.nav-link:active {
+.side-link:focus,
+.side-link:active {
     color: var(--verde-oscuro);
     background-color: white;
     border-radius: 10px;
 }
 
-h4, h3{
+.txt-h4, .txt-h3{
     color: var(--verde-decoraciones);
     font-weight: bold;
     margin-top: 15px;
     text-align: center;
 }
 
-h3{
+.txt-h3{
     font-size: 25px;
 }
 

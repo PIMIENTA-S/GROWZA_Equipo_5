@@ -1,29 +1,18 @@
-fetch('../partials/navbar.html')
-    .then(res => res.text())
-    .then(data => {
-        document.getElementById("navbar").innerHTML = data;
-        setTimeout(() => {
-            const script = document.createElement("script");
-            script.src = "../assets/js/auth.js";
-            document.body.appendChild(script);
-        }, 0);
-    });
-
-fetch('../partials/footer.html')
-    .then(res => res.text())
-    .then(data => {
-        document.getElementById("footer").innerHTML = data;
-    });
 
 // Carga la barra de navegación y el pie de página
-fetch('../partials/navbar.html')
-    .then(res => res.text())
+fetch("../partials/navbar.html")
+    .then(response => response.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;
-        const script = document.createElement("script");
-                    script.src = "/assets/js/navbar.js";
-                    document.body.appendChild(script);
-        // Llama a actualizarContadorCarrito después de cargar el navbar
+        fetch('../assets/js/auth.js')
+            .then(res => res.text())
+            .then(jsCode => {
+                const script = document.createElement("script");
+                script.textContent = jsCode; // Inserta el código como texto
+                document.body.appendChild(script);
+            })
+            .catch(err => console.error("Error cargando auth.js:", err));
+        // Inicializamos el contador al cargar el navbar
         actualizarContadorCarrito();
     });
 
