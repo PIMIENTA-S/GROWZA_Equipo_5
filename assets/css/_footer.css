@@ -81,7 +81,9 @@ a {
     display: flex;
     margin-top: 20px;
 }
-
+.right.lista-footer{
+    list-style: none !important;
+}
 .footer-bottom {
     display: flex;
     justify-content: center;
