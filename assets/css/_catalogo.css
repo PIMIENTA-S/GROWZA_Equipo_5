@@ -114,3 +114,10 @@
     background-color: #b9704b;
     transform: translateY(-2px);
 }
+
+.botones-modal {
+    background: var(--verde-oscuro);
+    border-radius: 50%;
+    padding: 5px;
+}
+ 

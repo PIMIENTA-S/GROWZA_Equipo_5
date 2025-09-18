@@ -12,55 +12,6 @@
   <link rel="stylesheet" href="/assets/css/_favoritos.css">
   <link rel="stylesheet" href="/assets/css/_navbar.css">
   <link rel="stylesheet" href="/assets/css/_footer.css">
-
-  <style>
-    /* Ajuste extra para evitar que el título quede oculto bajo el navbar */
-    main {
-      margin-top: 120px;
-    }
-
-    h2 {
-      font-weight: bold;
-      color: #2c3e50;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    /* Hover suave en las cards */
-    #favoritos .card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    #favoritos .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-
-    /* Botón eliminar */
-    .remove.btn.btn-sm {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--verde-oscuro);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      cursor: pointer;
-      border: none;
-    }
-
-    .remove.btn.btn-sm img {
-      width: 18px;
-      height: 18px;
-    }
-
-    .remove.btn.btn-sm:hover {
-      transform: scale(1.1);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-  </style>
 </head>
 <body>
   <!-- Navbar dinámico -->
@@ -73,13 +24,13 @@
     <!-- Botón para vaciar favoritos -->
     <div class="text-end mb-3" style="font-size: 20px;">
       <button id="vaciar-favoritos" class="btn btn-fav">
-        <Strong>Vaciar Favoritos</Strong>
+        <strong>Vaciar Favoritos</strong>
       </button>
     </div>
 
     <!-- Lista de favoritos -->
     <div id="favoritos" class="row mt-4">
-      <!-- Aquí se cargarán las cards dinámicamente desde JS -->
+      <!-- Las cards se generarán dinámicamente aquí -->
     </div>
   </main>
 

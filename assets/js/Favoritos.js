@@ -1,5 +1,5 @@
 // ==========================
-// 🔹 favoritos.js (robusto)
+// 🔹 favoritos.js (modificado)
 // ==========================
 
 // Cargar navbar y luego actualizar contador
@@ -17,13 +17,13 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 // Elemento contenedor (puede ser null si estamos en otra página)
 const favoritosSection = document.getElementById("favoritos");
 
-// Mostrar favoritos en la página
+// Mostrar favoritos en la página (MODIFICADA)
 function mostrarFavoritos() {
   if (!favoritosSection) return; // si no existe la sección
   favoritosSection.innerHTML = "";
 
   if (!Array.isArray(favoritos) || favoritos.length === 0) {
-    favoritosSection.innerHTML = `<p class="text-muted text-center">No tienes productos en favoritos ❤️</p>`;
+    favoritosSection.innerHTML = `<div class="col-12"><p class="no-favoritos">No tienes productos en favoritos ❤️</p></div>`;
     return;
   }
 
@@ -35,21 +35,38 @@ function mostrarFavoritos() {
     const col = document.createElement("div");
     col.classList.add("col-12", "col-md-6", "col-lg-3", "mb-4");
 
+    // *** ESTRUCTURA MODIFICADA CON ACCIONES EN LÍNEA ***
     col.innerHTML = `
       <div class="card shadow-sm border-light card-catalogo" style="width: 100%; height: 380px;">
         <img src="${imagen}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="${titulo}">
-        <div class="card-body text-center">
+        <div class="card-body">
           <h5 class="card-title"><strong>${titulo}</strong></h5>
           <p class="precio">$${precio.toLocaleString('es-CO', { minimumFractionDigits: 3, maximumFractionDigits: 3 })}</p>
-          <button class="btn btn-filtro add-to-cart" 
-                  data-titulo="${titulo}" 
-                  data-precio="${precio}" 
-                  data-img="${imagen}">
-            Agregar al carrito
-          </button>
-          <button class="btn btn-fav-remove btn-sm btn-remove-fav mt-2" data-nombre="${titulo}">
-            Eliminar
-          </button>
+          
+          <!-- NUEVA SECCIÓN: Acciones en la misma línea -->
+          <div class="acciones">
+            <!-- Ícono de cesta de compras -->
+            <button class="cart-icon add-to-cart" 
+                    title="Agregar al carrito"
+                    data-titulo="${titulo}" 
+                    data-precio="${precio}" 
+                    data-img="${imagen}">
+
+                    <svg class="nav-icons" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                    fill="#394d1f" viewBox="0 0 256 256">
+                                    <path
+                                        d="M136,120v56a8,8,0,0,1-16,0V120a8,8,0,0,1,16,0Zm36.84-.8-5.6,56A8,8,0,0,0,174.4,184a7.32,7.32,0,0,0,.81,0,8,8,0,0,0,7.95-7.2l5.6-56a8,8,0,0,0-15.92-1.6Zm-89.68,0a8,8,0,0,0-15.92,1.6l5.6,56a8,8,0,0,0,8,7.2,7.32,7.32,0,0,0,.81,0,8,8,0,0,0,7.16-8.76ZM239.93,89.06,224.86,202.12A16.06,16.06,0,0,1,209,216H47a16.06,16.06,0,0,1-15.86-13.88L16.07,89.06A8,8,0,0,1,24,80H68.37L122,18.73a8,8,0,0,1,12,0L187.63,80H232a8,8,0,0,1,7.93,9.06ZM89.63,80h76.74L128,36.15ZM222.86,96H33.14L47,200H209Z">
+                                    </path>
+                                </svg>
+            </button>
+            
+            <!-- Botón eliminar -->
+            <button class="btn-fav-remove btn-remove-fav" 
+                    title="Eliminar de favoritos"
+                    data-nombre="${titulo}">
+              Eliminar
+            </button>
+          </div>
         </div>
       </div>
     `;
@@ -57,7 +74,7 @@ function mostrarFavoritos() {
   });
 }
 
-// Delegación de evento para quitar un favorito
+// Delegación de evento para quitar un favorito (MEJORADA CON SWEETALERT)
 document.addEventListener("click", (e) => {
   const btn = e.target.closest(".btn-remove-fav");
   if (!btn) return;
@@ -65,26 +82,75 @@ document.addEventListener("click", (e) => {
   const key = (btn.dataset.nombre || btn.dataset.titulo || "").trim();
   if (!key) return;
 
-  favoritos = favoritos.filter(item => {
-    const itemKey = (item.nombre || item.titulo || "").trim();
-    return itemKey !== key;
-  });
+  // Confirmación con SweetAlert
+  Swal.fire({
+    title: "¿Estás seguro?",
+    text: `¿Quieres eliminar ${key} de tus favoritos?`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#D08159",
+    cancelButtonColor: "#9AC76E",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      favoritos = favoritos.filter(item => {
+        const itemKey = (item.nombre || item.titulo || "").trim();
+        return itemKey !== key;
+      });
 
-  localStorage.setItem("favoritos", JSON.stringify(favoritos));
-  mostrarFavoritos();
-  actualizarContadorFavoritos();
+      localStorage.setItem("favoritos", JSON.stringify(favoritos));
+      mostrarFavoritos();
+      actualizarContadorFavoritos();
+
+      Swal.fire({
+        title: "¡Eliminado!",
+        text: "El producto ha sido eliminado de favoritos.",
+        icon: "success",
+        confirmButtonColor: "#9AC76E"
+      });
+    }
+  });
 });
 
-// Botón "vaciar todos" (si existe)
+// Botón "vaciar todos" (MEJORADO CON SWEETALERT)
 const btnVaciar = document.getElementById("vaciar-favoritos");
 if (btnVaciar) {
   btnVaciar.addEventListener("click", () => {
-    if (!confirm("¿Deseas vaciar todos tus favoritos?")) return;
+    if (favoritos.length === 0) {
+      Swal.fire({
+        title: "Lista vacía",
+        text: "No tienes productos en favoritos para eliminar.",
+        icon: "info",
+        confirmButtonColor: "#9AC76E"
+      });
+      return;
+    }
 
-    favoritos = [];
-    localStorage.setItem("favoritos", JSON.stringify(favoritos));
-    mostrarFavoritos();
-    actualizarContadorFavoritos();
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Deseas vaciar todos tus favoritos?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#D08159",
+      cancelButtonColor: "#9AC76E",
+      confirmButtonText: "Sí, vaciar todo",
+      cancelButtonText: "Cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        favoritos = [];
+        localStorage.setItem("favoritos", JSON.stringify(favoritos));
+        mostrarFavoritos();
+        actualizarContadorFavoritos();
+
+        Swal.fire({
+          title: "¡Vaciado!",
+          text: "Todos los favoritos han sido eliminados.",
+          icon: "success",
+          confirmButtonColor: "#28a745"
+        });
+      }
+    });
   });
 }
 
@@ -191,7 +257,7 @@ document.addEventListener("click", (e) => {
 });
 
 // ==========================
-// 🔹 AGREGAR AL CARRITO DESDE TARJETAS
+// 🔹 AGREGAR AL CARRITO DESDE TARJETAS (MODIFICADO)
 // ==========================
 document.addEventListener("click", function (e) {
   const btn = e.target.closest(".add-to-cart");
@@ -230,9 +296,10 @@ document.addEventListener("click", function (e) {
 
   Swal.fire({
     title: "Agregado!",
+    text: `${producto.titulo} se agregó al carrito`,
     icon: "success",
-    draggable: true,
-    confirmButtonColor: "#9AC76E"
+    timer: 1500,
+    showConfirmButton: false
   });
 
   actualizarContadorCarrito();
