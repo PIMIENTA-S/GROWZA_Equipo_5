@@ -129,7 +129,7 @@ function mostrarProductos() {
                     <h4 class="card-title"><strong>${producto.titulo}</strong></h4>
                     <p class="card-text" style="height:72px; margin-bottom: 10px;">${producto.descripcion}</p>
                     <h3 class="mb-3">$${Number(producto.precio).toFixed(3)}</h3>
-                    <div class="d-flex flex-column position-absolute top-0 end-0">
+                    <div class="d-flex flex-column position-absolute top-0 end-0" style="margin:10px">
                         <!-- FAVORITOS -->
                         <a href="#" class="btn-favorito" id="btn-card"
                            data-titulo="${producto.titulo}"
