@@ -132,10 +132,10 @@ function mostrarProductos() {
                     <div class="d-flex flex-column position-absolute top-0 end-0" style="margin:10px">
                         <!-- FAVORITOS -->
                         <a href="#" class="btn-favorito" id="btn-card"
-                           data-titulo="${producto.titulo}"
-                           data-precio="${Number(producto.precio).toFixed(3)}"
-                           data-img="${producto.imagen}">
-                           <img src="/assets/img/heart-fill.svg" alt="Me gusta">
+                            data-titulo="${producto.titulo}"
+                            data-precio="${Number(producto.precio).toFixed(3)}"
+                            data-img="${producto.imagen}">
+                            <img src="/assets/img/heart-fill.svg" alt="Me gusta">
                         </a>
                         
                         <!-- 👁️ VER DETALLE -->
