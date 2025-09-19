@@ -391,11 +391,11 @@ document.addEventListener("click", function (e) {
     if (e.target.closest(".add-to-cart")) {
         e.preventDefault();
 
-        // 2. OBTENER EL USUARIO ACTIVO DEL LOCAL STORAGE
-        const usuarioActivo = localStorage.getItem("usuarioActivo");
+        // 2. OBTENER EL TOKEN DEL LOCAL STORAGE
+        const token = localStorage.getItem("jwt");
 
         // 3. VALIDACIÓN
-        if (!usuarioActivo) { // Si no hay un usuario activo...
+        if (!token) { // Si no hay token => no hay sesión
             Swal.fire({
                 title: "¡Hola!",
                 text: "Debes iniciar sesión para agregar productos al carrito.",
@@ -410,7 +410,7 @@ document.addEventListener("click", function (e) {
             return; // Detener la ejecución del código
         }
 
-        // 4. LÓGICA DE AGREGAR PRODUCTO (solo se ejecuta si hay un usuario activo)
+        // 4. LÓGICA DE AGREGAR PRODUCTO (solo se ejecuta si hay sesión activa)
         const btn = e.target.closest(".add-to-cart");
         const producto = {
             titulo: btn.dataset.titulo,
@@ -419,6 +419,9 @@ document.addEventListener("click", function (e) {
             cantidad: 1
         };
 
+        // Recuperar carrito existente o inicializar uno nuevo
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
         const productoExistente = carrito.find(item => item.titulo === producto.titulo);
         if (productoExistente) {
             productoExistente.cantidad += 1;
@@ -426,16 +429,19 @@ document.addEventListener("click", function (e) {
             carrito.push(producto);
         }
 
+        // Guardar carrito actualizado
         localStorage.setItem("carrito", JSON.stringify(carrito));
 
         Swal.fire({
-            title: "Agregado!",
+            title: "¡Producto agregado al carrito!",
             icon: "success",
-            draggable: true,
             confirmButtonColor: "#9AC76E"
         });
 
-        actualizarContadorCarrito();
+        // Actualizar contador del carrito (si tienes esa función definida)
+        if (typeof actualizarContadorCarrito === "function") {
+            actualizarContadorCarrito();
+        }
     }
 });
 
