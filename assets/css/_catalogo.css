@@ -148,6 +148,7 @@
 #t-fav {
     display: flex;
     justify-content: flex-start;
+    margin-top: 5px;
 }
 
 #t-fav svg {
@@ -156,6 +157,8 @@
 
 .text-center .modal-body {
     text-align: left;
+    height: 100%; /* El formulario ocupa el 100% de la altura de su columna */
+    overflow-y: auto;
 }
 
 .btn.btn-sm.mx-2 {
