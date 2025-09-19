@@ -1,6 +1,7 @@
 // ==========================
 // 🔹 CARGAR NAVBAR
 // ==========================
+
 fetch("../partials/navbar.html")
     .then(response => response.text())
     .then(data => {
@@ -112,7 +113,6 @@ function obtenerProductos() {
   return [...productosEstaticos, ...productosLS];
 }
 
-
 // ==========================
 // 🔹 CARRITO Y PRODUCTOS DINÁMICOS
 // ==========================
@@ -205,7 +205,6 @@ function mostrarProductos(lista = obtenerProductos()) {
 }
 
 mostrarProductos();
-
 
 fetch("../modals/carroCompras.html")
     .then(res => res.text())

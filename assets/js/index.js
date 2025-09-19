@@ -86,3 +86,51 @@ document.addEventListener("click", function (e) {
         actualizarContadorCarrito();
     }
 });
+
+// ==========================
+// 🔹 AGREGAR AL CARRITO DESDE FAVORITOS
+// ==========================
+document.addEventListener("click", function (e) {
+    if (e.target.closest(".botones")) {
+        e.preventDefault();
+        const usuarioActivo = localStorage.getItem("usuarioActivo");
+        if (!usuarioActivo) {
+            Swal.fire({
+                title: "¡Hola!",
+                text: "Debes iniciar sesión para agregar productos al carrito.",
+                icon: "warning",
+                confirmButtonColor: "#9AC76E",
+                confirmButtonText: "Iniciar Sesión"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "inicioSesion.html";
+                }
+            });
+            return;
+        }
+
+        const btn = e.target.closest(".botones");
+        const producto = {
+            titulo: btn.dataset.titulo,
+            precio: parseFloat(btn.dataset.precio),
+            imagen: btn.dataset.img,
+            cantidad: 1
+        };
+
+        const productoExistente = carrito.find(item => item.titulo === producto.titulo);
+        if (productoExistente) {
+            productoExistente.cantidad += 1;
+        } else {
+            carrito.push(producto);
+        }
+
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        Swal.fire({
+            title: "Agregado!",
+            icon: "success",
+            draggable: true,
+            confirmButtonColor: "#9AC76E"
+        });
+        actualizarContadorCarrito();
+    }
+});
