@@ -1,13 +1,12 @@
 // ==========================
 // 🔹 CARGAR NAVBAR
 // ==========================
+
 fetch("../partials/navbar.html")
     .then(response => response.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;
-        // Ahora, el navbar está en el DOM, por lo que podemos
-        // configurar el botón del carrito de forma segura.
-        setupCartButton();
+        // Inicializamos el contador al cargar el navbar
         actualizarContadorCarrito();
         actualizarContadorFavoritos();
     });
@@ -189,6 +188,59 @@ function mostrarProductos() {
 }
 
 mostrarProductos();
+
+fetch("../modals/carroCompras.html")
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById("modalContainer").innerHTML = html;
+
+        const script = document.createElement("script");
+        script.src = "/assets/js/carroCompras.js";
+        script.onload = () => {
+            const carritoModal = document.getElementById("carritoModal");
+
+            if (carritoModal) {
+                setupCartButton();
+
+                const vaciarBtn = document.getElementById("vaciarCarrito");
+                if (vaciarBtn) {
+                    vaciarBtn.addEventListener("click", async () => {
+                        const result = await Swal.fire({
+                            title: "¿Estás seguro?",
+                            text: "No puedes devolver esta acción",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#9AC76E",
+                            cancelButtonColor: "#D08159",
+                            confirmButtonText: "Sí, eliminar",
+                            cancelButtonText: "Cancelar"
+                        });
+
+                        if (result.isConfirmed) {
+                            carrito = [];
+                            localStorage.setItem("carrito", JSON.stringify(carrito));
+                            mostrarCarrito();
+                            actualizarContadorCarrito();
+
+                            Swal.fire({
+                                title: "¡Eliminado!",
+                                text: "El carrito ha sido vaciado.",
+                                icon: "success",
+                                confirmButtonColor: "#9AC76E"
+                            });
+                        }
+                    });
+                }
+
+                carritoModal.addEventListener("shown.bs.modal", () => {
+                    mostrarCarrito();
+                });
+            }
+        };
+        document.body.appendChild(script);
+    });
+
+
 
 // ==========================
 // 🔹 AGREGAR A FAVORITOS

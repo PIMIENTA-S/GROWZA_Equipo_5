@@ -1,25 +1,37 @@
+:root {
+    --verde-oscuro: #394D1F;
+    --verde-amarillo-subtitulos: #C4C95A;
+    --naranja-decoraciones: #D08159;
+    --verde-decoraciones: #9AC76E;
+    --negro: #000;
+    --blanco: #fff;
+    --fuente: 'Poppins', sans-serif;
+    --tamaño-titulos: 32px;
+    --tamaño-subtitulos: 24px;
+    --tamaño-textos: 16px;
+}
+
 /* ======================
-   Card Principal
+    Card Principal
 ====================== */
 #card-catalogo {
     position: relative;
     border: 1px solid var(--verde-decoraciones);
-    border-radius: 12px;
     background-color: var(--blanco);
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     display: flex;
     flex-direction: column;
+    /* Estilos consolidados */
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px var(--verde-decoraciones);
 }
 
-/* Hover elegante */
 #card-catalogo:hover {
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     transform: translateY(-3px);
 }
 
-/* Imagen de la card */
 #card-catalogo img {
     width: 100%;
     height: 180px;
@@ -27,7 +39,10 @@
     display: block;
 }
 
-/* Contenedor de botones sobre la imagen (ojo y X) */
+/* ======================
+    Botones
+====================== */
+/* Contenedor de botones sobre la imagen */
 .card-overlay-buttons {
     position: absolute;
     top: 8px;
@@ -36,11 +51,10 @@
     gap: 5px;
 }
 
-/* Botones circulares (ojo, eliminar) */
+/* Estilos consolidados para todos los botones de la tarjeta */
 #btn-card,
 #btn-card1,
-#btn-card2,
-.remove.btn.btn-sm {
+#btn-card2 {
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -48,29 +62,37 @@
     align-items: center;
     justify-content: center;
     background-color: var(--verde-oscuro);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 2px 3px 10px #4646466e;
+    transition: transform 0.3s ease, box-shadow 0.2s ease;
     cursor: pointer;
     margin-top: 5px;
 }
 
+/* Estilos de imágenes consolidados */
 #btn-card img,
 #btn-card1 img,
 #btn-card2 img {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
 }
 
+/* Hover de los botones */
 #btn-card:hover,
 #btn-card1:hover,
-#btn-card2:hover,
-.remove.btn.btn-sm:hover {
+#btn-card2:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
+/* Estilos específicos para cada botón en hover */
+#btn-card:hover,
+#btn-card1:hover,
+#btn-card2:hover {
+    width: 35px;
+    height: 35px;
+}
 
 /* ======================
-   Contenido de la card
+    Contenido de la card
 ====================== */
 .card-body {
     padding: 15px;
@@ -79,7 +101,6 @@
     gap: 8px;
 }
 
-/* Título de la card */
 .card-body h5 {
     font-size: var(--tamaño-subtitulos);
     font-weight: 600;
@@ -87,27 +108,27 @@
     margin: 0;
 }
 
-/* Descripción */
 .card-body p {
     font-size: var(--tamaño-textos);
     color: var(--negro);
     margin: 0;
 }
 
-/* Precio destacado */
 .card-body .precio {
     font-weight: bold;
     font-size: 18px;
     color: var(--negro);
 }
 
-/* Botón agregar al carrito */
 .btn.btn-filtro.add-to-cart {
     border-radius: 6px;
     padding: 8px 12px;
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
     margin-top: 8px;
+    /* Estilos consolidados */
+    background-color: var(--naranja-decoraciones);
+    color: var(--blanco);
 }
 
 .btn.btn-filtro.add-to-cart:hover {
@@ -121,11 +142,80 @@
     padding: 5px;
 }
 
-#t-fav{
+/* ======================
+    Carrito y Otros
+====================== */
+#t-fav {
     display: flex;
     justify-content: flex-start;
 }
 
-#t-fav svg{
+#t-fav svg {
     margin-right: 5px;
+}
+
+.text-center .modal-body {
+    text-align: left;
+}
+
+.btn.btn-sm.mx-2 {
+    width: 20px;
+    height: 20px;
+    color: var(--naranja-decoraciones);
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 14px;
+    border: 1px solid var(--naranja-decoraciones) !important;
+}
+
+.btn.btn-sm.mx-2:hover {
+    color: var(--blanco);
+    background-color: var(--naranja-decoraciones);
+}
+
+.remove.btn.btn-sm {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30px' height='30px' fill='%23d08159' viewBox='0 0 256 256'%3E%3Cpath d='M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: transparent;
+}
+
+.cart-item {
+    border: 1px solid var(--verde-decoraciones);
+}
+
+#totalPagar {
+    font-size: var(--tamaño-subtitulos);
+}
+
+#carritoModalLabel {
+    font-size: var(--tamaño-subtitulos);
+    font-weight: bold;
+}
+
+.btn.btn-primary {
+    background-color: var(--verde-decoraciones);
+    border: none;
+    transition: 0.3s ease;
+}
+
+.btn.btn-primary:hover {
+    background-color: #7da753;
+}
+
+.btn.btn-danger {
+    background-color: var(--naranja-decoraciones);
+    border: none;
+    transition: 0.3s ease;
+}
+
+.btn.btn-danger:hover {
+    background-color: #b9704b;
 }
