@@ -92,11 +92,15 @@ function mostrarFavoritos() {
 
 // Añade un producto al carrito cuando se hace clic en el botón de agregar
 document.addEventListener("click", function (e) {
+    // 1. Verificación: Si el usuario hizo clic en el botón de agregar al carrito
     if (e.target.closest(".add-to-cart")) {
         e.preventDefault();
-        // Verifica si el usuario está logueado antes de agregar productos
-        const usuarioActivo = localStorage.getItem("usuarioActivo");
-        if (!usuarioActivo) {
+
+        // 2. OBTENER EL TOKEN DEL LOCAL STORAGE
+        const token = localStorage.getItem("jwt");
+
+        // 3. VALIDACIÓN
+        if (!token) { // Si no hay token => no hay sesión
             Swal.fire({
                 title: "¡Hola!",
                 text: "Debes iniciar sesión para agregar productos al carrito.",
@@ -105,13 +109,13 @@ document.addEventListener("click", function (e) {
                 confirmButtonText: "Iniciar Sesión"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "inicioSesion.html";
+                    window.location.href = "inicioSesion.html"; // Redirigir a la página de login
                 }
             });
-            return;
+            return; // Detener la ejecución del código
         }
 
-        // Obtiene los datos del producto y lo agrega al carrito
+        // 4. LÓGICA DE AGREGAR PRODUCTO (solo se ejecuta si hay sesión activa)
         const btn = e.target.closest(".add-to-cart");
         const producto = {
             titulo: btn.dataset.titulo,
@@ -120,6 +124,9 @@ document.addEventListener("click", function (e) {
             cantidad: 1
         };
 
+        // Recuperar carrito existente o inicializar uno nuevo
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
         const productoExistente = carrito.find(item => item.titulo === producto.titulo);
         if (productoExistente) {
             productoExistente.cantidad += 1;
@@ -127,21 +134,24 @@ document.addEventListener("click", function (e) {
             carrito.push(producto);
         }
 
-        // Guarda el carrito y actualiza la UI
+        // Guardar carrito actualizado
         localStorage.setItem("carrito", JSON.stringify(carrito));
+
         Swal.fire({
-            title: "Agregado!",
+            title: "¡Producto agregado al carrito!",
             icon: "success",
-            draggable: true,
             confirmButtonColor: "#9AC76E"
         });
-        actualizarContadorCarrito();
+
+        // Actualizar contador del carrito (si tienes esa función definida)
+        if (typeof actualizarContadorCarrito === "function") {
+            actualizarContadorCarrito();
+        }
     }
 });
 
-// ---
 
-// Elimina un producto de favoritos al hacer clic en el botón "Eliminar"
+// Delegación de evento para quitar un favorito (MEJORADA CON SWEETALERT)
 document.addEventListener("click", (e) => {
     const btn = e.target.closest(".btn-remove-fav");
     if (!btn) return;

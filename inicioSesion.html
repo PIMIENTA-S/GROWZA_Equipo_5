@@ -32,7 +32,7 @@
             <div class="col-md-6 contenedor-formulario">
                 <h1 class="titulo-iniciar d-md-block">Growza</h1>
                 <p class="mensaje-iniciar d-md-block">Bienvenido de nuevo</p>
-                <form>
+                <form id="login-form">
                     <h5 class="titulo-iniciar2 d-none d-md-block">Iniciar Sesion</h5>
                     <div>
                         <label for="inputEmail" class="form-label">Email</label>
@@ -48,7 +48,9 @@
 
                     <div id="alerta-container"></div>
 
-                    <button type="button" class="btn btn-iniciar btn-lg w-100">Iniciar</button>
+                    <button type="submit" class="btn btn-iniciar btn-lg w-100">Iniciar</button>
+
+                    <div id="error-message"></div>
 
                     <div class="d-flex align-items-center my-4">
                         <hr class="flex-grow-1">
@@ -86,7 +88,6 @@
             </div>
         </div>
     </div>
-    <script src="/assets/js/inicioSesion.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
