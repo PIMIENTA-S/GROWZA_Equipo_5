@@ -39,17 +39,16 @@ body {
 .text-center {
     font-weight: bold;
 }
-
-.side-link {
-    color: var(--blanco);
+.sidebar .nav-link.side-link {
+    color: var(--blanco) !important;
     margin-top: 20px;
     transition: 0.3s ease;
 }
 
-.side-link:hover {
-    background-color: var(--blanco);
+.sidebar .nav-link.side-link:hover {
+    background-color: var(--blanco) !important;
     border-radius: 10px;
-    color: #394D1F;
+    color: var(--verde-decoraciones) !important;
 }
 
 .btn-actualizar{
@@ -58,6 +57,8 @@ body {
     font-weight: bold;
     transition: 1 ease;
     border: none;
+    border-radius: 30px;
+    padding: 10px;
 }
 
 #volver {
@@ -78,9 +79,9 @@ body {
 }
 
 
-.side-link:focus,
-.side-link:active {
-    color: var(--verde-oscuro);
+.sidebar .nav-link.side-link:focus,
+.sidebar .nav-link.side-link:active {
+    color: var(--verde-oscuro) !important;
     background-color: white;
     border-radius: 10px;
 }

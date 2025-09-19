@@ -7,6 +7,16 @@ fetch("../partials/navbar.html")
     .then(r => r.text())
     .then(html => {
         document.getElementById("navbar").innerHTML = html;
+        fetch('../assets/js/auth.js')
+            .then(res => res.text())
+            .then(jsCode => {
+                const script = document.createElement("script");
+                script.textContent = jsCode;
+                document.body.appendChild(script);
+            })
+            .catch(err => console.error("Error cargando auth.js:", err));
+
+        actualizarContadorCarrito();
         actualizarContadorFavoritos();
     });
 
