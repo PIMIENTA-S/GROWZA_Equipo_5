@@ -5,7 +5,9 @@ fetch("../partials/navbar.html")
     .then(response => response.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;
-        // Inicializamos el contador al cargar el navbar
+        // Ahora, el navbar está en el DOM, por lo que podemos
+        // configurar el botón del carrito de forma segura.
+        setupCartButton();
         actualizarContadorCarrito();
         actualizarContadorFavoritos();
     });
@@ -130,15 +132,14 @@ function mostrarProductos() {
                     <p class="card-text" style="height:72px; margin-bottom: 10px;">${producto.descripcion}</p>
                     <h3 class="mb-3">$${Number(producto.precio).toFixed(3)}</h3>
                     <div class="d-flex flex-column position-absolute top-0 end-0" style="margin:10px">
-                        <!-- FAVORITOS -->
                         <a href="#" class="btn-favorito" id="btn-card"
                             data-titulo="${producto.titulo}"
+                            data-descripcion="${producto.descripcion}"
                             data-precio="${Number(producto.precio).toFixed(3)}"
                             data-img="${producto.imagen}">
                             <img src="/assets/img/heart-fill.svg" alt="Me gusta">
                         </a>
                         
-                        <!-- 👁️ VER DETALLE -->
                         <a href="#" class="btn ver-detalle" id="btn-card1"
                             data-bs-toggle="modal" 
                             data-bs-target="#exampleModal"
@@ -149,7 +150,6 @@ function mostrarProductos() {
                             <img src="/assets/img/eye-bold.svg" alt="Ver detalles">
                         </a>
 
-                        <!-- 🛒 AGREGAR CARRITO -->
                         <a href="#" class="add-to-cart" id="btn-card2"
                             data-titulo="${producto.titulo}" 
                             data-precio="${Number(producto.precio).toFixed(3)}" 
@@ -199,6 +199,7 @@ document.addEventListener("click", (e) => {
         const btn = e.target.closest(".btn-favorito");
         const producto = {
             titulo: btn.dataset.titulo,
+            des: btn.dataset.descripcion,
             precio: parseFloat(btn.dataset.precio),
             imagen: btn.dataset.img
         };
@@ -208,7 +209,7 @@ document.addEventListener("click", (e) => {
             favoritos.push(producto);
             localStorage.setItem("favoritos", JSON.stringify(favoritos));
             Swal.fire({
-                title: "Agregado a favoritos ❤️",
+                title: "Agregado a favoritos",
                 icon: "success",
                 confirmButtonColor: "#9AC76E"
             });
@@ -422,4 +423,17 @@ fetch('../partials/footer.html')
     .then(response => response.text())
     .then(data => {
         document.getElementById("footer").innerHTML = data;
+    });
+
+// ==========================
+// 🔹 INICIALIZACIÓN
+// ==========================
+mostrarProductos();
+actualizarContadorCarrito();
+actualizarContadorFavoritos();
+
+fetch("../modals/carroCompras.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("modalContainer").innerHTML = data;
     });

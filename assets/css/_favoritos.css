@@ -10,10 +10,11 @@
     --tamaño-subtitulos: 24px;
     --tamaño-textos: 16px;
 }
- 
-body { 
-     font-family: var(--fuente);
+
+body {
+    font-family: var(--fuente);
 }
+
 /* ======================
    Cards Favoritos 
 ====================== */
@@ -23,7 +24,7 @@ body {
     border-radius: 12px;
     background-color: var(--blanco);
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -32,7 +33,7 @@ body {
 
 /* Hover elegante */
 #favoritos .card:hover {
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     transform: translateY(-3px);
 }
 
@@ -43,6 +44,7 @@ body {
     object-fit: cover;
     display: block;
 }
+
 
 /* ======================
    Contenido de la card
@@ -85,14 +87,14 @@ body {
 
 /* Ícono de carrito circular */
 .cart-icon {
-    
+
     /*background-color: var(--verde-oscuro);*/
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     border: none;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 /*.cart-icon:hover {
@@ -124,7 +126,7 @@ body {
     background-color: #D08159;
     color: white;
     transform: translateY(-1px);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* ======================

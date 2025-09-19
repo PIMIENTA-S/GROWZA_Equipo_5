@@ -120,4 +120,12 @@
     border-radius: 50%;
     padding: 5px;
 }
- 
+
+#t-fav{
+    display: flex;
+    justify-content: flex-start;
+}
+
+#t-fav svg{
+    margin-right: 5px;
+}
