@@ -5,73 +5,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo Growza</title>
-    <!-- Boostrap -->
+    <link rel="stylesheet" href="catalogo.css">
+    <link rel="stylesheet" href="/src/components/modalCarrito/modalCarrito.css">
+    <link rel="stylesheet" href="/src/components/navbar/navbar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Estilos -->
-    <link rel="stylesheet" href="/assets/css/_catalogo.css">
-    <link rel="stylesheet" href="/assets/css/_carroCompras.css">
-    <link rel="stylesheet" href="/assets/css/_navbar.css">
-    <link rel="stylesheet" href="/assets/css/_footer.css">
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav id="navbar"></nav>
+
     <main>
+        <!-- Filtros -->
         <section>
-            <div class="container mt-5 pt-5" style="font-size: 20px; list-style: none;" id="caja">
-                <li class="nav-item">
-                    <a class="nav-link" href="/Favoritos.html">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="red" viewBox="0 0 24 24" class="mb-1">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 
-                                        2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 
-                                        3.41.81 4.5 2.09C13.09 3.81 14.76 
-                                        3 16.5 3 19.58 3 22 5.42 22 
-                                        8.5c0 3.78-3.4 6.86-8.55 
-                                        11.54L12 21.35z"/>
-                            </svg> <Strong>Favoritos</Strong>
-                    </a>
-                </li>
+            <div class="container mt-5 p-2">
+                <div class="row">
+                    <div class="col-12 col-md-8 p-2">
+                        <a href="#" class="btn btn-filtro">Ver todo</a>
+                    </div>
+                    <div class="col-12 col-md-2 p-2">
+                        <a href="#" class="btn btn-filtro">Vistas</a>
+                    </div>
+                    <div class="col-12 col-md-2 p-2">
+                        <a href="#" class="btn btn-filtro">Filtrar</a>
+                    </div>
+                </div>
             </div>
         </section>
 
-
+        <!-- Productos -->
         <section class="container mt-4" id="productos">
             <div class="row" id="productos-container">
-                <!-- Aquí aparecen las cards nuevas y las estaticas -->
+
             </div>
         </section>
+    </main>
 
-        <!-- section modal  -->
-        <section>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Catálogo -->
+    <div class="catalogo" id="catalogo"></div>
+
+    <!-- Vista del carrito -->
+    <div id="modalContainer"></div>
+
+    <!-- Footer -->
+    <footer id="footer"></footer>
+
+    <!-- Scripts -->
+    <script src="catalogo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Growza</title>
+    <link rel="stylesheet" href="catalogo.css">
+    <link rel="stylesheet" href="/src/components/modalCarrito/modalCarrito.css">
+    <link rel="stylesheet" href="/src/components/navbar/navbar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+
+    <body>
+        <nav id="navbar"></nav>
+        <main>
+            <section>
+                <div class="container mt-5 pt-5" id="caja">
+                    <div class="row">
+                        <div class="col-4 col-md-8  p-2">
+                            <a href="#" class="btn btn-filtro">Ver todo</a>
                         </div>
-                        <div class="modal-body">
-                            <div class="card mb-3 border-0">
-                                <div class="row g-0">
-                                    <div
-                                        class="col-md-7 d-flex justify-content-center align-items-center position-relative">
-                                        <img src="/assets/img/manzana.jpg" class="img-fluid rounded mb-5"
-                                            alt="Imagen del Producto">
-                                        <div class="d-flex flex-column position-absolute top-0 end-0 mt-5 me-3" >
-                                            <a href="" class="mb-2  botones-modal"><img src="/assets/img/heart-fill.svg"
-                                                    alt="Favorito"></a>
-                                            <a href="" class="add-to-cart botones-modal"><img
-                                                    src="/assets/img/basket-bold.svg" alt="Agregar al carrito"></a>
+                        <div class="col-12 col-md-2 p-2">
+                            <a href="#" class="btn btn-filtro">Vistas</a>
+                        </div>
+                        <div class="col-12 col-md-2 p-2">
+                            <a href="#" class="btn btn-filtro">Filtrar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="container mt-4" id="productos">
+                <div class="row" id="productos-container">
+                    <!-- Aquí aparecen las cards nuevas y las estaticas -->
+                </div>
+            </section>
+
+            <!-- section modal  -->
+            <section>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card mb-3 border-0">
+                                    <div class="row g-0">
+                                        <div
+                                            class="col-md-7 d-flex justify-content-center align-items-center position-relative">
+                                            <img src="/assets/img/manzana.jpg" class="img-fluid rounded mb-5"
+                                                alt="Imagen del Producto">
+                                            <div class="d-flex flex-column position-absolute top-0 end-0 mt-5 me-3">
+                                                <a href="" class="mb-2  botones-modal"><img
+                                                        src="/assets/img/heart-fill.svg" alt="Favorito"></a>
+                                                <a href="" class="add-to-cart botones-modal"><img
+                                                        src="/assets/img/basket-bold.svg" alt="Agregar al carrito"></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-5 ">
-                                        <div class="card-body">
-                                            <h4 class="card-title fw-bold">VEGATABLES</h4>
-                                            <p class="card-text"><small class="text-body-secondary">Orgánico • Vegano •
-                                                    Sin gluten</small></p>
-                                            <!-- <h5 class="mb-2 fw-bold">Valores Nutricionales</h5>
+                                        <div class="col-md-5 ">
+                                            <div class="card-body">
+                                                <h4 class="card-title fw-bold">VEGATABLES</h4>
+                                                <p class="card-text"><small class="text-body-secondary">Orgánico •
+                                                        Vegano •
+                                                        Sin gluten</small></p>
+                                                <!-- <h5 class="mb-2 fw-bold">Valores Nutricionales</h5>
                                             <div class="nutritional-values">
                                                 <div class="bar-item">
                                                     <span class="bar-label">Energía</span>
@@ -98,37 +152,38 @@
                                                     </div>
                                                 </div>
                                             </div> -->
-                                            <h5 class="card-title fw-bold">Dato curioso</h5>
-                                            <p class="dato-curioso text-muted mt-2" style="font-size: 0.9rem;"></p>
-                                            <!-- Aquí va el dato curioso -->
-                                        </div>
-                                        <div class="p-2 d-flex justify-content-end">
-                                            <a href="#" class="btn btn-filtro add-to-cart">Comprar por: $1900 Libra</a>
+                                                <h5 class="card-title fw-bold">Dato curioso</h5>
+                                                <p class="dato-curioso text-muted mt-2" style="font-size: 0.9rem;"></p>
+                                                <!-- Aquí va el dato curioso -->
+                                            </div>
+                                            <div class="p-2 d-flex justify-content-end">
+                                                <a href="#" class="btn btn-filtro add-to-cart">Comprar por: $1900
+                                                    Libra</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-        </section>
+            </section>
 
-    </main>
+        </main>
 
-    <!-- Catálogo -->
-    <div class="catalogo" id="catalogo"></div>
+        <!-- Catálogo -->
+        <div class="catalogo" id="catalogo"></div>
 
-    <!-- vista del carrito -->
-    <div id="modalContainer"></div>
+        <!-- vista del carrito -->
+        <div id="modalContainer"></div>
 
-    <!--footer-->
-    <footer id="footer"></footer>
+        <!--footer-->
+        <footer id="footer"></footer>
 
-    <script src="/assets/js/catalogo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</body>
+        <script src="/assets/js/catalogo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </body>
 
 </html>
