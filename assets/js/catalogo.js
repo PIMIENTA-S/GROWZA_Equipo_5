@@ -28,7 +28,7 @@ let productosEstaticos = [
         descripcion: "El brócoli, superalimento crucífero, pariente de la coliflor y la col.",
         datoCurioso: "El brócoli contiene más vitamina C que una naranja.",
         precio: 7.995,
-        imagen: "/assets/img/brocoli.jpg",
+        imagen: "/assets/img/brocoli.webp",
         categoria: "Verduras"
     },
     {
@@ -36,7 +36,7 @@ let productosEstaticos = [
         descripcion: "La espinaca es una planta anual de la familia de las amarantáceas.",
         datoCurioso: "La espinaca fue popularizada por Popeye por su alto contenido en hierro.",
         precio: 5.980,
-        imagen: "/assets/img/espinaca.jpg",
+        imagen: "/assets/img/espinaca.webp",
         categoria: "Verduras"
     },
     {
@@ -44,7 +44,7 @@ let productosEstaticos = [
         descripcion: "La zanahoria es una hortaliza versátil y deliciosa para consumir.",
         datoCurioso: "Las zanahorias originalmente eran moradas, no naranjas.",
         precio: 2.840,
-        imagen: "/assets/img/zanahoria.jpg",
+        imagen: "/assets/img/zanahoria.webp",
         categoria: "Verduras"
     },
     {
@@ -52,7 +52,7 @@ let productosEstaticos = [
         descripcion: "El aguacate Hass impulsó las exportaciones de tres departamentos del país.",
         datoCurioso: "El aguacate es una fruta, y técnicamente una baya con una sola semilla.",
         precio: 6.390,
-        imagen: "/assets/img/aguacate.jpg",
+        imagen: "/assets/img/aguacate.webp",
         categoria: "Verduras"
     },
     {
@@ -60,7 +60,7 @@ let productosEstaticos = [
         descripcion: "La manzana o poma​ es la fruta comestible de la especie Malus domestica, el manzano común.",
         datoCurioso: "Existen más de 7.500 variedades de manzanas en el mundo.",
         precio: 7.559,
-        imagen: "/assets/img/manzana.jpg",
+        imagen: "/assets/img/manzana.webp",
         categoria: "Frutas"
     },
     {
@@ -68,7 +68,7 @@ let productosEstaticos = [
         descripcion: "El banano es una fruta tropical dulce de la planta Musa con pulpa suave.",
         datoCurioso: "Los bananos son técnicamente hierbas y sus frutos son bayas.",
         precio: 1.890,
-        imagen: "/assets/img/banano.jpg",
+        imagen: "/assets/img/banano.webp",
         categoria: "Frutas"
     },
     {
@@ -76,7 +76,7 @@ let productosEstaticos = [
         descripcion: "Los arándanos son frutos pequeños, bayas de la especie Vaccinium.",
         datoCurioso: "Los arándanos tienen uno de los niveles más altos de antioxidantes entre todas las frutas.",
         precio: 7.490,
-        imagen: "/assets/img/arandanos.jpg",
+        imagen: "/assets/img/arandanos.webp",
         categoria: "Frutas"
     },
     {
@@ -84,7 +84,7 @@ let productosEstaticos = [
         descripcion: "La fresa es un género de plantas rastreras estoloníferas de la familia Rosaceae.",
         datoCurioso: "Las fresas no son verdaderas bayas, pero sus semillas están en el exterior.",
         precio: 6.980,
-        imagen: "/assets/img/fresas.jpg",
+        imagen: "/assets/img/fresas.webp",
         categoria: "Frutas"
     },
     {
@@ -92,7 +92,7 @@ let productosEstaticos = [
         descripcion: "Líquido que se encuentra de forma natural en el hoyo interior del coco.",
         datoCurioso: "El agua de coco fue utilizada como sustituto de plasma en la Segunda Guerra Mundial.",
         precio: 6.500,
-        imagen: "/assets/img/aguaCoco.jpg",
+        imagen: "/assets/img/aguaCoco.webp",
         categoria: "Bebidas"
     },
     {
@@ -100,7 +100,7 @@ let productosEstaticos = [
         descripcion: "Contribuye a mejor digestión, sistema inmunológico fuerte y desintoxicar el organismo.",
         datoCurioso: "El jugo verde combina vegetales y frutas, potenciando sus nutrientes y fibra.",
         precio: 9.000,
-        imagen: "/assets/img/jugoVerde.jpg",
+        imagen: "/assets/img/jugoVerde.webp",
         categoria: "Bebidas"
     }
 ];

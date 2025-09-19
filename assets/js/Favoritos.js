@@ -51,7 +51,7 @@ function mostrarFavoritos() {
     favoritos.forEach(prod => {
         const titulo = prod.nombre || prod.titulo || "Sin nombre";
         const precio = (prod.precio || prod.precio === 0) ? Number(prod.precio) : 0;
-        const imagen = prod.imagen || "/assets/img/no-image.png";
+        const imagen = prod.imagen || "/assets/img/no-image.webp";
 
         const col = document.createElement("div");
         col.classList.add("col-12", "col-md-6", "col-lg-3", "mt-3", "mb-3", "text-center");

@@ -62,7 +62,7 @@ body {
 }
 
 .imagen-iniciar {
-    background-image: url("/assets/img/foto-iniciar-sesion.png");
+    background-image: url("/assets/img/foto-iniciar-sesion.webp");
     background-size: cover;
     background-position: center;
     height: 40vh;
