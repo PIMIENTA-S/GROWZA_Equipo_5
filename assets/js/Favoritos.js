@@ -1,8 +1,8 @@
-// ==========================
-// 🔹 favoritos.js (modificado)
-// ==========================
+// ===================================
+// 🌿 favoritos.js - Lógica de Favoritos
+// ===================================
 
-// Cargar navbar y luego actualizar contador
+// Carga la barra de navegación y actualiza el contador de favoritos
 fetch("../partials/navbar.html")
     .then(r => r.text())
     .then(html => {
@@ -10,31 +10,34 @@ fetch("../partials/navbar.html")
         actualizarContadorFavoritos();
     });
 
-
-// Llamo al carrito 
+// Carga el modal del carrito de compras
 fetch("../modals/carroCompras.html")
     .then(response => response.text())
     .then(data => {
         document.getElementById("modalContainer").innerHTML = data;
     });
 
-// Estado inicial (leer localStorage)
+// Carga el estado inicial de favoritos y carrito desde el almacenamiento local
 let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-// Elemento contenedor (puede ser null si estamos en otra página)
+// Referencia a la sección donde se mostrarán los favoritos
 const favoritosSection = document.getElementById("favoritos");
 
-// Mostrar favoritos en la página (MODIFICADA)
-function mostrarFavoritos() {
-    if (!favoritosSection) return; // si no existe la sección
-    favoritosSection.innerHTML = "";
+// ---
 
+// Muestra los productos favoritos en la página
+function mostrarFavoritos() {
+    if (!favoritosSection) return; // Se detiene si la sección no existe
+    favoritosSection.innerHTML = ""; // Limpia el contenido anterior
+
+    // Si no hay favoritos, muestra un mensaje amigable
     if (!Array.isArray(favoritos) || favoritos.length === 0) {
         favoritosSection.innerHTML = `<div class="col-12"><p class="no-favoritos">No tienes productos en favoritos</p></div>`;
         return;
     }
 
+    // Crea una tarjeta por cada producto favorito
     favoritos.forEach(prod => {
         const titulo = prod.nombre || prod.titulo || "Sin nombre";
         const precio = (prod.precio || prod.precio === 0) ? Number(prod.precio) : 0;
@@ -43,21 +46,18 @@ function mostrarFavoritos() {
         const col = document.createElement("div");
         col.classList.add("col-12", "col-md-6", "col-lg-3", "mt-3", "mb-3", "text-center");
 
-        // *** ESTRUCTURA MODIFICADA CON ACCIONES EN LÍNEA ***
         col.innerHTML = `
             <div class="card" style="width: 16rem; height: 360px;">
                 <img src="${imagen}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="${titulo}">
                 <div class="card-body">
                     <h5 class="card-title"><strong>${titulo}</strong></h5>
                     <p class="precio">$${precio.toLocaleString('es-CO', { minimumFractionDigits: 3, maximumFractionDigits: 3 })}</p>
-                    
                     <div class="acciones">
                         <button class="cart-icon add-to-cart" 
                                 title="Agregar al carrito"
                                 data-titulo="${titulo}" 
                                 data-precio="${precio}" 
                                 data-img="${imagen}">
-
                                 <svg class="nav-icons" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                         fill="#394d1f" viewBox="0 0 256 256">
                                         <path
@@ -65,7 +65,6 @@ function mostrarFavoritos() {
                                         </path>
                                     </svg>
                         </button>
-                        
                         <button class="btn-fav-remove btn-remove-fav" 
                                 title="Eliminar de favoritos"
                                 data-nombre="${titulo}">
@@ -79,12 +78,13 @@ function mostrarFavoritos() {
     });
 }
 
-// ==========================
-// 🔹 AGREGAR AL CARRITO DESDE FAVORITOS
-// ==========================
+// ---
+
+// Añade un producto al carrito cuando se hace clic en el botón de agregar
 document.addEventListener("click", function (e) {
     if (e.target.closest(".add-to-cart")) {
         e.preventDefault();
+        // Verifica si el usuario está logueado antes de agregar productos
         const usuarioActivo = localStorage.getItem("usuarioActivo");
         if (!usuarioActivo) {
             Swal.fire({
@@ -101,6 +101,7 @@ document.addEventListener("click", function (e) {
             return;
         }
 
+        // Obtiene los datos del producto y lo agrega al carrito
         const btn = e.target.closest(".add-to-cart");
         const producto = {
             titulo: btn.dataset.titulo,
@@ -116,6 +117,7 @@ document.addEventListener("click", function (e) {
             carrito.push(producto);
         }
 
+        // Guarda el carrito y actualiza la UI
         localStorage.setItem("carrito", JSON.stringify(carrito));
         Swal.fire({
             title: "Agregado!",
@@ -127,7 +129,9 @@ document.addEventListener("click", function (e) {
     }
 });
 
-// Delegación de evento para quitar un favorito (MEJORADA CON SWEETALERT)
+// ---
+
+// Elimina un producto de favoritos al hacer clic en el botón "Eliminar"
 document.addEventListener("click", (e) => {
     const btn = e.target.closest(".btn-remove-fav");
     if (!btn) return;
@@ -135,7 +139,7 @@ document.addEventListener("click", (e) => {
     const key = (btn.dataset.nombre || btn.dataset.titulo || "").trim();
     if (!key) return;
 
-    // Confirmación con SweetAlert
+    // Pide confirmación antes de eliminar
     Swal.fire({
         title: "¿Estás seguro?",
         text: `¿Quieres eliminar ${key} de tus favoritos?`,
@@ -147,11 +151,11 @@ document.addEventListener("click", (e) => {
         cancelButtonText: "Cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
+            // Elimina el producto y actualiza el almacenamiento
             favoritos = favoritos.filter(item => {
                 const itemKey = (item.nombre || item.titulo || "").trim();
                 return itemKey !== key;
             });
-
             localStorage.setItem("favoritos", JSON.stringify(favoritos));
             mostrarFavoritos();
             actualizarContadorFavoritos();
@@ -166,7 +170,9 @@ document.addEventListener("click", (e) => {
     });
 });
 
-// Botón "vaciar todos" (MEJORADO CON SWEETALERT)
+// ---
+
+// Maneja la funcionalidad del botón "Vaciar todos"
 const btnVaciar = document.getElementById("vaciar-favoritos");
 if (btnVaciar) {
     btnVaciar.addEventListener("click", () => {
@@ -180,6 +186,7 @@ if (btnVaciar) {
             return;
         }
 
+        // Pide confirmación para vaciar toda la lista
         Swal.fire({
             title: "¿Estás seguro?",
             text: "¿Deseas vaciar todos tus favoritos?",
@@ -207,7 +214,9 @@ if (btnVaciar) {
     });
 }
 
-// Actualiza el contador del navbar
+// ---
+
+// Actualiza el contador de favoritos en el navbar
 function actualizarContadorFavoritos() {
     const contador = document.getElementById("fav-count");
     if (!contador) return;
@@ -216,9 +225,9 @@ function actualizarContadorFavoritos() {
     contador.style.display = favCount > 0 ? "inline-block" : "none";
 }
 
-// ==========================
-// 🔹 MOSTRAR CARRITO
-// ==========================
+// ---
+
+// Muestra los productos en el modal del carrito
 function mostrarCarrito() {
     const contenedor = document.getElementById("cartItems");
     if (!contenedor) return;
@@ -226,9 +235,15 @@ function mostrarCarrito() {
 
     let totalCarrito = 0;
 
+    if (carrito.length === 0) {
+        contenedor.innerHTML = "<p>El carrito está vacío.</p>";
+        const totalPagar = document.getElementById("totalPagar");
+        if (totalPagar) totalPagar.textContent = "Total a pagar: $0.000";
+        return;
+    }
+
     carrito.forEach((prod, index) => {
         const totalProducto = prod.precio * prod.cantidad;
-
         contenedor.innerHTML += `
             <div class="cart-item rounded p-3 mb-3">
                 <div class="row align-items-center">
@@ -258,13 +273,12 @@ function mostrarCarrito() {
     if (totalPagar) totalPagar.innerHTML = `<strong>Total a pagar:</strong> $${totalCarrito.toFixed(3)}`;
 }
 
-// ==========================
-// 🔹 CAMBIAR CANTIDAD CARRITO
-// ==========================
+// ---
+
+// Cambia la cantidad de un producto en el carrito
 function cambiarCantidadCarrito(index, cantidad) {
     const producto = carrito[index];
     let nuevaCantidad = producto.cantidad + cantidad;
-
     if (nuevaCantidad >= 1) {
         producto.cantidad = nuevaCantidad;
         localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -273,10 +287,7 @@ function cambiarCantidadCarrito(index, cantidad) {
     }
 }
 
-
-// ==========================
-// 🔹 CARGAR FOOTER
-// ==========================
+// Carga el footer
 fetch("../partials/footer.html")
     .then(r => r.text())
     .then(html => {
@@ -284,7 +295,7 @@ fetch("../partials/footer.html")
         if (f) f.innerHTML = html;
     });
 
-// ==========================
-// 🔹 INICIALIZAR VISTA
-// ==========================
+// ---
+
+// Inicializa la vista mostrando los productos favoritos al cargar la página
 mostrarFavoritos();
