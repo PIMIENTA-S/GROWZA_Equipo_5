@@ -493,12 +493,12 @@ body {
   
     /* Cartas productos */
     .carta {
-      max-width: 100%; /* ya no fijo en 300px */
-      height: auto;    /* que crezca según contenido */
+      max-width: 100%;
+      height: auto;
     }
   
     .carta img {
-      height: 200px; /* más chico en móvil */
+      height: 200px;
     }
   
     /* WhyGrowza */
@@ -506,7 +506,7 @@ body {
         display: grid;
         grid-template-columns: repeat(2, 1fr); /* 2 columnas */
         gap: 30px; /* espacio entre columnas/filas */
-        justify-items: center; /* centra los íconos */
+        justify-items: center; /* centro los íconos */
     }
     
     .whyGrowza .icono {
@@ -541,8 +541,8 @@ body {
       font-size: 13px;
     }
 }
-  
-/* Ajuste extra para móviles muy pequeños (menos de 400px) */
+
+
 @media (max-width: 400px) {
     .centered-text h5 {
       font-size: 18px;
