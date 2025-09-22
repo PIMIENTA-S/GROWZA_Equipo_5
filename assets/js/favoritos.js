@@ -252,6 +252,7 @@ function mostrarCarrito() {
     const contenedor = document.getElementById("cartItems");
     if (!contenedor) return;
     contenedor.innerHTML = "";
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
     let totalCarrito = 0;
 
