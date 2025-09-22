@@ -48,7 +48,7 @@ html, body, .container-fluid, .row {
 }
 
 .imagen-registrar {
-    background-image: url("/assets/img/foto-registro.png");
+    background-image: url("/assets/img/foto-registro.webp");
     background-size: cover;
     background-position: center;
     height: 100%; /* La imagen ocupa el 100% de la altura de su columna */

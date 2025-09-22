@@ -1,0 +1,115 @@
+:root {
+    --verde-oscuro: #394d1f;
+    --verde-amarillo-subtitulos: #C4C95A;
+    --naranja-decoraciones: #D08159;
+    --verde-decoraciones: #9AC76E;
+    --negro: #000;
+    --blanco: #fff;
+    --fuente: 'Poppins', sans-serif;
+    --tamaño-titulos: 32px;
+    --tamaño-subtitulos: 24px;
+    --tamaño-textos: 16px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--verde-oscuro);
+    padding: 20px;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    border-right: 1px solid #dee2e6;
+    color: var(--blanco);
+}
+
+.main-content {
+    flex-grow: 1;
+    margin-left: 250px;
+    padding: 20px;
+    margin-top: 70px;
+}
+
+.text-center {
+    font-weight: bold;
+}
+.sidebar .nav-link.side-link {
+    color: var(--blanco) !important;
+    margin-top: 20px;
+    transition: 0.3s ease;
+}
+
+.sidebar .nav-link.side-link:hover {
+    background-color: var(--blanco) !important;
+    border-radius: 10px;
+    color: var(--verde-decoraciones) !important;
+}
+
+.btn-actualizar{
+    background-color: var(--verde-decoraciones);
+    color: var(--blanco);
+    font-weight: bold;
+    transition: 1 ease;
+    border: none;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+#volver {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 30px;
+
+}
+
+#volver img {
+    width: 30px;
+    height: 30px;
+    transition: filter 0.3s ease;
+}
+
+#volver img:hover {
+    filter: invert(1);
+}
+
+
+.sidebar .nav-link.side-link:focus,
+.sidebar .nav-link.side-link:active {
+    color: var(--verde-oscuro) !important;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.txt-h4, .txt-h3{
+    color: var(--verde-decoraciones);
+    font-weight: bold;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.txt-h3{
+    font-size: 25px;
+}
+
+.link-contacto{
+    color: var(--verde-decoraciones);
+}
+
+.txt-usuario{
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.btn-actualizar:hover{
+    background-color: var(--verde-oscuro);
+    color: var(--blanco);
+    font-weight: bold;
+}

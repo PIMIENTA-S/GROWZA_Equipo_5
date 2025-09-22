@@ -56,10 +56,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-fetch('../partials/navbar.html')
-    .then(res => res.text())
+fetch("../partials/navbar.html")
+    .then(response => response.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;
+        fetch('../assets/js/auth.js')
+            .then(res => res.text())
+            .then(jsCode => {
+                const script = document.createElement("script");
+                script.textContent = jsCode; // Inserta el código como texto
+                document.body.appendChild(script);
+            })
+            .catch(err => console.error("Error cargando auth.js:", err));
+
     });
 
 fetch('../partials/footer.html')

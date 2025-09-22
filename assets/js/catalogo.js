@@ -1,15 +1,23 @@
 // ==========================
 // 🔹 CARGAR NAVBAR
 // ==========================
+
 fetch("../partials/navbar.html")
     .then(response => response.text())
     .then(data => {
         document.getElementById("navbar").innerHTML = data;
+        const scriptNavbar = document.createElement("script");
+        scriptNavbar.src = "../assets/js/navbar.js";
+        document.body.appendChild(scriptNavbar);
+
+        const scriptAuth = document.createElement("script");
+        scriptAuth.src = "../assets/js/auth.js";
+        document.body.appendChild(scriptAuth);
+
         // Inicializamos el contador al cargar el navbar
         actualizarContadorCarrito();
         actualizarContadorFavoritos();
     });
-
 
 // ==========================
 // 🔹 PRODUCTOS ESTÁTICOS
@@ -20,7 +28,7 @@ let productosEstaticos = [
         descripcion: "El brócoli, superalimento crucífero, pariente de la coliflor y la col.",
         datoCurioso: "El brócoli contiene más vitamina C que una naranja.",
         precio: 7.995,
-        imagen: "/assets/img/brocoli.jpg",
+        imagen: "/assets/img/brocoli.webp",
         categoria: "Verduras"
     },
     {
@@ -28,7 +36,7 @@ let productosEstaticos = [
         descripcion: "La espinaca es una planta anual de la familia de las amarantáceas.",
         datoCurioso: "La espinaca fue popularizada por Popeye por su alto contenido en hierro.",
         precio: 5.980,
-        imagen: "/assets/img/espinaca.jpg",
+        imagen: "/assets/img/espinaca.webp",
         categoria: "Verduras"
     },
     {
@@ -36,7 +44,7 @@ let productosEstaticos = [
         descripcion: "La zanahoria es una hortaliza versátil y deliciosa para consumir.",
         datoCurioso: "Las zanahorias originalmente eran moradas, no naranjas.",
         precio: 2.840,
-        imagen: "/assets/img/zanahoria.jpg",
+        imagen: "/assets/img/zanahoria.webp",
         categoria: "Verduras"
     },
     {
@@ -44,7 +52,7 @@ let productosEstaticos = [
         descripcion: "El aguacate Hass impulsó las exportaciones de tres departamentos del país.",
         datoCurioso: "El aguacate es una fruta, y técnicamente una baya con una sola semilla.",
         precio: 6.390,
-        imagen: "/assets/img/aguacate.jpg",
+        imagen: "/assets/img/aguacate.webp",
         categoria: "Verduras"
     },
     {
@@ -52,7 +60,7 @@ let productosEstaticos = [
         descripcion: "La manzana o poma​ es la fruta comestible de la especie Malus domestica, el manzano común.",
         datoCurioso: "Existen más de 7.500 variedades de manzanas en el mundo.",
         precio: 7.559,
-        imagen: "/assets/img/manzana.jpg",
+        imagen: "/assets/img/manzana.webp",
         categoria: "Frutas"
     },
     {
@@ -60,7 +68,7 @@ let productosEstaticos = [
         descripcion: "El banano es una fruta tropical dulce de la planta Musa con pulpa suave.",
         datoCurioso: "Los bananos son técnicamente hierbas y sus frutos son bayas.",
         precio: 1.890,
-        imagen: "/assets/img/banano.jpg",
+        imagen: "/assets/img/banano.webp",
         categoria: "Frutas"
     },
     {
@@ -68,7 +76,7 @@ let productosEstaticos = [
         descripcion: "Los arándanos son frutos pequeños, bayas de la especie Vaccinium.",
         datoCurioso: "Los arándanos tienen uno de los niveles más altos de antioxidantes entre todas las frutas.",
         precio: 7.490,
-        imagen: "/assets/img/arandanos.jpg",
+        imagen: "/assets/img/arandanos.webp",
         categoria: "Frutas"
     },
     {
@@ -76,7 +84,7 @@ let productosEstaticos = [
         descripcion: "La fresa es un género de plantas rastreras estoloníferas de la familia Rosaceae.",
         datoCurioso: "Las fresas no son verdaderas bayas, pero sus semillas están en el exterior.",
         precio: 6.980,
-        imagen: "/assets/img/fresas.jpg",
+        imagen: "/assets/img/fresas.webp",
         categoria: "Frutas"
     },
     {
@@ -84,7 +92,7 @@ let productosEstaticos = [
         descripcion: "Líquido que se encuentra de forma natural en el hoyo interior del coco.",
         datoCurioso: "El agua de coco fue utilizada como sustituto de plasma en la Segunda Guerra Mundial.",
         precio: 6.500,
-        imagen: "/assets/img/aguaCoco.jpg",
+        imagen: "/assets/img/aguaCoco.webp",
         categoria: "Bebidas"
     },
     {
@@ -92,11 +100,18 @@ let productosEstaticos = [
         descripcion: "Contribuye a mejor digestión, sistema inmunológico fuerte y desintoxicar el organismo.",
         datoCurioso: "El jugo verde combina vegetales y frutas, potenciando sus nutrientes y fibra.",
         precio: 9.000,
-        imagen: "/assets/img/jugoVerde.jpg",
+        imagen: "/assets/img/jugoVerde.webp",
         categoria: "Bebidas"
     }
 ];
 
+function obtenerProductos() {
+  // 🔹 Obtener productos de localStorage (si existen)
+  let productosLS = JSON.parse(localStorage.getItem("productos")) || [];
+
+  // 🔹 Unir con los estáticos
+  return [...productosEstaticos, ...productosLS];
+}
 
 // ==========================
 // 🔹 CARRITO Y PRODUCTOS DINÁMICOS
@@ -112,13 +127,13 @@ const productosSection = document.getElementById("productos");
 // ==========================
 // 🔹 MOSTRAR PRODUCTOS
 // ==========================
-function mostrarProductos() {
+function mostrarProductos(lista = obtenerProductos()) {
     productosSection.innerHTML = "";
 
     const fila = document.createElement("div");
     fila.classList.add("row");
 
-    todosLosProductos.forEach(producto => {
+    lista.forEach(producto => {
         const col = document.createElement("div");
         col.classList.add("col-12", "col-md-6", "col-lg-3", "mt-3", "mb-3", "text-center");
 
@@ -162,6 +177,7 @@ function mostrarProductos() {
             </div>
         `;
         fila.appendChild(col);
+
     });
 
     productosSection.appendChild(fila);
@@ -191,6 +207,59 @@ function mostrarProductos() {
 
 mostrarProductos();
 
+fetch("../modals/carroCompras.html")
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById("modalContainer").innerHTML = html;
+
+        const script = document.createElement("script");
+        script.src = "/assets/js/carroCompras.js";
+        script.onload = () => {
+            const carritoModal = document.getElementById("carritoModal");
+
+            if (carritoModal) {
+                setupCartButton();
+
+                const vaciarBtn = document.getElementById("vaciarCarrito");
+                if (vaciarBtn) {
+                    vaciarBtn.addEventListener("click", async () => {
+                        const result = await Swal.fire({
+                            title: "¿Estás seguro?",
+                            text: "No puedes devolver esta acción",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#9AC76E",
+                            cancelButtonColor: "#D08159",
+                            confirmButtonText: "Sí, eliminar",
+                            cancelButtonText: "Cancelar"
+                        });
+
+                        if (result.isConfirmed) {
+                            carrito = [];
+                            localStorage.setItem("carrito", JSON.stringify(carrito));
+                            mostrarCarrito();
+                            actualizarContadorCarrito();
+
+                            Swal.fire({
+                                title: "¡Eliminado!",
+                                text: "El carrito ha sido vaciado.",
+                                icon: "success",
+                                confirmButtonColor: "#9AC76E"
+                            });
+                        }
+                    });
+                }
+
+                carritoModal.addEventListener("shown.bs.modal", () => {
+                    mostrarCarrito();
+                });
+            }
+        };
+        document.body.appendChild(script);
+    });
+
+
+
 // ==========================
 // 🔹 AGREGAR A FAVORITOS
 // ==========================
@@ -200,6 +269,7 @@ document.addEventListener("click", (e) => {
         const btn = e.target.closest(".btn-favorito");
         const producto = {
             titulo: btn.dataset.titulo,
+            des: btn.dataset.descripcion,
             precio: parseFloat(btn.dataset.precio),
             imagen: btn.dataset.img
         };
@@ -209,7 +279,7 @@ document.addEventListener("click", (e) => {
             favoritos.push(producto);
             localStorage.setItem("favoritos", JSON.stringify(favoritos));
             Swal.fire({
-                title: "Agregado a favoritos ❤️",
+                title: "Agregado a favoritos",
                 icon: "success",
                 confirmButtonColor: "#9AC76E"
             });
@@ -339,11 +409,11 @@ document.addEventListener("click", function (e) {
     if (e.target.closest(".add-to-cart")) {
         e.preventDefault();
 
-        // 2. OBTENER EL USUARIO ACTIVO DEL LOCAL STORAGE
-        const usuarioActivo = localStorage.getItem("usuarioActivo");
+        // 2. OBTENER EL TOKEN DEL LOCAL STORAGE
+        const token = localStorage.getItem("jwt");
 
         // 3. VALIDACIÓN
-        if (!usuarioActivo) { // Si no hay un usuario activo...
+        if (!token) { // Si no hay token => no hay sesión
             Swal.fire({
                 title: "¡Hola!",
                 text: "Debes iniciar sesión para agregar productos al carrito.",
@@ -358,7 +428,7 @@ document.addEventListener("click", function (e) {
             return; // Detener la ejecución del código
         }
 
-        // 4. LÓGICA DE AGREGAR PRODUCTO (solo se ejecuta si hay un usuario activo)
+        // 4. LÓGICA DE AGREGAR PRODUCTO (solo se ejecuta si hay sesión activa)
         const btn = e.target.closest(".add-to-cart");
         const producto = {
             titulo: btn.dataset.titulo,
@@ -367,6 +437,9 @@ document.addEventListener("click", function (e) {
             cantidad: 1
         };
 
+        // Recuperar carrito existente o inicializar uno nuevo
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
         const productoExistente = carrito.find(item => item.titulo === producto.titulo);
         if (productoExistente) {
             productoExistente.cantidad += 1;
@@ -374,16 +447,19 @@ document.addEventListener("click", function (e) {
             carrito.push(producto);
         }
 
+        // Guardar carrito actualizado
         localStorage.setItem("carrito", JSON.stringify(carrito));
 
         Swal.fire({
-            title: "Agregado!",
+            title: "¡Producto agregado al carrito!",
             icon: "success",
-            draggable: true,
             confirmButtonColor: "#9AC76E"
         });
 
-        actualizarContadorCarrito();
+        // Actualizar contador del carrito (si tienes esa función definida)
+        if (typeof actualizarContadorCarrito === "function") {
+            actualizarContadorCarrito();
+        }
     }
 });
 
@@ -416,6 +492,30 @@ function actualizarContadorCarrito() {
     contador.style.display = totalItems > 0 ? "inline-block" : "none";
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => { // esperar a que cargue el navbar
+    const inputBusqueda = document.querySelector("#searchBox input");
+
+    if (inputBusqueda) {
+      inputBusqueda.addEventListener("input", (e) => {
+    const texto = e.target.value.toLowerCase();
+
+    const filtrados = obtenerProductos().filter(prod =>
+        prod.titulo.toLowerCase().includes(texto) ||
+        prod.descripcion.toLowerCase().includes(texto) ||
+        prod.categoria.toLowerCase().includes(texto)
+    );
+
+        mostrarProductos(filtrados);
+      });
+    }
+
+    // 🔹 Mostrar todo al inicio
+    mostrarProductos(obtenerProductos());
+  }, 500); // delay pequeño para dar tiempo a que cargue el navbar
+});
+
+
 // ==========================
 // 🔹 CARGAR FOOTER
 // ==========================
@@ -423,4 +523,20 @@ fetch('../partials/footer.html')
     .then(response => response.text())
     .then(data => {
         document.getElementById("footer").innerHTML = data;
+    });
+
+// ==========================
+// 🔹 INICIALIZACIÓN
+// ==========================
+mostrarProductos();
+actualizarContadorCarrito();
+actualizarContadorFavoritos();
+
+fetch("../modals/carroCompras.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("modalContainer").innerHTML = data;
+
+        // 🔹 Ahora que existe el modal en el DOM, mostramos el carrito
+        mostrarCarrito();
     });

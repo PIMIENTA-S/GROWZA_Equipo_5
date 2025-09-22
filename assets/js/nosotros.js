@@ -9,14 +9,29 @@ function showSlide(index) {
 
 document.addEventListener("DOMContentLoaded", () => {
     fetch("../partials/navbar.html")
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById("navbar").innerHTML = data;
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+        fetch('../assets/js/auth.js')
+            .then(res => res.text())
+            .then(jsCode => {
+                const script = document.createElement("script");
+                script.textContent = jsCode; // Inserta el código como texto
+                document.body.appendChild(script);
+            })
+            .catch(err => console.error("Error cargando auth.js:", err));
+        // Inicializamos el contador al cargar el navbar
+        actualizarContadorCarrito();
+    });
+    // fetch("../partials/navbar.html")
+    //     .then(res => res.text())
+    //     .then(data => {
+    //         document.getElementById("navbar").innerHTML = data;
 
-            // Re inicializa dropdowns, collapse y demás
-            const dropdownTriggerList = document.querySelectorAll('[data-bs-toggle="dropdown"]');
-            [...dropdownTriggerList].map(el => new bootstrap.Dropdown(el));
-        });
+    //         // Re inicializa dropdowns, collapse y demás
+    //         const dropdownTriggerList = document.querySelectorAll('[data-bs-toggle="dropdown"]');
+    //         [...dropdownTriggerList].map(el => new bootstrap.Dropdown(el));
+    //     });
 });
 
 

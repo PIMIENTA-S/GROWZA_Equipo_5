@@ -98,6 +98,11 @@ div.container-fluid {
     border-radius: 5px;
 }
 
+.form-control:focus {
+    border-color: #394d1f !important;
+    box-shadow: 0 0 0 .25rem rgba(34, 179, 5, 0.25) !important;
+}
+
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 992px) {
