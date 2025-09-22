@@ -91,7 +91,7 @@ document.addEventListener("click", function (e) {
 // 🔹 AGREGAR AL CARRITO DESDE FAVORITOS
 // ==========================
 document.addEventListener("click", function (e) {
-    if (e.target.closest(".botones")) {
+    if (e.target.closest(".add-car")) {
         e.preventDefault();
         const usuarioActivo = localStorage.getItem("usuarioActivo");
         if (!usuarioActivo) {
@@ -109,7 +109,7 @@ document.addEventListener("click", function (e) {
             return;
         }
 
-        const btn = e.target.closest(".botones");
+        const btn = e.target.closest(".add-car");
         const producto = {
             titulo: btn.dataset.titulo,
             precio: parseFloat(btn.dataset.precio),
