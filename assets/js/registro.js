@@ -3,7 +3,8 @@
 // const apellido = document.getElementById("inputapellido");
 // const direccion = document.getElementById("inputdireccion");
 // const email = document.getElementById("inputemail");
-// const contraseña = document.getElementById("inputcontraseña");
+const contraseña = document.getElementById("inputContra");
+const requisitos = document.getElementById("password-requirements");
 // const btnRegistrar = document.getElementById("btn-registrar");
 // const contendoralerta = document.getElementById("alerta-container");
 
@@ -30,11 +31,6 @@
 
 //     if (!validarEmail(email.value)) {
 //         mostrarAlerta("Por favor ingrese un email válido", "warning");
-//         return;
-//     }
-
-//     if (contraseña.value.length < 8) {
-//         mostrarAlerta("La contraseña debe tener al menos 8 caracteres", "warning");
 //         return;
 //     }
 
@@ -74,6 +70,95 @@
 //     .then(data => {
 //         document.getElementById("navbar").innerHTML = data;
 //     });
+
+    const requirements = {
+        length: document.getElementById("req-length"),
+        uppercase: document.getElementById("req-uppercase"),
+        lowercase: document.getElementById("req-lowercase"),
+        number: document.getElementById("req-number"),
+        special: document.getElementById("req-special"),
+    };
+
+    contraseña.addEventListener("focus", () => {
+        requisitos.style.display = "block";
+    });
+
+    contraseña.addEventListener("blur", () => {
+        if (contraseña.value === "") {
+            requisitos.style.display = "none";
+        }
+    });
+
+    contraseña.addEventListener("input", () => {
+        const value = contraseña.value;
+
+        let validCount = 0;
+
+        if (value.length >= 8) {
+            requirements.length.textContent = "✅ Al menos 8 caracteres";
+            requirements.length.classList.add("valid");
+            requirements.length.classList.remove("invalid");
+            validCount++;
+        } else {
+            requirements.length.textContent = "❌ Al menos 8 caracteres";
+            requirements.length.classList.add("invalid");
+            requirements.length.classList.remove("valid");
+        }
+
+        if (/[A-Z]/.test(value)) {
+            requirements.uppercase.textContent = "✅ Una letra mayúscula";
+            requirements.uppercase.classList.add("valid");
+            requirements.uppercase.classList.remove("invalid");
+            validCount++;
+        } else {
+            requirements.uppercase.textContent = "❌ Una letra mayúscula";
+            requirements.uppercase.classList.add("invalid");
+            requirements.uppercase.classList.remove("valid");
+        }
+
+        if (/[a-z]/.test(value)) {
+            requirements.lowercase.textContent = "✅ Una letra minúscula";
+            requirements.lowercase.classList.add("valid");
+            requirements.lowercase.classList.remove("invalid");
+            validCount++;
+        } else {
+            requirements.lowercase.textContent = "❌ Una letra minúscula";
+            requirements.lowercase.classList.add("invalid");
+            requirements.lowercase.classList.remove("valid");
+        }
+
+        if (/[0-9]/.test(value)) {
+            requirements.number.textContent = "✅ Un número";
+            requirements.number.classList.add("valid");
+            requirements.number.classList.remove("invalid");
+            validCount++;
+        } else {
+            requirements.number.textContent = "❌ Un número";
+            requirements.number.classList.add("invalid");
+            requirements.number.classList.remove("valid");
+        }
+
+        if (/[^A-Za-z0-9]/.test(value)) {
+            requirements.special.textContent = "✅ Un carácter especial (!@#$%^&*)";
+            requirements.special.classList.add("valid");
+            requirements.special.classList.remove("invalid");
+            validCount++;
+        } else {
+            requirements.special.textContent = "❌ Un carácter especial (!@#$%^&*)";
+            requirements.special.classList.add("invalid");
+            requirements.special.classList.remove("valid");
+        }
+
+        if (validCount === 5) {
+            contraseña.classList.add("is-valid");
+            contraseña.classList.remove("is-invalid");
+        } else {
+            contraseña.classList.add("is-invalid");
+            contraseña.classList.remove("is-valid");
+        }
+    });
+
+
 
 const API_URL = 'http://localhost:8080/growza/usuarios/crear';
 
