@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-const nombre = document.getElementById("inputnombre");
-const apellido = document.getElementById("inputapellido");
-const direccion = document.getElementById("inputdireccion");
-const email = document.getElementById("inputemail");
-const contraseña = document.getElementById("inputcontraseña");
-const btnRegistrar = document.getElementById("btn-registrar");
-const contendoralerta = document.getElementById("alerta-container");
-
-function mostrarAlerta(mensaje, tipo = "danger") {
-    contendoralerta.innerHTML = `
-        <div class="alert alert-${tipo} alert-dismissible fade show p-2" role="alert">
-            ${mensaje}
-            <button type="button" class="btn-close p-3" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>`;
-=======
 // let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 // const nombre = document.getElementById("inputnombre");
 // const apellido = document.getElementById("inputapellido");
@@ -237,7 +220,6 @@ if (!registerForm) {
             }
         }
     });
->>>>>>> a2210a9737108173fe8f679279341ba33a1e8261
 }
 
 function validarEmail(email) {
