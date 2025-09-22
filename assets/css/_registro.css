@@ -75,6 +75,26 @@ html, body, .container-fluid, .row {
     word-break: break-word;
 }
 
+input.is-valid {
+    border: 2px solid #28a745 !important; 
+}
+
+input.is-invalid {
+    border: 2px solid #dc3545 !important; 
+}
+
+#password-requirements li {
+    font-size: 0.9rem;
+}
+
+#password-requirements li.valid {
+    color: green;
+}
+
+#password-requirements li.invalid {
+    color: red;
+}
+
 input {
     height: 40px;
 }
@@ -109,17 +129,12 @@ input {
     background-color: #394D1F;
 }
 
-/* --- Media Queries --- */
 @media (max-width: 767px) {
     .contenedor-formulario {
         height: auto;
         padding: 1.5rem 1rem;
     }
     .imagen-registrar {
-        height: 40vh; /* Altura más pequeña para móviles */
+        height: 40vh; 
     }
-}
-
-@media (min-width: 768px) {
-    /* No se necesita un media query adicional para la imagen ya que la altura del 100% ya funciona */
 }
