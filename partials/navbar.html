@@ -22,19 +22,24 @@
                 </svg>
                 <span class="ms-2">GROWZA</span>
             </a>
-
-            <!-- Botón hamburguesa -->
+               <!-- Botón hamburguesa -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+            
             <!-- Links -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                <button class="btn-close-menu" aria-label="Cerrar menú">&times;</button>
-
+                <button
+                    class="btn-close-menu"
+                    id="close-menu-btn"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-label="Cerrar menú">
+                    &times;
+            </button>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                     <li class="nav-item"><a class="nav-link" href="/index.html">Inicio</a></li>
@@ -147,6 +152,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/navbar.js"></script>
     <script src="/assets/js/auth.js"></script>
+
+    <script>
+    // Selecciona el botón y el menú por sus ID
+    const closeMenuButton = document.getElementById('close-menu-btn');
+    const navbarCollapse = document.getElementById('navbarSupportedContent');
+
+    // Crea una instancia del componente Collapse de Bootstrap
+    const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+        toggle: false // Esto evita que se abra al iniciar
+    });
+
+    // Escucha el clic en el botón de cerrar
+    closeMenuButton.addEventListener('click', function() {
+        // Cierra el menú explícitamente
+        bsCollapse.hide();
+    });
+</script>
 </body>
 
 </html>

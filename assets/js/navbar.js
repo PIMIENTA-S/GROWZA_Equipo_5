@@ -93,3 +93,4 @@
   // Exponer la función para páginas que insertan el navbar dinámicamente
   window.initNavbar = initNavbar;
 })();
+

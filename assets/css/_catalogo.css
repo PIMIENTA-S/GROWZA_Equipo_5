@@ -136,6 +136,16 @@
     transform: translateY(-2px);
 }
 
+#card-catalogo {
+    min-height: 420px;   /* asegura que se vea alargada */
+    max-width: 300px;    /* controla que no sea ancha */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+  
+  
+
 .botones-modal {
     background: var(--verde-oscuro);
     border-radius: 50%;

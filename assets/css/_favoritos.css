@@ -159,3 +159,6 @@ body {
 #footer {
     border-top: 1px solid var(--verde-oscuro);
 }
+#vaciar-favoritos{
+    margin-top: 106px;
+}

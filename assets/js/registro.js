@@ -1,138 +1,163 @@
-// let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-// const nombre = document.getElementById("inputnombre");
-// const apellido = document.getElementById("inputapellido");
-// const direccion = document.getElementById("inputdireccion");
-// const email = document.getElementById("inputemail");
-// const contraseña = document.getElementById("inputcontraseña");
-// const btnRegistrar = document.getElementById("btn-registrar");
-// const contendoralerta = document.getElementById("alerta-container");
+document.addEventListener('DOMContentLoaded', () => {
 
-// function mostrarAlerta(mensaje, tipo = "danger") {
-//     contendoralerta.innerHTML = `
-//         <div class="alert alert-${tipo} alert-dismissible fade show p-2" role="alert">
-//             ${mensaje}
-//             <button type="button" class="btn-close p-3" data-bs-dismiss="alert" aria-label="Close"></button>
-//         </div>`;
-// }
+    const passwordInput = document.getElementById("inputContra");
+    const requisitos = document.getElementById("password-requirements");
+    const registerForm = document.getElementById('register-form');
+    const messageElement = document.getElementById('message-info');
 
-// function validarEmail(email) {
-//     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-//     return regex.test(email);
-// }
+    // Mapeo de requisitos de contraseña a sus elementos HTML
+    const requirements = {
+        length: document.getElementById("req-length"),
+        uppercase: document.getElementById("req-uppercase"),
+        lowercase: document.getElementById("req-lowercase"),
+        number: document.getElementById("req-number"),
+        special: document.getElementById("req-special"),
+    };
 
-// function registrar(e) {
-//     e.preventDefault();
+    // Eventos para mostrar/ocultar y validar requisitos de contraseña
+    if (passwordInput && requisitos) {
+        passwordInput.addEventListener("focus", () => {
+            requisitos.style.display = "block";
+        });
 
-//     if (!nombre.value.trim() || !apellido.value.trim() || !direccion.value.trim() || !email.value.trim() || !contraseña.value.trim()) {
-//         mostrarAlerta("Todos los campos son obligatorios", "danger");
-//         return;
-//     }
+        passwordInput.addEventListener("blur", () => {
+            if (passwordInput.value === "") {
+                requisitos.style.display = "none";
+            }
+        });
 
-//     if (!validarEmail(email.value)) {
-//         mostrarAlerta("Por favor ingrese un email válido", "warning");
-//         return;
-//     }
+        passwordInput.addEventListener("input", () => {
+            const value = passwordInput.value;
+            let validCount = 0;
 
-//     if (contraseña.value.length < 8) {
-//         mostrarAlerta("La contraseña debe tener al menos 8 caracteres", "warning");
-//         return;
-//     }
+            const checks = [
+                { id: "length", regex: /.{8,}/, text: "Al menos 8 caracteres" },
+                { id: "uppercase", regex: /[A-Z]/, text: "Una letra mayúscula" },
+                { id: "lowercase", regex: /[a-z]/, text: "Una letra minúscula" },
+                { id: "number", regex: /[0-9]/, text: "Un número" },
+                { id: "special", regex: /[^A-Za-z0-9]/.test(value), text: "Un carácter especial (!@#$%^&*)" }
+            ];
 
-//     const existente = usuarios.find(u => u.email === email.value);
-//     if (existente) {
-//         mostrarAlerta("Ese correo ya se encuentra registrado", "danger");
-//         return;
-//     }
-
-
-//     const usuario = {
-//         nombre: nombre.value,
-//         apellido: apellido.value,
-//         direccion: direccion.value,
-//         email: email.value,
-//         password: contraseña.value,
-//         rol:"usuario"
-//     };
-
-//     usuarios.push(usuario);
-//     localStorage.setItem("usuarios", JSON.stringify(usuarios));
-//     mostrarAlerta("Usuario registrado correctamente", "success");
-
-
-//     nombre.value = "";
-//     apellido.value = "";
-//     direccion.value = "";
-//     email.value = "";
-//     contraseña.value = "";
-// }
-
-// btnRegistrar.addEventListener("click", registrar);
-
-
-// fetch('../partials/navbar.html')
-//     .then(res => res.text())
-//     .then(data => {
-//         document.getElementById("navbar").innerHTML = data;
-//     });
-
-const API_URL = 'http://localhost:8080/growza/usuarios/crear';
-
-const registerForm = document.getElementById('register-form');
-const messageElement = document.getElementById('message-info');
-
-if (!registerForm) {
-    console.error('No se encontró el formulario con id="register-form".');
-} else {
-    registerForm.addEventListener('submit', async function (event) {
-        console.log('El formulario de registro ha sido enviado.');
-        event.preventDefault();
-
-        const nombre = document.getElementById('inputNombre').value;
-        const apellido = document.getElementById('inputApellido').value;
-        const correo = document.getElementById('inputEmail').value;
-        const password = document.getElementById('inputContra').value;
-
-        console.log('Datos del usuario a enviar:', { nombre, apellido, correo, password });
-
-        try {
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    nombre,
-                    apellido,
-                    correo,
-                    'contrasena': password
-                })
+            // Revisa cada requisito y actualiza el estado visual
+            checks.forEach(check => {
+                const el = requirements[check.id];
+                const isValid = (check.id === "special") ? check.regex : check.regex.test(value);
+                
+                if (isValid) {
+                    el.textContent = `✅ ${check.text}`;
+                    el.classList.add("valid");
+                    el.classList.remove("invalid");
+                    validCount++;
+                } else {
+                    el.textContent = `❌ ${check.text}`;
+                    el.classList.add("invalid");
+                    el.classList.remove("valid");
+                }
             });
 
-            console.log('Respuesta del servidor:', response.status, response.statusText);
-
-            if (response.ok) {
-                console.log('Respuesta OK. Registro exitoso.');
-                if (messageElement) {
-                    messageElement.textContent = "¡Registro exitoso! Redirigiendo...";
-                    messageElement.style.color = "green";
-                }
-                setTimeout(() => {
-                    window.location.href = 'inicioSesion.html';
-                }, 2000);
+            // Actualiza el borde del input de la contraseña
+            if (validCount === checks.length) {
+                passwordInput.classList.add("is-valid");
+                passwordInput.classList.remove("is-invalid");
             } else {
-                const errorMessage = await response.text();
-                console.error('Error del servidor:', errorMessage);
+                passwordInput.classList.add("is-invalid");
+                passwordInput.classList.remove("is-valid");
+            }
+        });
+    }
+
+    // Lógica para enviar el formulario a la API
+    const API_URL = 'http://localhost:8080/growza/usuarios/crear';
+
+    if (registerForm) {
+        registerForm.addEventListener('submit', async function (event) {
+            console.log('El formulario de registro ha sido enviado.');
+            event.preventDefault();
+
+            const nombre = document.getElementById('inputNombre').value;
+            const apellido = document.getElementById('inputApellido').value;
+            const correo = document.getElementById('inputEmail').value;
+            const password = document.getElementById('inputContra').value;
+
+            // Valida que todos los campos estén llenos
+            if (!nombre || !apellido || !correo || !password) {
+                messageElement.textContent = "Todos los campos son obligatorios.";
+                messageElement.style.color = "red";
+                return;
+            }
+
+            // Valida la contraseña según los requisitos
+            const passwordIsValid = (
+                password.length >= 8 &&
+                /[A-Z]/.test(password) &&
+                /[a-z]/.test(password) &&
+                /[0-9]/.test(password) &&
+                /[^A-Za-z0-9]/.test(password)
+            );
+
+            if (!passwordIsValid) {
+                messageElement.textContent = "La contraseña no cumple con todos los requisitos.";
+                messageElement.style.color = "red";
+                return;
+            }
+
+            console.log('Datos del usuario a enviar:', { nombre, apellido, correo, password });
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nombre,
+                        apellido,
+                        correo,
+                        'contrasena': password // ✅ ¡CORREGIDO! Envía 'password'
+                    })
+                });
+
+                console.log('Respuesta del servidor:', response.status, response.statusText);
+
+                if (response.ok) {
+                    // Si la respuesta es 200-299, fue exitosa
+                    console.log('Respuesta OK. Registro exitoso.');
+                    if (messageElement) {
+                        messageElement.textContent = "¡Registro exitoso! Redirigiendo...";
+                        messageElement.style.color = "green";
+                    }
+                    setTimeout(() => {
+                        window.location.href = 'inicioSesion.html';
+                    }, 2000);
+                } else {
+                    // Manejo de errores para cualquier estado que no sea 'ok'
+                    let errorData;
+                    // Clona la respuesta para poder leer el cuerpo dos veces si es necesario
+                    const clonedResponse = response.clone();
+                    try {
+                        errorData = await response.json();
+                        if (messageElement) {
+                            messageElement.textContent = `Error en el registro: ${errorData.message || 'Error desconocido.'}`;
+                            messageElement.style.color = "red";
+                        }
+                    } catch (e) {
+                        // Si falla el JSON, lee el cuerpo como texto
+                        errorData = await clonedResponse.text();
+                        if (messageElement) {
+                            messageElement.textContent = `Error en el registro: ${errorData || 'Error desconocido del servidor.'}`;
+                            messageElement.style.color = "red";
+                        }
+                    }
+                    console.error('Error del servidor:', errorData);
+                }
+
+            } catch (error) {
+                console.error('Error de conexión:', error);
                 if (messageElement) {
-                    messageElement.textContent = `Error en el registro: ${errorMessage}`;
+                    messageElement.textContent = `Ocurrió un error de conexión. Por favor, intenta más tarde.`;
                     messageElement.style.color = "red";
                 }
             }
-        } catch (error) {
-            console.error('Error de conexión:', error);
-            if (messageElement) {
-                messageElement.textContent = `Ocurrió un error de conexión. Por favor, intenta más tarde.`;
-                messageElement.style.color = "red";
-            }
-        }
-    });
-}
+        });
+    }
+});

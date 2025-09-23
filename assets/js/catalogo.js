@@ -138,13 +138,14 @@ function mostrarProductos(lista = obtenerProductos()) {
         col.classList.add("col-12", "col-md-6", "col-lg-3", "mt-3", "mb-3", "text-center");
 
         col.innerHTML = `
-            <div class="card" style="width: 16rem; height: 400px;" id="card-catalogo">
-                <img src="${producto.imagen}" class="card-img-top" style="height: 200px;" alt="${producto.titulo}">
-                <div class="card-body">
+                <div class="card h-100" id="card-catalogo">
+                <img src="${producto.imagen}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="${producto.titulo}">
+                <div class="card-body d-flex flex-column">
                     <h4 class="card-title"><strong>${producto.titulo}</strong></h4>
-                    <p class="card-text" style="height:72px; margin-bottom: 10px;">${producto.descripcion}</p>
+                    <p class="card-text flex-grow-1" style="margin-bottom: 10px;">${producto.descripcion}</p>
                     <h3 class="mb-3">$${Number(producto.precio).toFixed(3)}</h3>
-                    <div class="d-flex flex-column position-absolute top-0 end-0" style="margin:10px">
+                    <div class="d-flex flex-column position-absolute top-0 end-0 m-2">
+                    
                         <!-- FAVORITOS -->
                         <a href="#" class="btn-favorito" id="btn-card"
                             data-titulo="${producto.titulo}"
@@ -282,6 +283,7 @@ document.addEventListener("click", (e) => {
                 icon: "success",
                 confirmButtonColor: "#9AC76E"
             });
+            
         } else {
             Swal.fire({
                 title: "Ya está en favoritos",
@@ -450,7 +452,6 @@ document.addEventListener("click", function (e) {
 
         // Guardar carrito actualizado
         localStorage.setItem("carrito", JSON.stringify(carrito));
-
         Swal.fire({
             title: "¡Producto agregado al carrito!",
             icon: "success",

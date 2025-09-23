@@ -20,14 +20,14 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-6 imagen-registrar order-1 order-md-2 top-0 end-0">
+            <div class="col-12 col-md-6 imagen-registrar">
                 <a class="nav-link p-3" href="/catalogo.html" id="volver">
                     <img src="/assets/img/sign-out-bold.svg" alt="Salir" class="mx-2">
                     Volver
                 </a>
             </div>
             <div class="col-md-6 contenedor-formulario">
-                <h4 class="titulo-registrar">Growza</h4>
+                <h4 class="titulo-registrar" style="margin-top: 7rem;">Growza</h4>
                 <p class="mensaje-registrar">¡Únete a nosotros!</p>
                 
                 <!-- ✅ ID agregado al formulario -->
@@ -48,6 +48,17 @@
                     <div>
                         <label for="inputContra" class="form-label">Contraseña</label>
                         <input type="password" class="form-control" id="inputContra" placeholder="Cree su contraseña">
+                    </div>
+
+                    <div id="password-requirements" class="mt-2 p-2 border rounded bg-light" style="display:none;">
+                        <p class="mb-1 fw-bold">La contraseña debe contener:</p>
+                        <ul class="list-unstyled mb-0">
+                            <li id="req-length">❌ Al menos 8 caracteres</li>
+                            <li id="req-uppercase">❌ Una letra mayúscula</li>
+                            <li id="req-lowercase">❌ Una letra minúscula</li>
+                            <li id="req-number">❌ Un número</li>
+                            <li id="req-special">❌ Un carácter especial (!@#$%^&*)</li>
+                        </ul>
                     </div>
 
                     <div id="alerta-container"></div>
