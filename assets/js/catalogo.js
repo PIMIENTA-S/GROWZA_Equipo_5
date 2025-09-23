@@ -283,6 +283,7 @@ document.addEventListener("click", (e) => {
                 icon: "success",
                 confirmButtonColor: "#9AC76E"
             });
+            
         } else {
             Swal.fire({
                 title: "Ya está en favoritos",
@@ -449,12 +450,12 @@ document.addEventListener("click", function (e) {
 
         // Guardar carrito actualizado
         localStorage.setItem("carrito", JSON.stringify(carrito));
-
         Swal.fire({
             title: "¡Producto agregado al carrito!",
             icon: "success",
             confirmButtonColor: "#9AC76E"
         });
+        mostrarCarrito();
 
         // Actualizar contador del carrito (si tienes esa función definida)
         if (typeof actualizarContadorCarrito === "function") {
