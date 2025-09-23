@@ -3,7 +3,7 @@
 // ----------------------------------------------------
 const usuarioActivo = JSON.parse(localStorage.getItem("usuarioActivo") || "{}");
 if (usuarioActivo.rol !== "admin") {
-    alert("❌ Acceso denegado. Debes ser admin.");
+    alert("Acceso denegado. Debes ser admin.");
     window.location.href = "/index.html";
 }
 
@@ -45,6 +45,7 @@ const API_BASE_URL = 'http://localhost:8080/growza/productos';
 const API_CATEGORIES_URL = 'http://localhost:8080/growza/categorias';
 
 let categoriasDisponibles = [];
+let productosBackend = [];
 
 // ----------------------------------------------------
 // AUTENTICACIÓN HEADER
@@ -95,13 +96,18 @@ function mostrarVista(vistaId) {
 
 // ----------------------------------------------------
 // CRUD PRODUCTOS
-// ----------------------------------------------------let productosBackend = [];
+// ----------------------------------------------------
 
 async function listarProductos() {
     listaProductosContainer.innerHTML = '';
+    productosBackend = []; // Limpiar para evitar duplicados en cada carga
     try {
         const res = await fetch(API_BASE_URL, { headers: getAuthHeaders() });
-        if (res.ok) productosBackend = await res.json();
+        if (res.ok) {
+            productosBackend = await res.json();
+        } else {
+            console.warn("No se pudieron cargar los productos del backend. Usando estáticos.");
+        }
     } catch (error) {
         console.error("Error al cargar productos del backend:", error);
     }
@@ -164,42 +170,62 @@ async function guardarProducto(event) {
     const idCategoria = document.getElementById("categoria-form").value;
     const descripcion = document.getElementById("descripcion-form").value;
     const precio = document.getElementById("precio-form").value;
+    const stock = 10;
     const imagenInput = document.getElementById("imagen-form").files;
+
+    const token = localStorage.getItem("jwt");
+    if (!token) {
+        Swal.fire("Error", "No autorizado. Por favor, inicia sesión.", "error");
+        return;
+    }
 
     const formData = new FormData();
     formData.append("nombreProducto", titulo);
     formData.append("descripcion", descripcion);
     formData.append("precio", parseFloat(precio));
-    formData.append("stock", 10);
+    formData.append("stock", stock);
     formData.append("idCategoria", parseInt(idCategoria));
-    if (imagenInput.length > 0) formData.append("imagen", imagenInput[0]);
+    if (imagenInput.length > 0) {
+        formData.append("imagen", imagenInput[0]);
+    }
 
-    let url = `${API_BASE_URL}/crearProductoCategoria`;
-    let method = "POST";
-    let mensaje = `"${titulo}" fue agregado correctamente.`;
-    listarProductos(); 
+    let url;
+    let method;
+    let mensaje;
 
     if (idProducto) {
         url = `${API_BASE_URL}/${idProducto}`;
         method = "PUT";
         mensaje = `"${titulo}" fue actualizado correctamente.`;
-        formData.append("id_producto", idProducto);
+    } else {
+        url = `${API_BASE_URL}/crearProductoCategoria`;
+        method = "POST";
+        mensaje = `"${titulo}" fue agregado correctamente.`;
     }
 
     try {
-        const res = await fetch(url, { method, headers: { "Authorization": `Bearer ${localStorage.getItem("jwt")}` }, body: formData });
-        if (!res.ok) throw new Error(await res.text());
-        limpiarFormulario();
-        listarProductos();
-        mostrarVista("vista-listado");
+        const res = await fetch(url, {
+            method: method,
+            headers: {
+                "Authorization": `Bearer ${token}`
+            },
+            body: formData
+        });
 
+        if (!res.ok) {
+            const errorText = await res.text();
+            throw new Error(errorText);
+        }
+
+        limpiarFormulario();
+        await listarProductos();
+        mostrarVista("vista-listado");
         Swal.fire("¡Éxito!", mensaje, "success");
     } catch (error) {
-        console.error(error);
+        console.error("Error al guardar producto:", error);
         Swal.fire("Error", `No se pudo guardar el producto: ${error.message}`, "error");
     }
 }
-
 async function cargarProductoParaEditar(id) {
     if (id.startsWith('static-')) return Swal.fire("Info", "No se pueden editar productos estáticos.", "info");
 
@@ -230,6 +256,7 @@ function limpiarFormulario() {
     formulario.reset();
     idProductoOculto.value = "";
     btnGuardar.textContent = "Guardar Producto";
+    document.getElementById("preview").src = "";
     document.getElementById("preview").style.display = "none";
     previewCard.style.display = "none";
 }
@@ -237,19 +264,26 @@ function limpiarFormulario() {
 async function eliminarProducto(id) {
     if (id.startsWith('static-')) return Swal.fire("Info", "No se pueden eliminar productos estáticos.", "info");
 
-    const confirm = await Swal.fire({
+    const confirmacion = await Swal.fire({
         title: "¿Eliminar producto?",
         text: "¡Esta acción no se puede deshacer!",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Sí, eliminar"
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar"
     });
 
-    if (confirm.isConfirmed) {
+    if (confirmacion.isConfirmed) {
         try {
-            const res = await fetch(`${API_BASE_URL}/${id}`, { method: "DELETE", headers: getAuthHeaders() });
-            if (!res.ok) throw new Error(await res.text());
-            listarProductos();
+            const res = await fetch(`${API_BASE_URL}/${id}`, {
+                method: "DELETE",
+                headers: getAuthHeaders()
+            });
+            if (!res.ok) {
+                const errorText = await res.text();
+                throw new Error(errorText);
+            }
+            await listarProductos();
             Swal.fire("¡Eliminado!", "Producto eliminado correctamente.", "success");
         } catch (error) {
             Swal.fire("Error", `No se pudo eliminar el producto: ${error.message}`, "error");

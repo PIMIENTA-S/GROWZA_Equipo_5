@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         nombre,
                         apellido,
                         correo,
-                        'contrasena': password // ✅ ¡CORREGIDO! Envía 'password'
+                        'contrasena': password 
                     })
                 });
 
