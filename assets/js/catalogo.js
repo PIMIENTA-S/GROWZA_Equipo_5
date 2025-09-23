@@ -436,6 +436,8 @@ document.addEventListener("click", function (e) {
             cantidad: 1
         };
 
+        mostrarCarrito();
+                    actualizarContadorCarrito();
         // Recuperar carrito existente o inicializar uno nuevo
         let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 

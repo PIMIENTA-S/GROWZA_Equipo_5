@@ -77,6 +77,21 @@ if (!loginForm) {
         const password = document.getElementById('inputContra').value.trim();
         const errorMessage = document.getElementById('error-message');
 
+        // ✅ Lógica para el usuario "admin" hardcodeado
+        if (correo === "growzageneration@gmail.com" && password === "admin123") {
+            console.log("✅ Inicio de sesión exitoso como Admin.");
+
+            // Guardar rol y token "fake"
+            localStorage.setItem("usuarioActivo", JSON.stringify({ rol: "admin" }));
+            localStorage.setItem("jwt", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJncm93emFnZW5lcmF0aW9uQGdtYWlsLmNvbSIsImlhdCI6MTc1ODYwNjU5MCwiZXhwIjoxNzU4NjQyNTkwfQ.O2kHnjExjrlFc5iEjoiohZcICLLcIT5dbavztaE7gMs"); // 👈 IMPORTANTE
+
+            // Redirige al panel de administrador
+            window.location.href = "/admin/admin.html";
+            return;
+        }
+
+        // --- Si no es el admin, continuar con la lógica de autenticación del backend ---
+
         if (!correo || !password) {
             errorMessage.textContent = "Por favor, completa todos los campos.";
             errorMessage.style.color = "red";
@@ -96,9 +111,10 @@ if (!loginForm) {
             });
 
             if (response.ok) {
-                const token = await response.text(); // <-- en lugar de .json()
+                const token = await response.text();
                 localStorage.setItem('jwt', token);
                 console.log("✅ Login exitoso. Token recibido:", token);
+                // Redirige a la página de inicio para usuarios regulares
                 window.location.href = 'index.html';
             } else {
                 const errorText = await response.text();
@@ -106,16 +122,10 @@ if (!loginForm) {
                 errorMessage.style.color = "red";
                 console.log("⚠️ Respuesta del servidor (error):", errorText);
             }
-
         } catch (error) {
             console.error('Error durante el login:', error);
             errorMessage.textContent = "Error de conexión con el servidor.";
             errorMessage.style.color = "red";
         }
     });
-}
-
-function logout() {
-    localStorage.removeItem('jwt');
-    // window.location.href = 'index.html'; // ✅ Redirige después del logout
 }

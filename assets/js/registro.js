@@ -117,7 +117,7 @@ if (!registerForm) {
                     messageElement.style.color = "green";
                 }
                 setTimeout(() => {
-                    window.location.href = 'index.html';
+                    window.location.href = 'inicioSesion.html';
                 }, 2000);
             } else {
                 const errorMessage = await response.text();
