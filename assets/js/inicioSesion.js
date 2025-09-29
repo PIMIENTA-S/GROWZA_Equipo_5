@@ -1,8 +1,8 @@
-const API_URL = 'http://localhost:8080/growza/usuarios/loginConDTO';
+const API_URL = 'https://master.d2zt4q69936fvu.amplifyapp.com/inicioSesion.html';
 const loginForm = document.getElementById('login-form');
 
 if (!loginForm) {
-    console.error('No se encontró el formulario con id="login-form".');
+    console.error('No se encontró el formulario con id="login-form');
 } else {
     loginForm.addEventListener('submit', async function (event) {
         event.preventDefault();
