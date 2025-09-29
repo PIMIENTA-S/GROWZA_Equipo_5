@@ -207,6 +207,58 @@ function mostrarProductos(lista = obtenerProductos()) {
 
 mostrarProductos();
 
+// fetch("../modals/carroCompras.html")
+//     .then(res => res.text())
+//     .then(html => {
+//         document.getElementById("modalContainer").innerHTML = html;
+
+//         const script = document.createElement("script");
+//         script.src = "/assets/js/carroCompras.js";
+//         script.onload = () => {
+//             const carritoModal = document.getElementById("carritoModal");
+
+//             if (carritoModal) {
+//                 setupCartButton();
+
+//                 const vaciarBtn = document.getElementById("vaciarCarrito");
+//                 if (vaciarBtn) {
+//                     vaciarBtn.addEventListener("click", async () => {
+//                         const result = await Swal.fire({
+//                             title: "¿Estás seguro?",
+//                             text: "No puedes devolver esta acción",
+//                             icon: "warning",
+//                             showCancelButton: true,
+//                             confirmButtonColor: "#9AC76E",
+//                             cancelButtonColor: "#D08159",
+//                             confirmButtonText: "Sí, eliminar",
+//                             cancelButtonText: "Cancelar"
+//                         });
+
+//                         if (result.isConfirmed) {
+//                             carrito = [];
+//                             localStorage.setItem("carrito", JSON.stringify(carrito));
+//                             mostrarCarrito();
+//                             actualizarContadorCarrito();
+
+//                             Swal.fire({
+//                                 title: "¡Eliminado!",
+//                                 text: "El carrito ha sido vaciado.",
+//                                 icon: "success",
+//                                 confirmButtonColor: "#9AC76E"
+//                             });
+//                         }
+//                     });
+//                 }
+
+//                 carritoModal.addEventListener("shown.bs.modal", () => {
+//                     mostrarCarrito();
+//                 });
+//             }
+//         };
+//         document.body.appendChild(script);
+//     });
+
+
 fetch("../modals/carroCompras.html")
     .then(res => res.text())
     .then(html => {
@@ -218,6 +270,7 @@ fetch("../modals/carroCompras.html")
             const carritoModal = document.getElementById("carritoModal");
 
             if (carritoModal) {
+                // Esta función asegura que los botones del carrito funcionen.
                 setupCartButton();
 
                 const vaciarBtn = document.getElementById("vaciarCarrito");
@@ -249,10 +302,17 @@ fetch("../modals/carroCompras.html")
                         }
                     });
                 }
-
+                
+                // ✅ IMPORTANTE: Se llama a la función mostrarCarrito()
+                // cuando el modal se muestra, asegurando que siempre se
+                // carguen los datos más recientes del localStorage.
                 carritoModal.addEventListener("shown.bs.modal", () => {
                     mostrarCarrito();
                 });
+                
+                // ✅ Agregamos esta llamada para que el carrito se inicialice
+                // al cargar la página, en caso de que ya existan productos.
+                mostrarCarrito();
             }
         };
         document.body.appendChild(script);
@@ -441,7 +501,7 @@ document.addEventListener("click", function (e) {
         mostrarCarrito();
                     actualizarContadorCarrito();
         // Recuperar carrito existente o inicializar uno nuevo
-        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+        // let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
         const productoExistente = carrito.find(item => item.titulo === producto.titulo);
         if (productoExistente) {
@@ -458,6 +518,7 @@ document.addEventListener("click", function (e) {
             confirmButtonColor: "#9AC76E"
         });
 
+        mostrarCarrito();
         // Actualizar contador del carrito (si tienes esa función definida)
         if (typeof actualizarContadorCarrito === "function") {
             actualizarContadorCarrito();
@@ -534,11 +595,11 @@ mostrarProductos();
 actualizarContadorCarrito();
 actualizarContadorFavoritos();
 
-fetch("../modals/carroCompras.html")
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("modalContainer").innerHTML = data;
+// fetch("../modals/carroCompras.html")
+//     .then(response => response.text())
+//     .then(data => {
+//         document.getElementById("modalContainer").innerHTML = data;
 
-        // 🔹 Ahora que existe el modal en el DOM, mostramos el carrito
-        mostrarCarrito();
-    });
+//         // 🔹 Ahora que existe el modal en el DOM, mostramos el carrito
+//         mostrarCarrito();
+//     });
