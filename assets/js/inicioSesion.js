@@ -1,5 +1,7 @@
+
 // const API_URL = 'http://localhost:8080/growza/usuarios/loginConDTO';
-const API_URL = 'https://master.d2zt4q69936fvu.amplifyapp.com/inicioSesion.html';
+const BACK_URL = 'https://ak2m4pjzs9.us-east-1.awsapprunner.com'; 
+const API_URL = `${BACK_URL}/growza/usuarios/loginConDTO`
 const loginForm = document.getElementById('login-form');
 
 if (!loginForm) {
