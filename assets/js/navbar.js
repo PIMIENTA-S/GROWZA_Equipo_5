@@ -79,7 +79,6 @@
         console.log("[navbar] Elementos de búsqueda no encontrados. ¿El HTML del navbar ya fue insertado en la página?");
       }
     }
-
     console.log("%c[navbar] initNavbar finished", "color:teal;");
   }
 

@@ -106,11 +106,11 @@ let productosEstaticos = [
 ];
 
 function obtenerProductos() {
-  // 🔹 Obtener productos de localStorage (si existen)
-  let productosLS = JSON.parse(localStorage.getItem("productos")) || [];
+    // 🔹 Obtener productos de localStorage (si existen)
+    let productosLS = JSON.parse(localStorage.getItem("productos")) || [];
 
-  // 🔹 Unir con los estáticos
-  return [...productosEstaticos, ...productosLS];
+    // 🔹 Unir con los estáticos
+    return [...productosEstaticos, ...productosLS];
 }
 
 // ==========================
@@ -271,6 +271,11 @@ fetch("../modals/carroCompras.html")
 
             if (carritoModal) {
                 // Esta función asegura que los botones del carrito funcionen.
+                const pagarBtn = document.getElementById("botonPagarStripe");
+                if (pagarBtn) {
+                    // 🚀 ADJUNTAR LA FUNCIÓN AL BOTÓN DE PAGAR
+                    pagarBtn.addEventListener("click", iniciarPagoStripe);
+                }
                 setupCartButton();
 
                 const vaciarBtn = document.getElementById("vaciarCarrito");
@@ -302,14 +307,14 @@ fetch("../modals/carroCompras.html")
                         }
                     });
                 }
-                
+
                 // ✅ IMPORTANTE: Se llama a la función mostrarCarrito()
                 // cuando el modal se muestra, asegurando que siempre se
                 // carguen los datos más recientes del localStorage.
                 carritoModal.addEventListener("shown.bs.modal", () => {
                     mostrarCarrito();
                 });
-                
+
                 // ✅ Agregamos esta llamada para que el carrito se inicialice
                 // al cargar la página, en caso de que ya existan productos.
                 mostrarCarrito();
@@ -343,7 +348,7 @@ document.addEventListener("click", (e) => {
                 icon: "success",
                 confirmButtonColor: "#9AC76E"
             });
-            
+
         } else {
             Swal.fire({
                 title: "Ya está en favoritos",
@@ -409,6 +414,81 @@ function mostrarCarrito() {
     const totalPagar = document.getElementById("totalPagar");
     if (totalPagar) totalPagar.innerHTML = `<strong>Total a pagar:</strong> $${totalCarrito.toFixed(3)}`;
 }
+
+// ==========================
+// 🔹 FUNCIÓN PARA INICIAR PAGO CON STRIPE
+// ==========================
+
+function calcularTotalCarrito() {
+    let totalCarrito = 0;
+    // 💡 Usa la variable global 'carrito' que se carga desde localStorage
+    carrito.forEach(prod => {
+        totalCarrito += prod.precio * prod.cantidad;
+    });
+    return totalCarrito;
+}
+
+async function iniciarPagoStripe() {
+    const totalCompra = calcularTotalCarrito();
+
+    // 1. Validar que el carrito no esté vacío
+    if (carrito.length === 0 || totalCompra <= 0) {
+        Swal.fire({
+            title: "Carrito vacío",
+            text: "Agrega productos antes de proceder al pago.",
+            icon: "warning",
+            confirmButtonColor: "#9AC76E"
+        });
+        return;
+    }
+
+    // 2. Convertir el total a centavos (Stripe usa la unidad más pequeña)
+    const totalEnCentavos = Math.round(totalCompra * 100);
+
+    const checkoutData = {
+        productName: "Total de Compra en GROWZA", // Puedes detallar más aquí
+        amountCents: totalEnCentavos,
+        currency: "usd" // 💡 AJUSTAR según la moneda de tu backend/Stripe
+    };
+
+    // 3. Llamar al endpoint de tu backend para crear la sesión de Stripe
+     try {
+        // Obtener el token (asumiendo que lo guardas en localStorage)
+        const token = localStorage.getItem('jwt'); 
+        
+        // 1. Configurar la cabecera con el token (si existe)
+        const headers = {
+            'Content-Type': 'application/json',
+        };
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+        
+        const response = await fetch('http://localhost:8080/growza/stripe/crear-sesion', {
+            method: 'POST',
+            headers: headers, // Usar las cabeceras configuradas
+            body: JSON.stringify(checkoutData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Fallo al crear la sesión de pago. Estado: ' + response.status);
+        }
+
+        // 4. Redirección
+        const stripeUrl = await response.text();
+        window.location.href = stripeUrl; // Redirige a Stripe Checkout
+
+    } catch (error) {
+        console.error('Error al iniciar el pago:', error);
+        Swal.fire({
+            title: "Error de Pago",
+            text: "No se pudo iniciar el proceso de pago. Verifica la conexión con el servidor.",
+            icon: "error",
+            confirmButtonColor: "#D08159"
+        });
+    }
+}
+
 
 // ==========================
 // 🔹 CAMBIAR CANTIDAD CARRITO
@@ -499,7 +579,7 @@ document.addEventListener("click", function (e) {
         };
 
         mostrarCarrito();
-                    actualizarContadorCarrito();
+        actualizarContadorCarrito();
         // Recuperar carrito existente o inicializar uno nuevo
         // let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -556,26 +636,26 @@ function actualizarContadorCarrito() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  setTimeout(() => { // esperar a que cargue el navbar
-    const inputBusqueda = document.querySelector("#searchBox input");
+    setTimeout(() => { // esperar a que cargue el navbar
+        const inputBusqueda = document.querySelector("#searchBox input");
 
-    if (inputBusqueda) {
-      inputBusqueda.addEventListener("input", (e) => {
-    const texto = e.target.value.toLowerCase();
+        if (inputBusqueda) {
+            inputBusqueda.addEventListener("input", (e) => {
+                const texto = e.target.value.toLowerCase();
 
-    const filtrados = obtenerProductos().filter(prod =>
-        prod.titulo.toLowerCase().includes(texto) ||
-        prod.descripcion.toLowerCase().includes(texto) ||
-        prod.categoria.toLowerCase().includes(texto)
-    );
+                const filtrados = obtenerProductos().filter(prod =>
+                    prod.titulo.toLowerCase().includes(texto) ||
+                    prod.descripcion.toLowerCase().includes(texto) ||
+                    prod.categoria.toLowerCase().includes(texto)
+                );
 
-        mostrarProductos(filtrados);
-      });
-    }
+                mostrarProductos(filtrados);
+            });
+        }
 
-    // 🔹 Mostrar todo al inicio
-    mostrarProductos(obtenerProductos());
-  }, 500); // delay pequeño para dar tiempo a que cargue el navbar
+        // 🔹 Mostrar todo al inicio
+        mostrarProductos(obtenerProductos());
+    }, 500); // delay pequeño para dar tiempo a que cargue el navbar
 });
 
 

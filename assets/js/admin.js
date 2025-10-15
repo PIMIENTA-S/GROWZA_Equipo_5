@@ -29,6 +29,7 @@ const productosEstaticos = [
 const formulario = document.getElementById("formulario");
 const idProductoOculto = document.getElementById("id-producto-oculto");
 const listaProductosContainer = document.getElementById("lista-productos");
+const listaUsuariosContainer = document.getElementById("lista-usuarios");
 const btnGuardar = document.getElementById("btn-guardar");
 const previewCard = document.getElementById("preview-card");
 const previewImage = previewCard.querySelector(".card-img-top");
@@ -40,13 +41,16 @@ const vistaFormulario = document.getElementById('vista-formulario');
 const btnVerProductos = document.getElementById('btn-ver-productos');
 const btnAgregarProducto = document.getElementById('btn-agregar-producto');
 const btnEliminarTodos = document.getElementById('btn-eliminar-todos');
+const vistaListadoUsuarios = document.getElementById('vista-listado-usuarios');
+const btnVerUsuarios = document.getElementById('btn-ver-usuarios');
 
 const API_BASE_URL = 'http://localhost:8080/growza/productos';
 const API_CATEGORIES_URL = 'http://localhost:8080/growza/categorias';
+const API_USERS_URL = 'http://localhost:8080/growza/usuarios';
 
 let categoriasDisponibles = [];
 let productosBackend = [];
-
+let usuarios = [];
 // ----------------------------------------------------
 // AUTENTICACIÓN HEADER
 // ----------------------------------------------------
@@ -91,6 +95,7 @@ function actualizarVistaPrevia() {
 function mostrarVista(vistaId) {
     vistaListado.style.display = 'none';
     vistaFormulario.style.display = 'none';
+    vistaListadoUsuarios.style.display = 'none';
     document.getElementById(vistaId).style.display = 'block';
 }
 
@@ -134,11 +139,71 @@ async function listarProductos() {
                 <p class="text-muted mb-0">${producto.categoria?.nombre_categoria || producto.categoria || 'Sin categoría'}</p>
             </div>
             <div class="d-flex gap-2">
-                <button class="btn btn-sm btn-outline-secondary" onclick="cargarProductoParaEditar('${idProd}')">Editar</button>
-                <button class="btn btn-sm btn-outline-danger" onclick="eliminarProducto('${idProd}')">Eliminar</button>
+                <button class="btn btn-sm edit" onclick="cargarProductoParaEditar('${idProd}')">Editar</button>
+                <button class="btn btn-sm delete" onclick="eliminarProducto('${idProd}')">Eliminar</button>
             </div>
         `;
         listaProductosContainer.appendChild(productRow);
+    });
+}
+
+// Listar Usuarios 
+async function listarUsuarios() {
+    listaUsuariosContainer.innerHTML = '';
+    usuarios = []; // Limpiar para evitar duplicados en cada carga
+    try {
+        // Petición al endpoint de usuarios
+        const res = await fetch(API_USERS_URL, { headers: getAuthHeaders() });
+
+        if (res.ok) {
+            usuarios = await res.json();
+        } else {
+            console.warn("No se pudieron cargar los usuarios del backend.");
+            listaUsuariosContainer.innerHTML = '<p class="text-center text-danger">Error al cargar usuarios desde el backend.</p>';
+            return;
+        }
+    } catch (error) {
+        console.error("Error al cargar usuarios del backend:", error);
+        listaUsuariosContainer.innerHTML = '<p class="text-center text-danger">Error de conexión al API de usuarios.</p>';
+        return;
+    }
+
+    if (usuarios.length === 0) {
+        listaUsuariosContainer.innerHTML = '<p class="text-center text-muted">No hay usuarios para mostrar.</p>';
+        return;
+    }
+
+    // Crear el listado de usuarios
+    const table = document.createElement('table');
+    table.classList.add('table', 'table-striped', 'table-hover', 'mt-3');
+    table.innerHTML = `
+        <thead class="table-user">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="usuarios-table-body">
+        </tbody>
+    `;
+    listaUsuariosContainer.appendChild(table);
+    const tableBody = document.getElementById('usuarios-table-body');
+
+    usuarios.forEach(usuario => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${usuario.id_usuario || usuario.id}</td>
+            <td>${usuario.nombre || 'N/A'}</td>
+            <td>${usuario.apellido || 'N/A'}</td>
+            <td>${usuario.correo || 'N/A'}</td>
+            <td>
+                <button class="btn btn-sm delete-user" onclick="eliminarUsuario('${usuario.id_usuario || usuario.id}')">Eliminar</button>
+            </td>
+        `;
+        tableBody.appendChild(row);
     });
 }
 
@@ -149,7 +214,13 @@ async function cargarCategorias() {
         categoriasDisponibles = await res.json();
 
         const selectCat = document.getElementById("categoria-form");
+        if (!selectCat) {
+            console.error("HTML Error: Elemento con id='categoria-form' no encontrado.");
+            return; 
+        }
+
         selectCat.innerHTML = '<option value="">Selecciona una categoría</option>';
+
         categoriasDisponibles.forEach(cat => {
             const option = document.createElement('option');
             option.value = cat.id_categoria;
@@ -226,6 +297,8 @@ async function guardarProducto(event) {
         Swal.fire("Error", `No se pudo guardar el producto: ${error.message}`, "error");
     }
 }
+
+
 async function cargarProductoParaEditar(id) {
     if (id.startsWith('static-')) return Swal.fire("Info", "No se pueden editar productos estáticos.", "info");
 
@@ -234,30 +307,39 @@ async function cargarProductoParaEditar(id) {
         if (!res.ok) throw new Error("Producto no encontrado");
         const producto = await res.json();
 
+        // 1. Cargar datos del formulario
         idProductoOculto.value = producto.id_producto;
         document.getElementById("titulo-form").value = producto.nombre_producto;
         document.getElementById("categoria-form").value = producto.categoria?.id_categoria || "";
         document.getElementById("descripcion-form").value = producto.descripcion;
         document.getElementById("precio-form").value = producto.precio;
 
-        const previewImg = document.getElementById("preview");
-        previewImg.src = producto.imagen_url;
-        previewImg.style.display = "block";
-
+        previewImage.src = producto.imagen_url ? `http://localhost:8080${producto.imagen_url}` : producto.imagen;
+        
         btnGuardar.textContent = "Actualizar Producto";
         mostrarVista('vista-formulario');
-        actualizarVistaPrevia();
+        
+        // 4. Asegurarnos de que la card se muestre
+        actualizarVistaPrevia(); 
+        
     } catch (error) {
+        console.error("Error al cargar producto para editar:", error);
         Swal.fire("Error", "No se pudo cargar el producto.", "error");
     }
 }
 
+// CÓDIGO RECOMENDADO PARA limpiarFormulario
 function limpiarFormulario() {
     formulario.reset();
     idProductoOculto.value = "";
     btnGuardar.textContent = "Guardar Producto";
-    document.getElementById("preview").src = "";
-    document.getElementById("preview").style.display = "none";
+    
+    // Limpia la imagen de la card de preview
+    if (previewImage) { 
+        previewImage.src = "";
+        previewImage.alt = "";
+    }
+    
     previewCard.style.display = "none";
 }
 
@@ -307,7 +389,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("imagen-form").addEventListener('change', actualizarVistaPrevia);
     document.getElementById("categoria-form").addEventListener('change', actualizarVistaPrevia);
 
+    // Event Listeners de navegación (Actualizados)
+    btnVerProductos.addEventListener('click', () => { listarProductos(); mostrarVista('vista-listado'); });
+
+    // ¡NUEVO EVENT LISTENER PARA VER USUARIOS!
+    btnVerUsuarios.addEventListener('click', () => { listarUsuarios(); mostrarVista('vista-listado-usuarios'); });
+
+
     btnVerProductos.addEventListener('click', () => { listarProductos(); mostrarVista('vista-listado'); });
     btnAgregarProducto.addEventListener('click', () => { limpiarFormulario(); mostrarVista('vista-formulario'); actualizarVistaPrevia(); });
-    btnEliminarTodos.addEventListener('click', () => Swal.fire("Info", "Función eliminar todos aún no implementada.", "info"));
 });

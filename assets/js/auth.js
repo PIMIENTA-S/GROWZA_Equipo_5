@@ -22,6 +22,33 @@
 //     window.location.href = "/index.html";
 // });
 
+function checkAdminAccess() {
+    const adminLinkItem = document.getElementById("adminLinkItem");
+    
+    if (!adminLinkItem) return;
+
+    const userActiveData = localStorage.getItem("usuarioActivo");
+
+    // Ocultar por defecto
+    adminLinkItem.classList.add("d-none");
+
+    if (userActiveData) {
+        try {
+            const usuarioActivo = JSON.parse(userActiveData);
+            
+            // Si el rol es 'admin', lo mostramos.
+            if (usuarioActivo && usuarioActivo.rol === "admin") {
+                adminLinkItem.classList.remove("d-none");
+                console.log("[auth] Opción Admin mostrada.");
+            }
+        } catch (error) {
+            console.error("[auth] Error al parsear usuarioActivo de localStorage:", error);
+        }
+    }
+}
+
+
+
 (function () {
     const token = localStorage.getItem("jwt");
 
@@ -38,11 +65,16 @@
         if (registerItem) registerItem.style.display = "block";
         if (userPanel) userPanel.style.display = "none";
     }
+
+    checkAdminAccess(); 
 })();
 
-// Logout
 document.getElementById("cerrarSesionNavbar")?.addEventListener("click", (e) => {
     e.preventDefault();
     localStorage.removeItem("jwt");
+    
+    // 💡 CORRECCIÓN CLAVE: Eliminar el rol de usuario
+    localStorage.removeItem("usuarioActivo"); 
+    
     window.location.href = "/index.html";
 });

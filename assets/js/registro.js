@@ -67,9 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Lógica para enviar el formulario a la API
-    // const API_URL = 'http://localhost:8080/growza/usuarios/crear';
-    const BACK_URL = 'https://ak2m4pjzs9.us-east-1.awsapprunner.com';
-    const API_URL = `${BACK_URL}/growza/usuarios/crear`
+    const API_URL = 'http://localhost:8080/growza/usuarios/crear';
+    // const BACK_URL = 'https://ak2m4pjzs9.us-east-1.awsapprunner.com';
+    // const API_URL = `${BACK_URL}/growza/usuarios/crear`
 
     if (registerForm) {
         registerForm.addEventListener('submit', async function (event) {

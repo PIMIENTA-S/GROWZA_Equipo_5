@@ -1,7 +1,7 @@
 
-// const API_URL = 'http://localhost:8080/growza/usuarios/loginConDTO';
-const BACK_URL = 'https://ak2m4pjzs9.us-east-1.awsapprunner.com'; 
-const API_URL = `${BACK_URL}/growza/usuarios/loginConDTO`
+const API_URL = 'http://localhost:8080/growza/usuarios/loginConDTO';
+// const BACK_URL = 'https://ak2m4pjzs9.us-east-1.awsapprunner.com'; 
+// const API_URL = `${BACK_URL}/growza/usuarios/loginConDTO`
 const loginForm = document.getElementById('login-form');
 
 if (!loginForm) {
@@ -20,7 +20,7 @@ if (!loginForm) {
 
             // Guardar rol y poner el token (lo sacamos desde postman)
             localStorage.setItem("usuarioActivo", JSON.stringify({ rol: "admin" }));
-            localStorage.setItem("jwt", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJncm93emFnZW5lcmF0aW9uQGdtYWlsLmNvbSIsImlhdCI6MTc1ODYyNjgxOSwiZXhwIjoxNzU4NjYyODE5fQ.CmpzZtvmBoojyz5YkMmAe_ZupIuA9XTRQ4Z20B3uMYc"); 
+            localStorage.setItem("jwt", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJncm93emFnZW5lcmF0aW9uQGdtYWlsLmNvbSIsImlhdCI6MTc1ODYyNjgxOSwiZXhwIjoxNzU4NjYyODE5fQ.CmpzZtvmBoojyz5YkMmAe_ZupIuA9XTRQ4Z20B3uMYc");
 
             window.location.href = "/admin/admin.html";
             return;
@@ -49,6 +49,10 @@ if (!loginForm) {
             if (response.ok) {
                 const token = await response.text();
                 localStorage.setItem('jwt', token);
+
+                // 💡 CORRECCIÓN CLAVE: Establecer el rol de "usuario"
+                localStorage.setItem("usuarioActivo", JSON.stringify({ rol: "usuario" }));
+
                 console.log("Login exitoso. Token recibido:", token);
                 // Redirige a la página de inicio para usuarios regulares
                 window.location.href = 'index.html';

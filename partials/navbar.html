@@ -22,24 +22,19 @@
                 </svg>
                 <span class="ms-2">GROWZA</span>
             </a>
-               <!-- Botón hamburguesa -->
+            <!-- Botón hamburguesa -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <!-- Links -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <button
-                    class="btn-close-menu"
-                    id="close-menu-btn"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-label="Cerrar menú">
+                <button class="btn-close-menu" id="close-menu-btn" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-label="Cerrar menú">
                     &times;
-            </button>
+                </button>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
                     <li class="nav-item"><a class="nav-link" href="/index.html">Inicio</a></li>
@@ -47,9 +42,11 @@
                     <li class="nav-item"><a class="nav-link" href="/nosotros.html">Sobre Nosotros</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="/contacto.html">Contáctenos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/admin/admin.html">Admin</a></li>
+                    <li class="nav-item d-none" id="adminLinkItem">
+                        <a class="nav-link" href="/admin/admin.html">Panel admin</a>
+                    </li>
 
-                        <!-- Favoritos -->
+                    <!-- Favoritos -->
                     <!-- <li class="nav-item"><a class="nav-link" href="/admin/admin.html">Admin</a></li> -->
 
                     <li class="nav-item d-none" id="searchItem">
@@ -100,22 +97,22 @@
                             <li id="loginItem">
                                 <a class="dropdown-item d-flex align-items-center gap-2" href="/inicioSesion.html">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                                fill="var(--verde-oscuro)" viewBox="0 0 256 256">
-                                                                <path
-                                                                    d="M144.49,136.49l-40,40a12,12,0,0,1-17-17L107,140H24a12,12,0,0,1,0-24h83L87.51,96.49a12,12,0,0,1,17-17l40,40A12,12,0,0,1,144.49,136.49ZM200,28H136a12,12,0,0,0,0,24h52V204H136a12,12,0,0,0,0,24h64a12,12,0,0,0,12-12V40A12,12,0,0,0,200,28Z">
-                                                                </path>
-                                                            </svg>
+                                        fill="var(--verde-oscuro)" viewBox="0 0 256 256">
+                                        <path
+                                            d="M144.49,136.49l-40,40a12,12,0,0,1-17-17L107,140H24a12,12,0,0,1,0-24h83L87.51,96.49a12,12,0,0,1,17-17l40,40A12,12,0,0,1,144.49,136.49ZM200,28H136a12,12,0,0,0,0,24h52V204H136a12,12,0,0,0,0,24h64a12,12,0,0,0,12-12V40A12,12,0,0,0,200,28Z">
+                                        </path>
+                                    </svg>
                                     Iniciar sesión
                                 </a>
                             </li>
                             <li id="registerItem">
                                 <a class="dropdown-item d-flex align-items-center gap-2" href="/registro.html">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                                fill="var(--verde-oscuro)" viewBox="0 0 256 256">
-                                                                <path
-                                                                    d="M256,136a12,12,0,0,1-12,12h-8v8a12,12,0,0,1-24,0v-8h-8a12,12,0,0,1,0-24h8v-8a12,12,0,0,1,24,0v8h8A12,12,0,0,1,256,136Zm-54.81,56.28a12,12,0,1,1-18.38,15.44C169.12,191.42,145,172,108,172c-28.89,0-55.46,12.68-74.81,35.72a12,12,0,0,1-18.38-15.44A124.08,124.08,0,0,1,63.5,156.53a72,72,0,1,1,89,0A124,124,0,0,1,201.19,192.28ZM108,148a48,48,0,1,0-48-48A48.05,48.05,0,0,0,108,148Z">
-                                                                </path>
-                                                            </svg>
+                                        fill="var(--verde-oscuro)" viewBox="0 0 256 256">
+                                        <path
+                                            d="M256,136a12,12,0,0,1-12,12h-8v8a12,12,0,0,1-24,0v-8h-8a12,12,0,0,1,0-24h8v-8a12,12,0,0,1,24,0v8h8A12,12,0,0,1,256,136Zm-54.81,56.28a12,12,0,1,1-18.38,15.44C169.12,191.42,145,172,108,172c-28.89,0-55.46,12.68-74.81,35.72a12,12,0,0,1-18.38-15.44A124.08,124.08,0,0,1,63.5,156.53a72,72,0,1,1,89,0A124,124,0,0,1,201.19,192.28ZM108,148a48,48,0,1,0-48-48A48.05,48.05,0,0,0,108,148Z">
+                                        </path>
+                                    </svg>
                                     Registrarse
                                 </a>
                             </li>
@@ -124,17 +121,24 @@
                             <div id="user-panel" style="display: none;">
                                 <li>
                                     <a class="dropdown-item d-flex align-items-center gap-2" href="/vistaUsuario.html">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--verde-oscuro)" viewBox="0 0 256 256">
-                                                                    <path d="M128,128a44,44,0,1,0-44-44A44,44,0,0,0,128,128Zm0,24c-36.48,0-68.7,20.53-85.26,51.05a12,12,0,0,0,20.77,11.9C77.06,192.74,101.62,180,128,180s50.94,12.74,64.49,34.95a12,12,0,0,0,20.77-11.9C196.7,172.53,164.48,152,128,152Z"></path>
-                                                                </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            fill="var(--verde-oscuro)" viewBox="0 0 256 256">
+                                            <path
+                                                d="M128,128a44,44,0,1,0-44-44A44,44,0,0,0,128,128Zm0,24c-36.48,0-68.7,20.53-85.26,51.05a12,12,0,0,0,20.77,11.9C77.06,192.74,101.62,180,128,180s50.94,12.74,64.49,34.95a12,12,0,0,0,20.77-11.9C196.7,172.53,164.48,152,128,152Z">
+                                            </path>
+                                        </svg>
                                         Panel de Usuario
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item d-flex align-items-center gap-2" href="#" id="cerrarSesionNavbar">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--verde-oscuro)" viewBox="0 0 256 256">
-                                                                    <path d="M144.49,136.49l-40,40a12,12,0,0,1-17-17L107,140H24a12,12,0,0,1,0-24h83L87.51,96.49a12,12,0,0,1,17-17l40,40A12,12,0,0,1,144.49,136.49ZM200,28H136a12,12,0,0,0,0,24h52V204H136a12,12,0,0,0,0,24h64a12,12,0,0,0,12-12V40A12,12,0,0,0,200,28Z"></path>
-                                                                </svg>
+                                    <a class="dropdown-item d-flex align-items-center gap-2" href="#"
+                                        id="cerrarSesionNavbar">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            fill="var(--verde-oscuro)" viewBox="0 0 256 256">
+                                            <path
+                                                d="M144.49,136.49l-40,40a12,12,0,0,1-17-17L107,140H24a12,12,0,0,1,0-24h83L87.51,96.49a12,12,0,0,1,17-17l40,40A12,12,0,0,1,144.49,136.49ZM200,28H136a12,12,0,0,0,0,24h52V204H136a12,12,0,0,0,0,24h64a12,12,0,0,0,12-12V40A12,12,0,0,0,200,28Z">
+                                            </path>
+                                        </svg>
                                         Cerrar sesión
                                     </a>
                                 </li>
@@ -154,21 +158,21 @@
     <script src="/assets/js/auth.js"></script>
 
     <script>
-    // Selecciona el botón y el menú por sus ID
-    const closeMenuButton = document.getElementById('close-menu-btn');
-    const navbarCollapse = document.getElementById('navbarSupportedContent');
+        // Selecciona el botón y el menú por sus ID
+        const closeMenuButton = document.getElementById('close-menu-btn');
+        const navbarCollapse = document.getElementById('navbarSupportedContent');
 
-    // Crea una instancia del componente Collapse de Bootstrap
-    const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-        toggle: false // Esto evita que se abra al iniciar
-    });
+        // Crea una instancia del componente Collapse de Bootstrap
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+            toggle: false // Esto evita que se abra al iniciar
+        });
 
-    // Escucha el clic en el botón de cerrar
-    closeMenuButton.addEventListener('click', function() {
-        // Cierra el menú explícitamente
-        bsCollapse.hide();
-    });
-</script>
+        // Escucha el clic en el botón de cerrar
+        closeMenuButton.addEventListener('click', function () {
+            // Cierra el menú explícitamente
+            bsCollapse.hide();
+        });
+    </script>
 </body>
 
 </html>
